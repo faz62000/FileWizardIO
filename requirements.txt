@@ -10,3 +10,4 @@ openpyxl>=3.1.2
 aiofiles>=23.2.1
 requests>=2.31.0
 rembg[cpu]>=2.0.50
+gunicorn
