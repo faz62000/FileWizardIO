@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /static/
+Disallow: /api/
+Disallow: /downloads/
+Disallow: /temp_pdf/
+
+Sitemap: https://filewizardio.com/sitemap.xml

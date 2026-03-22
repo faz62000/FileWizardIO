@@ -1,0 +1,8 @@
+# downloads klasörünün kendisini değil, sadece İÇİNDEKİLERİ yok say
+downloads/*
+# Ama .gitkeep dosyasını istisna tut (böylece klasör GitHub'a gider)
+!downloads/.gitkeep
+
+static/temp_pdf/*
+!static/temp_pdf/.gitkeep
+__pycache__/
