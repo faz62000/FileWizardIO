@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, Depends
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.background import BackgroundTasks
 import os
@@ -7,6 +7,11 @@ import asyncio
 import shutil
 from services.video_compress_service import compress_video_logic
 from shared import progress_store
+
+# --- SAAS DÖNÜŞÜMÜ İÇİN YENİ EKLENENLER ---
+from dependencies import get_premium_user
+import models
+# ------------------------------------------
 
 router = APIRouter()
 
@@ -18,7 +23,10 @@ async def compress_video_endpoint(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     task_id: str = Form(...),
-    compression_level: str = Form("medium")
+    compression_level: str = Form("medium"),
+    # MİLYON DOLARLIK KİLİT: Bu satır, isteği yapanın dijital pasaportunu kontrol eder.
+    # Eğer PRO (Premium) değilse, kodun alt satırlarına geçmesine izin vermez, hata fırlatır!
+    current_user: models.User = Depends(get_premium_user)
 ):
     input_ext = os.path.splitext(file.filename)[1]
     if not input_ext: 

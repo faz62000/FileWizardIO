@@ -1,0 +1,12 @@
+# Veritabanı dosyaları
+*.db
+*.sqlite3
+filewizard.db
+
+# Gizli ortam değişkenleri
+.env
+
+# Python önbellek dosyaları
+__pycache__/
+*.py[cod]
+*$py.class

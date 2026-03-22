@@ -9,6 +9,14 @@ import asyncio
 from shared import progress_store
 from routers import video_router, image_router, pdf_router, watermark_router, developer_router, batch_router, ai_router, cloud_router, bg_remove_router, video_compress_router
 
+# --- SAAS DÖNÜŞÜMÜ İÇİN YENİ EKLENENLER ---
+from routers import auth_router, lemonsqueezy_router
+from database import engine, Base
+
+# Uygulama başlarken veritabanı tablolarını otomatik olarak oluştur (Sadece ilk çalışmada tabloları çizer)
+Base.metadata.create_all(bind=engine)
+# ------------------------------------------
+
 app = FastAPI(
     title="FileWizardIO Pro API",
     description="Ultimate Media Processing Engine",
@@ -40,6 +48,10 @@ app.include_router(ai_router.router, prefix="/api/ai", tags=["AI"])
 app.include_router(cloud_router.router, prefix="/api/cloud", tags=["Cloud"])
 app.include_router(bg_remove_router.router, prefix="/api/bg-remove", tags=["Background Remove"])
 app.include_router(video_compress_router.router, prefix="/api/compress", tags=["Video Compress"])
+
+# YENİ: SaaS rotaları (Kayıt, Giriş ve Ödeme Dinleyici)
+app.include_router(auth_router.router, prefix="/api/auth", tags=["Auth"])
+app.include_router(lemonsqueezy_router.router, prefix="/api/billing", tags=["Billing"])
 
 # 4. SSE (PROGRESS BAR) STREAM
 @app.get("/api/progress/{task_id}")
