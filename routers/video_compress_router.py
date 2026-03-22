@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.background import BackgroundTasks
 import os
 import uuid
+import asyncio
 from services.video_compress_service import compress_video_logic
 from shared import progress_store
 
@@ -42,8 +43,9 @@ async def compress_video_endpoint(
     }
     crf_value = crf_map.get(compression_level, "28")
 
-    # Sıkıştırma işlemini senkron (bekleyerek) başlat
-    success = compress_video_logic(input_path, output_path, task_id, crf_value)
+    # Sıkıştırma işlemini senkron (bekleyerek) başlat - YENİ MİMARİ: Artık Thread (İş Parçacığı) ile asenkron!
+    # MİLYON DOLARLIK DOKUNUŞ: Sunucunun donmasını ve "Degraded" hatasını engellemek için işlemi arka plana aldık.
+    success = await asyncio.to_thread(compress_video_logic, input_path, output_path, task_id, crf_value)
 
     # Orijinal girdiyi temizle
     if os.path.exists(input_path):
