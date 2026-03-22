@@ -4,11 +4,7 @@ FROM python:3.10-slim
 # 2. Sistem Bağımlılıkları (Milyon Dolarlık Kısım Burası)
 # ffmpeg: Video birleştirme ve format değiştirme için ZORUNLU.
 # poppler-utils: PDF'i resme çevirmek için ZORUNLU.
-RUN apt-get update && apt-get install -y \
-    ffmpeg \
-    poppler-utils \
-    libgl1-mesa-glx \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y ffmpeg poppler-utils libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 
 # 3. Çalışma Dizini
 WORKDIR /app
