@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Akıllı Çoklu İşlem | FileWizardIO Pro</title>
     
-    <meta name="description" content="Tek seferde 50 dosyaya kadar görseli topluca yeniden boyutlandırın, formatını değiştirin ve tek tıkla indirin.">
+    <title>Akıllı Çoklu İşlem | Resimleri Toplu Kırpma ve Boyutlandırma | FileWizardIO Pro</title>
+    <meta name="description" content="Tek seferde 50 dosyaya kadar görseli topluca yeniden boyutlandırın, formatını değiştirin ve tek tıkla indirin. Bulk image converter and resizer.">
+    
+    <meta name="keywords" content="resimleri toplu kırpma, toplu boyut düşürme, toplu boyut yükseltme, resim arkaplanı silme, foto arkaplan silme, toplu resim formatı değiştirme, çoklu fotoğraf küçültme, bulk image resize, bulk image format converter, wepb to jpg, png to jpg toplu dönüştürme">
+    
     <meta name="theme-color" content="#0b0f19">
     <link rel="icon" type="image/png" href="/favicon.png">
     
@@ -13,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="/i18n.js"></script>
 
     <script>
         tailwind.config = {
@@ -50,35 +55,41 @@
                 <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Batch Processing</p>
             </div>
         </div>
-        <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
-            <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Ana Siteye Dön</span>
-        </a>
+        
+        <div class="flex items-center gap-6">
+            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800 border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white">
+                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
+            </button>
+            <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline" data-i18n="nav_return">Ana Siteye Dön</span>
+            </a>
+        </div>
     </header>
 
     <main class="flex-1 w-full max-w-7xl mx-auto p-6 md:p-12 z-10 relative flex flex-col lg:flex-row gap-8 items-start">
         
         <div class="w-full lg:w-3/5 flex flex-col gap-6">
             <div class="mb-2">
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight">Toplu <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Dönüştürücü.</span></h2>
-                <p class="text-slate-400 text-sm">Tek seferde 50 dosyaya kadar yükleyin. Zamandan tasarruf edin.</p>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight" data-i18n="batch_title">Toplu <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Dönüştürücü.</span></h2>
+                <p class="text-slate-400 text-sm" data-i18n="batch_desc">Tek seferde 50 dosyaya kadar yükleyin. Görselleri topluca yeniden boyutlandırın, formatını değiştirin ve zamandan tasarruf edin.</p>
             </div>
 
             <div id="drop-area" class="drop-zone glass-panel p-10 rounded-3xl flex flex-col items-center justify-center text-center cursor-pointer min-h-[250px]" onclick="document.getElementById('file-input').click()">
                 <div class="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-indigo-400"></i>
                 </div>
-                <h3 class="font-bold text-white mb-2 text-lg">Görselleri Buraya Sürükleyin</h3>
-                <p class="text-xs text-slate-400 mb-4">veya seçmek için tıklayın (Maks: 50 Dosya, JPEG/PNG/WEBP)</p>
+                <h3 class="font-bold text-white mb-2 text-lg" data-i18n="batch_drop_title">Görselleri Buraya Sürükleyin</h3>
+                <p class="text-xs text-slate-400 mb-4" data-i18n="batch_drop_desc">veya seçmek için tıklayın (Maks: 50 Dosya, JPEG/PNG/WEBP)</p>
                 <input type="file" id="file-input" class="hidden" multiple accept="image/*">
-                <button class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm">Dosyaları Seç</button>
+                <button class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm" data-i18n="batch_btn_select">Dosyaları Seç</button>
             </div>
 
             <div id="file-list-container" class="hidden glass-panel p-6 rounded-3xl">
                 <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
                     <h3 class="font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-images text-indigo-400"></i> <span id="file-count">0</span> Dosya Seçildi
+                        <i class="fa-solid fa-images text-indigo-400"></i> <span id="file-count">0</span> <span data-i18n="batch_file_selected">Dosya Seçildi</span>
                     </h3>
-                    <button onclick="clearFiles()" class="text-xs text-red-400 hover:text-red-300 font-bold px-3 py-1 bg-red-500/10 rounded-lg transition"><i class="fa-solid fa-trash-can mr-1"></i> Temizle</button>
+                    <button onclick="clearFiles()" class="text-xs text-red-400 hover:text-red-300 font-bold px-3 py-1 bg-red-500/10 rounded-lg transition"><i class="fa-solid fa-trash-can mr-1"></i> <span data-i18n="batch_btn_clear">Temizle</span></button>
                 </div>
                 <ul id="file-list" class="max-h-60 overflow-y-auto custom-scroll space-y-2 pr-2">
                     </ul>
@@ -86,41 +97,51 @@
         </div>
 
         <div class="w-full lg:w-2/5 glass-panel p-8 rounded-3xl sticky top-6">
-            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2">
+            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2" data-i18n="batch_settings_title">
                 <i class="fa-solid fa-sliders text-purple-400"></i> Toplu İşlem Ayarları
             </h3>
             
             <div class="space-y-6">
                 <div>
-                    <label class="text-slate-300 font-medium text-sm block mb-3">Çıktı Formatı</label>
+                    <label class="text-slate-300 font-medium text-sm block mb-3" data-i18n="batch_format_label">Çıktı Formatı</label>
                     <select id="target-format" class="w-full bg-slate-900 p-4 rounded-xl text-sm text-white border border-white/10 outline-none focus:border-indigo-500 transition">
-                        <option value="jpeg">JPEG (Varsayılan, Düşük Boyut)</option>
-                        <option value="png">PNG (Kayıpsız Kalite)</option>
-                        <option value="webp">WEBP (Web İçin Optimize)</option>
+                        <option value="jpeg" data-i18n="batch_format_jpeg">JPEG (Varsayılan, Düşük Boyut)</option>
+                        <option value="png" data-i18n="batch_format_png">PNG (Kayıpsız Kalite)</option>
+                        <option value="webp" data-i18n="batch_format_webp">WEBP (Web İçin Optimize)</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="text-slate-300 font-medium text-sm block mb-3">Genişliğe Göre Boyutlandır (Opsiyonel)</label>
+                    <label class="text-slate-300 font-medium text-sm block mb-3" data-i18n="batch_resize_label">Genişliğe Göre Boyutlandır (Opsiyonel)</label>
                     <div class="flex items-center gap-3">
                         <input type="number" id="resize-width" placeholder="Örn: 1080" min="0" class="w-full bg-slate-900 p-4 rounded-xl text-sm text-white border border-white/10 outline-none focus:border-indigo-500 transition font-mono">
-                        <span class="text-slate-500 font-bold">Piksel</span>
+                        <span class="text-slate-500 font-bold" data-i18n="batch_pixel">Piksel</span>
                     </div>
-                    <p class="text-[10px] text-slate-500 mt-2"><i class="fa-solid fa-circle-info mr-1"></i> Boş bırakırsanız orijinal boyut korunur. Yükseklik otomatik ayarlanır.</p>
+                    <p class="text-[10px] text-slate-500 mt-2"><i class="fa-solid fa-circle-info mr-1"></i> <span data-i18n="batch_resize_info">Boş bırakırsanız orijinal boyut korunur. Yükseklik otomatik ayarlanır.</span></p>
                 </div>
 
-                <button onclick="startBatchProcess()" id="process-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 active:scale-95 transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                <button onclick="startBatchProcess()" id="process-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 active:scale-95 transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" data-i18n="batch_btn_process">
                     <i class="fa-solid fa-bolt"></i> TÜMÜNÜ İŞLE VE İNDİR (.ZIP)
                 </button>
             </div>
         </div>
     </main>
 
+    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div data-i18n="footer_copy">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
+            <div class="flex gap-4">
+                <a href="/legal/privacy.html" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
+                <a href="/legal/terms.html" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
+            </div>
+        </div>
+    </footer>
+
     <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
         <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
             <div class="loader mb-6"></div>
-            <h3 class="text-xl font-bold text-white mb-1" id="p-title">İşleniyor</h3>
-            <p class="text-xs text-slate-400 mb-4" id="p-desc">Dosyalar hazırlanıyor...</p>
+            <h3 class="text-xl font-bold text-white mb-1" id="p-title" data-i18n="batch_modal_title">İşleniyor</h3>
+            <p class="text-xs text-slate-400 mb-4" id="p-desc" data-i18n="batch_modal_desc">Dosyalar hazırlanıyor...</p>
             <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div id="p-bar" class="h-full bg-indigo-500 w-0 transition-all duration-300"></div></div>
             <div class="mt-2 text-right text-[10px] text-indigo-400 font-mono" id="p-text">0%</div>
         </div>
@@ -130,7 +151,6 @@
         const API_URL = "/api/batch";
         let selectedFiles = [];
 
-        // Sürükle-Bırak Olayları
         const dropArea = document.getElementById('drop-area');
         const fileInput = document.getElementById('file-input');
 
@@ -159,13 +179,12 @@
             const newFiles = Array.from(files);
             
             if (selectedFiles.length + newFiles.length > 50) {
-                return Swal.fire({icon: 'warning', title: 'Limit Aşıldı', text: 'Tek seferde en fazla 50 dosya yükleyebilirsiniz.', background: '#0b0f19', color: '#fff'});
+                return Swal.fire({icon: 'warning', title: window.t('swal_limit_title'), text: window.t('swal_limit_text'), background: '#0b0f19', color: '#fff'});
             }
 
-            // Sadece resim dosyalarını filtrele
             const validFiles = newFiles.filter(file => file.type.startsWith('image/'));
             if (validFiles.length !== newFiles.length) {
-                Swal.fire({toast: true, position: 'top-end', icon: 'info', title: 'Sadece görsel dosyaları kabul edilir.', showConfirmButton: false, timer: 3000, background: '#0b0f19', color: '#fff'});
+                Swal.fire({toast: true, position: 'top-end', icon: 'info', title: window.t('swal_invalid_file_title'), showConfirmButton: false, timer: 3000, background: '#0b0f19', color: '#fff'});
             }
 
             selectedFiles = [...selectedFiles, ...validFiles];
@@ -208,13 +227,13 @@
 
         function clearFiles() {
             selectedFiles = [];
-            fileInput.value = ''; // Input'u da sıfırla
+            fileInput.value = ''; 
             updateFileListUI();
         }
 
         async function startBatchProcess() {
             if (selectedFiles.length === 0) {
-                return Swal.fire({icon: 'warning', title: 'Dosya Yok', text: 'Lütfen işlenecek görselleri yükleyin.', background: '#0b0f19', color: '#fff'});
+                return Swal.fire({icon: 'warning', title: window.t('swal_missing_batch_title'), text: window.t('swal_missing_batch_text'), background: '#0b0f19', color: '#fff'});
             }
 
             const targetFormat = document.getElementById('target-format').value;
@@ -248,15 +267,14 @@
                     
                     Swal.fire({
                         icon: 'success', 
-                        title: 'İşlem Başarılı!', 
-                        text: 'Tüm görselleriniz ZIP olarak indirildi.', 
+                        title: window.t('swal_success_batch_title'), 
+                        text: window.t('swal_success_batch_text'), 
                         background: '#0b0f19', 
                         color: '#fff',
                         timer: 2500,
                         showConfirmButton: false
                     });
                     
-                    // İşlem bitince listeyi temizle
                     clearFiles();
                 } else {
                     const data = await res.json();
@@ -264,11 +282,10 @@
                 }
             } catch (e) {
                 closeModal();
-                Swal.fire({icon: 'error', title: 'İşlem Başarısız', text: e.message, background: '#0b0f19', color: '#fff'});
+                Swal.fire({icon: 'error', title: window.t('swal_error_title'), text: e.message, background: '#0b0f19', color: '#fff'});
             }
         }
 
-        // Progress Bar (SSE) Fonksiyonları
         function startProgress(tid) {
             document.getElementById('progress-modal').classList.remove('hidden');
             document.getElementById('p-bar').style.width = '0%';

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Sihirli Arka Plan Silici | FileWizardIO Pro</title>
+    
+    <meta name="description" content="Yapay Zeka (U²-Net) teknolojisi ile fotoğraflarınızın arka planını saç teline kadar kusursuz bir şekilde silin ve şeffaf PNG olarak indirin.">
+    <meta name="theme-color" content="#0b0f19">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="/i18n.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { 
+                        dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
+                        fuchsia: { 400: '#e879f9', 500: '#d946ef', 600: '#c026d3' }
+                    },
+                    animation: { 'float': 'float 6s ease-in-out infinite' },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: white; min-height: 100vh; display: flex; flex-direction: column; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(20, 25, 40, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .upload-area { border: 2px dashed rgba(232, 121, 249, 0.3); transition: all 0.3s ease; }
+        .upload-area:hover, .upload-area.dragover { border-color: #d946ef; background: rgba(232, 121, 249, 0.05); }
+        
+        /* Satranç Tahtası Arka Planı (Şeffaflık Efekti İçin) */
+        .checkerboard-bg {
+            background-color: #1a1a1a;
+            background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%, #2a2a2a), 
+                              linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%, #2a2a2a);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .loader { width: 48px; height: 48px; border: 5px solid #FFF; border-bottom-color: #d946ef; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="relative">
+
+    <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <header class="h-20 border-b border-white/5 flex items-center px-6 md:px-12 justify-between z-10 relative bg-[#0b0f19]/80 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-fuchsia-500/20 border border-fuchsia-500/50 flex items-center justify-center text-fuchsia-400 shadow-lg shadow-fuchsia-500/20">
+                <i class="fa-solid fa-eraser"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-tight leading-none text-white">FileWizard<span class="text-fuchsia-400">IO</span></h1>
+                <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Magic Eraser Pro</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800 border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white">
+                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
+            </button>
+            <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline" data-i18n="nav_return">Ana Siteye Dön</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-6xl mx-auto p-6 md:p-12 z-10 relative flex flex-col lg:flex-row gap-8 items-start">
+        
+        <div class="w-full lg:w-3/5 flex flex-col gap-6">
+            <div class="mb-4 animate-float">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight" data-i18n="bg_title">Kusursuz <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-500">Dekupe.</span></h2>
+                <p class="text-slate-400 text-lg" data-i18n="bg_desc">Yapay zeka (U²-Net) motorumuzla fotoğraflarınızın arka planını saç teline kadar ayırın ve saniyeler içinde şeffaf PNG'ye dönüştürün.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl upload-area flex flex-col items-center justify-center text-center cursor-pointer min-h-[350px] relative overflow-hidden" onclick="document.getElementById('bg-file-input').click()">
+                <div id="upload-content" class="flex flex-col items-center">
+                    <i class="fa-solid fa-wand-magic text-5xl text-fuchsia-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-1 text-xl" data-i18n="bg_drop_title">Sihri Başlatmak İçin Sürükleyin</h3>
+                    <p class="text-sm text-slate-400" data-i18n="bg_drop_desc">veya bilgisayarınızdan seçmek için tıklayın (JPEG, PNG, WEBP)</p>
+                </div>
+                
+                <input type="file" id="bg-file-input" class="hidden" accept="image/jpeg, image/png, image/webp" onchange="previewImage(this)">
+                
+                <div id="preview-container" class="hidden absolute inset-0 w-full h-full checkerboard-bg z-10 p-4 flex items-center justify-center">
+                    <img id="image-preview" class="max-w-full max-h-full object-contain drop-shadow-2xl rounded">
+                    <div id="change-btn" class="absolute bottom-4 right-4 z-20 bg-slate-900/80 backdrop-blur px-4 py-2 rounded-xl text-xs font-bold text-white border border-white/10 hover:bg-slate-800 transition shadow-lg" data-i18n="bg_btn_change">Değiştir</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-2/5 glass-panel p-8 rounded-3xl sticky top-6">
+            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2" data-i18n="bg_info_title">
+                <i class="fa-solid fa-bolt text-fuchsia-400"></i> Sihirli Motor Hazır
+            </h3>
+            
+            <div class="space-y-6">
+                
+                <div class="bg-slate-900/50 p-5 rounded-2xl border border-white/5">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check-circle text-fuchsia-400 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-white" data-i18n="bg_info_1_title">Yüksek Hassasiyet</h4>
+                                <p class="text-xs text-slate-400" data-i18n="bg_info_1_desc">Saç telleri, kürk veya karmaşık kenarlar yapay zeka tarafından milimetrik hesaplanır.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check-circle text-fuchsia-400 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-white" data-i18n="bg_info_2_title">E-Ticaret Uyumlu</h4>
+                                <p class="text-xs text-slate-400" data-i18n="bg_info_2_desc">Ürün fotoğraflarınızı saniyeler içinde pazar yeri standartlarına uygun hale getirin.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check-circle text-fuchsia-400 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-white" data-i18n="bg_info_3_title">Kayıpsız Şeffaflık</h4>
+                                <p class="text-xs text-slate-400" data-i18n="bg_info_3_desc">Çıktılar her zaman profesyonel tasarım programlarıyla uyumlu şeffaf PNG formatındadır.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <button onclick="startBgRemoveProcess()" class="w-full py-4 mt-2 bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-400 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-fuchsia-500/20 active:scale-95 transition flex items-center justify-center gap-2" data-i18n="bg_btn_process">
+                    <i class="fa-solid fa-eraser"></i> ARKA PLANI SİL VE İNDİR
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div data-i18n="footer_copy">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
+            <div class="flex gap-4">
+                <a href="/legal/privacy.html" class="hover:text-fuchsia-400 transition" data-i18n="footer_privacy">Gizlilik</a>
+                <a href="/legal/terms.html" class="hover:text-fuchsia-400 transition" data-i18n="footer_terms">Koşullar</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+        <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
+            <div class="loader mb-6"></div>
+            <h3 class="text-xl font-bold text-white mb-1" id="p-title" data-i18n="bg_modal_title">İşleniyor</h3>
+            <p class="text-xs text-slate-400 mb-4" id="p-desc" data-i18n="bg_modal_desc">Yapay zeka nesneyi analiz ediyor...</p>
+            <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div id="p-bar" class="h-full bg-fuchsia-500 w-0 transition-all duration-300"></div></div>
+            <div class="mt-2 text-right text-[10px] text-fuchsia-400 font-mono" id="p-text">0%</div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "/api/bg-remove";
+
+        function previewImage(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('upload-content').classList.add('hidden');
+                    const img = document.getElementById('image-preview');
+                    img.src = e.target.result;
+                    document.getElementById('preview-container').classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        const uploadArea = document.querySelector('.upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'), false);
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const fileInput = document.getElementById('bg-file-input');
+            fileInput.files = dt.files;
+            previewImage(fileInput);
+        });
+
+        async function startBgRemoveProcess() {
+            const fileInput = document.getElementById('bg-file-input');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                // Hata mesajı artık i18n motorundan dinamik geliyor!
+                return Swal.fire({
+                    icon: 'warning', 
+                    title: window.t('swal_missing_title'), 
+                    text: window.t('swal_missing_text'), 
+                    background: '#0b0f19', 
+                    color: '#fff',
+                    confirmButtonColor: '#d946ef'
+                });
+            }
+
+            const tid = "bg_" + Math.random().toString(36).substr(2, 9);
+            
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('task_id', tid);
+
+            startProgress(tid);
+
+            try {
+                const res = await fetch(`${API_URL}/process`, {
+                    method: 'POST',
+                    body: fd
+                });
+
+                if (res.ok) {
+                    const blob = await res.blob();
+                    const a = document.createElement('a'); 
+                    a.href = window.URL.createObjectURL(blob); 
+                    a.download = `FileWizard_MagicBG_${Date.now()}.png`; 
+                    document.body.appendChild(a); 
+                    a.click(); 
+                    document.body.removeChild(a);
+                    
+                    Swal.fire({
+                        icon: 'success', 
+                        title: window.t('swal_success_title'), 
+                        text: window.t('swal_success_text'), 
+                        background: '#0b0f19', 
+                        color: '#fff',
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
+                } else {
+                    const data = await res.json();
+                    throw new Error(data.error || "Sunucu hatası");
+                }
+            } catch (e) {
+                closeModal();
+                Swal.fire({
+                    icon: 'error', 
+                    title: window.t('swal_error_title'), 
+                    text: e.message, 
+                    background: '#0b0f19', 
+                    color: '#fff',
+                    confirmButtonColor: '#ef4444'
+                });
+            }
+        }
+
+        function startProgress(tid) {
+            document.getElementById('progress-modal').classList.remove('hidden');
+            document.getElementById('p-bar').style.width = '0%';
+            document.getElementById('p-text').innerText = '0%';
+            
+            const source = new EventSource(`/api/progress/${tid}`);
+            source.onmessage = (e) => {
+                const d = JSON.parse(e.data);
+                document.getElementById('p-bar').style.width = d.percent + '%';
+                document.getElementById('p-text').innerText = d.percent + '%';
+                
+                // Progress bar açıklamaları Backend'den geldiği için şimdilik olduğu gibi alıyoruz.
+                // (İleride backend'den gelen mesajları da çevirmek istersek ek bir kod yazabiliriz)
+                document.getElementById('p-desc').innerText = d.message;
+                
+                if (d.percent >= 100 || d.message.startsWith('Hata')) {
+                    source.close();
+                    if (d.percent >= 100 && !d.message.startsWith('Hata')) {
+                        setTimeout(closeModal, 800);
+                    }
+                }
+            };
+            
+            source.onerror = () => { source.close(); closeModal(); };
+        }
+
+        function closeModal() { document.getElementById('progress-modal').classList.add('hidden'); }
+    </script>
+</body>
+</html>
