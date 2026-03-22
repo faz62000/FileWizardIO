@@ -136,6 +136,52 @@
 </head>
 <body class="flex">
 
+    <div id="login-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
+            <h3 class="text-2xl font-bold text-white text-center mb-2">Hoş Geldiniz</h3>
+            <p class="text-sm text-slate-400 text-center mb-6">FileWizardIO hesabınıza giriş yapın.</p>
+            <div class="space-y-4">
+                <div><label class="text-xs text-slate-400 font-bold ml-1">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="••••••••"></div>
+                <button onclick="processLogin()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text">Giriş Yap</span></button>
+            </div>
+            <p class="text-xs text-center text-slate-500 mt-6">Hesabınız yok mu? <button onclick="showRegisterModal()" class="text-indigo-400 font-bold hover:text-indigo-300">Üye Olun</button></p>
+        </div>
+    </div>
+
+    <div id="register-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
+            <h3 class="text-2xl font-bold text-white text-center mb-2">Kayıt Ol</h3>
+            <p class="text-sm text-slate-400 text-center mb-6">Sınırsız araçlar için aramıza katıl.</p>
+            <div class="space-y-4">
+                <div><label class="text-xs text-slate-400 font-bold ml-1">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="En az 6 karakter"></div>
+                <button onclick="processRegister()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text">Ücretsiz Kayıt Ol</span></button>
+            </div>
+            <p class="text-xs text-center text-slate-500 mt-6">Zaten üye misiniz? <button onclick="showLoginModal()" class="text-indigo-400 font-bold hover:text-indigo-300">Giriş Yapın</button></p>
+        </div>
+    </div>
+
+    <div id="upgrade-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+        <div class="glass-panel border border-amber-500/30 p-8 rounded-3xl w-[450px] max-w-[90%] shadow-2xl shadow-amber-500/10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-3xl text-black mb-6 mx-auto shadow-lg shadow-orange-500/30 relative z-10"><i class="fa-solid fa-crown"></i></div>
+            <h3 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-400 text-center mb-2 relative z-10">PRO'ya Yükselt</h3>
+            <p class="text-sm text-slate-300 text-center mb-6 relative z-10">Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.</p>
+            <ul class="text-sm text-slate-400 space-y-3 mb-8 px-4 relative z-10">
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Limitsiz Video Küçültme (Asla çökmez)</li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> AI Arka Plan Silici</li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Yapay Zeka Stüdyosu</li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Öncelikli Sunucu İşlemcisi</li>
+            </ul>
+            <a href="#" id="lemonsqueezy-checkout-link" target="_blank" class="block text-center w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-lg rounded-xl shadow-xl shadow-orange-500/20 transition transform hover:scale-105 relative z-10">Hemen PRO Ol ($9.99/Ay)</a>
+        </div>
+    </div>
     <aside class="w-20 lg:w-72 bg-[#0b0f19] border-r border-white/5 flex flex-col z-50 hidden md:flex">
         <div class="h-24 flex items-center justify-center lg:justify-start lg:px-8">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl shadow-lg shadow-indigo-500/30">✨</div>
@@ -201,7 +247,9 @@
                 <button onclick="showContact()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition" data-i18n="home_support_btn">Destek Ekibi</button>
             </div>
         </div>
-    </aside><div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/90 backdrop-blur border-t border-white/10 z-50 flex justify-around p-4 pb-6">
+    </aside>
+
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/90 backdrop-blur border-t border-white/10 z-50 flex justify-around p-4 pb-6">
         <button onclick="switchTab('media')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
         <button onclick="switchTab('image')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
         <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
@@ -214,13 +262,25 @@
             <span class="font-bold">FileWizardIO</span>
         </div>
 
-        <div class="absolute top-4 right-4 z-50">
+        <div class="absolute top-4 right-4 z-50 flex items-center gap-3">
+            
+            <div id="auth-buttons-unlogged" class="flex gap-2">
+                <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition">Giriş Yap</button>
+                <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-500/20 transition">Üye Ol</button>
+            </div>
+
+            <div id="auth-buttons-logged" class="hidden flex items-center gap-2">
+                <span id="pro-badge" class="hidden px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px] font-black rounded uppercase tracking-widest shadow-lg shadow-orange-500/20">PRO</span>
+                <button onclick="showProUpgrade()" id="upgrade-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-indigo-500/30 text-indigo-400 text-xs font-bold hover:bg-indigo-500/10 transition">Yükselt</button>
+                <button onclick="processLogout()" class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/50 transition" title="Çıkış Yap">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+
             <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800/80 backdrop-blur border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
                 <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
             </button>
-        </div>
-
-        <section id="media-tool" class="w-full h-full overflow-y-auto custom-scroll relative">
+        </div><section id="media-tool" class="w-full h-full overflow-y-auto custom-scroll relative">
             <div class="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
             
             <div class="min-h-full flex flex-col items-center justify-center p-6 relative z-10">
@@ -649,6 +709,99 @@
         }
         function closeModal() { document.getElementById('progress-modal').classList.add('hidden'); }
         function showContact() { Swal.fire({title: 'İletişim', html: 'devrim.oncu@gmail.com', background: '#0b0f19', color: '#fff'}); }
+
+        // --- SAAS DÖNÜŞÜMÜ: YENİ KİMLİK DOĞRULAMA (AUTH) FONKSİYONLARI ---
+        
+        function getToken() { return localStorage.getItem('fw_token'); }
+        function setToken(token) { localStorage.setItem('fw_token', token); }
+        function removeToken() { localStorage.removeItem('fw_token'); }
+
+        function checkAuthState() {
+            const token = getToken();
+            if (token) {
+                document.getElementById('auth-buttons-unlogged').classList.add('hidden');
+                document.getElementById('auth-buttons-logged').classList.remove('hidden');
+                document.getElementById('auth-buttons-logged').classList.add('flex');
+            } else {
+                document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
+                document.getElementById('auth-buttons-logged').classList.add('hidden');
+                document.getElementById('auth-buttons-logged').classList.remove('flex');
+            }
+        }
+
+        function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
+        function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
+        function showProUpgrade() { closeAuthModals(); document.getElementById('upgrade-modal').classList.remove('hidden'); }
+        function closeAuthModals() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('register-modal').classList.add('hidden');
+            document.getElementById('upgrade-modal').classList.add('hidden');
+        }
+
+        async function processLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            if(!email || !password) return Swal.fire({icon:'warning', title:'Hata', text:'Lütfen tüm alanları doldurun.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('login-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await res.json();
+                if(res.ok) {
+                    setToken(data.access_token);
+                    checkAuthState();
+                    closeAuthModals();
+                    Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+                } else throw new Error(data.detail || 'Giriş başarısız. Lütfen e-posta veya şifrenizi kontrol edin.');
+            } catch(e) {
+                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
+            } finally {
+                btnText.innerText = 'Giriş Yap';
+            }
+        }
+
+        async function processRegister() {
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            if(!email || password.length < 6) return Swal.fire({icon:'warning', title:'Hata', text:'Geçerli bir e-posta ve en az 6 haneli şifre girin.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('reg-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await res.json();
+                if(res.ok) {
+                    setToken(data.access_token);
+                    checkAuthState();
+                    closeAuthModals();
+                    Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+                } else throw new Error(data.detail || 'Kayıt başarısız. Bu e-posta kullanılıyor olabilir.');
+            } catch(e) {
+                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
+            } finally {
+                btnText.innerText = 'Ücretsiz Kayıt Ol';
+            }
+        }
+
+        function processLogout() {
+            removeToken();
+            checkAuthState();
+            Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+        }
+
+        // Sayfa yüklendiğinde kullanıcının giriş yapıp yapmadığını kontrol et
+        window.addEventListener('DOMContentLoaded', checkAuthState);
     </script>
 </body>
 </html>
