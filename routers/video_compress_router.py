@@ -37,23 +37,32 @@ async def compress_video_endpoint(
     except Exception as e:
         return JSONResponse({"error": f"Dosya yazma hatası: {str(e)}"}, status_code=400)
 
-    # Sıkıştırma seviyesine göre CRF değerini belirle
-    # Düşük CRF = Daha yüksek dosya boyutu, Yüksek CRF = Daha yüksek sıkıştırma
+    # Orijinal dosyanın boyutunu ölç (Akıllı kontrol için)
+    original_size = os.path.getsize(input_path)
+
+    # CRF Değerlerini Güncelledik (Modern videolar zaten çok sıkıştırılmıştır)
+    # Değerleri artırdık ki gerçekten "sıkıştırma" yapsın.
     crf_map = {
-        "light": "24",    # Hafif sıkıştırma (Mükemmel kalite)
-        "medium": "28",   # Standart (Tavsiye edilen)
-        "extreme": "35"   # Maksimum sıkıştırma (WhatsApp/Mail uyumlu)
+        "light": "28",    # Hafif
+        "medium": "32",   # Standart 
+        "extreme": "38"   # Maksimum
     }
-    crf_value = crf_map.get(compression_level, "28")
+    crf_value = crf_map.get(compression_level, "32")
 
     # Sıkıştırma işlemini asenkron (Thread içinde) başlat
     success = await asyncio.to_thread(compress_video_logic, input_path, output_path, task_id, crf_value)
 
-    # Orijinal girdiyi temizle
-    if os.path.exists(input_path):
-        os.remove(input_path)
-
     if success and os.path.exists(output_path):
+        compressed_size = os.path.getsize(output_path)
+        
+        # AKILLI BOYUT KONTROLÜ: Eğer sıkışan dosya orijinalden büyükse, orijinali ver!
+        if compressed_size >= original_size:
+            os.replace(input_path, output_path) # Orijinali output'un üzerine yaz
+        else:
+            # Sıkıştırma başarılı ve boyut küçüldüyse orijinali silebiliriz
+            if os.path.exists(input_path):
+                os.remove(input_path)
+
         # Kullanıcı dosyayı indirdikten sonra sunucudan silinmesi için arkaplan görevi
         background_tasks.add_task(os.remove, output_path)
         
@@ -63,6 +72,8 @@ async def compress_video_endpoint(
             media_type="video/mp4"
         )
     else:
+        if os.path.exists(input_path):
+            os.remove(input_path)
         if os.path.exists(output_path):
             os.remove(output_path)
         return JSONResponse({"error": "Video sıkıştırma işlemi başarısız oldu."}, status_code=500)
