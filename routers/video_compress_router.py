@@ -4,6 +4,7 @@ from fastapi.background import BackgroundTasks
 import os
 import uuid
 import asyncio
+import shutil
 from services.video_compress_service import compress_video_logic
 from shared import progress_store
 
@@ -27,10 +28,12 @@ async def compress_video_endpoint(
     input_path = os.path.join(TEMP_DIR, f"in_{unique_name}{input_ext}")
     output_path = os.path.join(TEMP_DIR, f"out_{unique_name}.mp4")
 
-    # Dosyayı sunucuya kaydet
+    # MİLYON DOLARLIK RAM OPTİMİZASYONU
+    # Videoyu RAM'e yükleyen "await file.read()" yerine, 
+    # shutil ile RAM'e hiç dokunmadan videoyu doğrudan SSD'ye akıtıyoruz (Streaming).
     try:
         with open(input_path, "wb") as buffer:
-            buffer.write(await file.read())
+            shutil.copyfileobj(file.file, buffer)
     except Exception as e:
         return JSONResponse({"error": f"Dosya yazma hatası: {str(e)}"}, status_code=400)
 
@@ -43,8 +46,7 @@ async def compress_video_endpoint(
     }
     crf_value = crf_map.get(compression_level, "28")
 
-    # Sıkıştırma işlemini senkron (bekleyerek) başlat - YENİ MİMARİ: Artık Thread (İş Parçacığı) ile asenkron!
-    # MİLYON DOLARLIK DOKUNUŞ: Sunucunun donmasını ve "Degraded" hatasını engellemek için işlemi arka plana aldık.
+    # Sıkıştırma işlemini asenkron (Thread içinde) başlat
     success = await asyncio.to_thread(compress_video_logic, input_path, output_path, task_id, crf_value)
 
     # Orijinal girdiyi temizle
