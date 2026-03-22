@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Geliştirici API Portalı | FileWizardIO by ForgeLogic LLC</title>
+    
+    <meta name="description" content="FileWizardIO güçlü medya işleme ve video indirme motorunu kendi projelerinize entegre edin. Geliştirici API dokümantasyonu.">
+    <meta name="theme-color" content="#020617">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: { 
+                        slate: { 950: '#020617', 900: '#0f172a' },
+                        emerald: { 400: '#34d399', 500: '#10b981' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020617; color: white; min-height: 100vh; display: flex; flex-direction: column; }
+        .glass-panel { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .code-block { background-color: #0f172a; border: 1px solid #1e293b; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; }
+        .neon-glow { text-shadow: 0 0 10px rgba(52, 211, 153, 0.5); }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <header class="h-20 border-b border-white/5 flex items-center px-6 md:px-12 justify-between z-10 relative bg-slate-950/80 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
+                <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-tight leading-none text-white">FileWizard<span class="text-emerald-400">IO</span></h1>
+                <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-mono">Developer API v1.0</p>
+            </div>
+        </div>
+        <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Ana Siteye Dön</span>
+        </a>
+    </header>
+
+    <main class="flex-1 w-full max-w-7xl mx-auto p-6 md:p-12 z-10 relative grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <div class="lg:col-span-5 space-y-8">
+            <div class="mb-8">
+                <h2 class="text-4xl font-black text-white mb-3">Gücü <span class="text-emerald-400 neon-glow">Entegre Edin.</span></h2>
+                <p class="text-slate-400 text-sm">FileWizardIO medya motorunu REST API üzerinden kendi projelerinizde kullanın. Hemen ücretsiz bir anahtar oluşturun.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+                    <i class="fa-solid fa-key text-emerald-400"></i> API Anahtarı Al
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Şirket / Geliştirici E-postası</label>
+                        <input type="email" id="dev-email" placeholder="dev@sirketiniz.com" class="w-full bg-slate-900 border border-white/10 rounded-xl p-4 text-sm text-white focus:border-emerald-500 outline-none transition">
+                    </div>
+                    <button onclick="generateApiKey()" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition flex justify-center items-center gap-2">
+                        <span>ANAHTAR OLUŞTUR</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div id="api-result-box" class="hidden mt-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+                    <p class="text-xs text-emerald-400 mb-2 font-bold">Yeni API Anahtarınız (Gizli Tutun!)</p>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="new-api-key" readonly class="w-full bg-transparent text-white font-mono text-sm outline-none">
+                        <button onclick="copyToClipboard('new-api-key')" class="text-slate-400 hover:text-white"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 border-b border-white/10 pb-4">
+                    <i class="fa-solid fa-chart-pie text-blue-400"></i> Kota Durumu
+                </h3>
+                <div class="flex gap-2">
+                    <input type="text" id="check-api-key" placeholder="API Anahtarınızı girin..." class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 text-sm text-white focus:border-blue-500 outline-none transition font-mono">
+                    <button onclick="checkStats()" class="px-6 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition">Sorgula</button>
+                </div>
+                
+                <div id="stats-result" class="hidden mt-6 grid grid-cols-2 gap-4">
+                    <div class="bg-slate-900 p-4 rounded-xl text-center border border-white/5">
+                        <span class="block text-[10px] text-slate-400 uppercase mb-1">Kullanılan</span>
+                        <span id="stat-used" class="text-2xl font-bold text-white">0</span>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl text-center border border-white/5">
+                        <span class="block text-[10px] text-slate-400 uppercase mb-1">Kalan Kota</span>
+                        <span id="stat-rem" class="text-2xl font-bold text-emerald-400">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7 glass-panel p-8 rounded-3xl">
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-book-open text-slate-400"></i> Dokümantasyon
+            </h3>
+            
+            <div class="space-y-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded">POST</span>
+                        <span class="font-mono text-sm text-white">/api/developer/v1/video-info</span>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4">Verilen bir YouTube, TikTok veya Instagram bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.</p>
+                    
+                    <div class="code-block rounded-xl overflow-hidden text-xs">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-white/5 flex justify-between items-center">
+                            <span class="text-slate-400 font-bold">cURL Örneği</span>
+                            <button onclick="copyCode('curl-code')" class="text-slate-500 hover:text-white"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <div class="p-4 overflow-x-auto">
+<pre id="curl-code"><span class="text-pink-400">curl</span> -X POST https://filewizardio.com/api/developer/v1/video-info \
+  -H <span class="text-green-300">"X-API-Key: fw_live_sizin_anahtariniz_buraya"</span> \
+  -F <span class="text-green-300">"url=https://www.youtube.com/watch?v=ornek"</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Örnek Yanıt (JSON)</h4>
+                    <div class="code-block rounded-xl overflow-hidden text-xs">
+                        <div class="p-4 overflow-x-auto text-emerald-300">
+<pre>{
+  "success": true,
+  "data": {
+    "title": "Örnek Video Başlığı",
+    "duration": "03:45",
+    "uploader": "Kanal Adı",
+    "platform": "youtube"
+  },
+  "developer_message": "İşlem başarılı. Aylık kotanızdan 1 kredi düşüldü."
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div>© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-emerald-400 transition">Destek</a>
+                <a href="#" class="hover:text-emerald-400 transition">API Kuralları</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = "/api/developer";
+
+        async function generateApiKey() {
+            const email = document.getElementById('dev-email').value;
+            if(!email) return Swal.fire({icon: 'error', title: 'Hata', text: 'E-posta adresi zorunludur.', background: '#0f172a', color: '#fff'});
+            
+            try {
+                const fd = new FormData(); fd.append('email', email); fd.append('plan', 'free');
+                const res = await fetch(`${API_URL}/generate-key`, { method: 'POST', body: fd });
+                const data = await res.json();
+                
+                if(data.success) {
+                    document.getElementById('api-result-box').classList.remove('hidden');
+                    document.getElementById('new-api-key').value = data.api_key;
+                    Swal.fire({icon: 'success', title: 'Oluşturuldu!', text: 'API anahtarınız hazır.', background: '#0f172a', color: '#fff', timer: 1500, showConfirmButton: false});
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (e) {
+                Swal.fire({icon: 'error', title: 'Başarısız', text: e.message, background: '#0f172a', color: '#fff'});
+            }
+        }
+
+        async function checkStats() {
+            const key = document.getElementById('check-api-key').value;
+            if(!key) return;
+            
+            try {
+                const fd = new FormData(); fd.append('api_key', key);
+                const res = await fetch(`${API_URL}/stats`, { method: 'POST', body: fd });
+                const data = await res.json();
+                
+                if(data.success) {
+                    document.getElementById('stats-result').classList.remove('hidden');
+                    document.getElementById('stat-used').innerText = data.usage;
+                    document.getElementById('stat-rem').innerText = data.remaining;
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (e) {
+                Swal.fire({icon: 'error', title: 'Bulunamadı', text: e.message, background: '#0f172a', color: '#fff'});
+            }
+        }
+
+        function copyToClipboard(elementId) {
+            const val = document.getElementById(elementId).value;
+            navigator.clipboard.writeText(val);
+            Swal.fire({toast: true, position: 'top-end', icon: 'success', title: 'Kopyalandı', showConfirmButton: false, timer: 1500, background: '#0f172a', color: '#fff'});
+        }
+
+        function copyCode(elementId) {
+            const val = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(val);
+            Swal.fire({toast: true, position: 'top-end', icon: 'success', title: 'Kod kopyalandı', showConfirmButton: false, timer: 1500, background: '#0f172a', color: '#fff'});
+        }
+    </script>
+</body>
+</html>
