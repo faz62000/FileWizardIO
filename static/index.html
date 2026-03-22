@@ -142,11 +142,25 @@
             <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2">Hoş Geldiniz</h3>
             <p class="text-sm text-slate-400 text-center mb-6">FileWizardIO hesabınıza giriş yapın.</p>
+            
             <div class="space-y-4">
                 <div><label class="text-xs text-slate-400 font-bold ml-1">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com"></div>
                 <div><label class="text-xs text-slate-400 font-bold ml-1">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="••••••••"></div>
                 <button onclick="processLogin()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text">Giriş Yap</span></button>
+                
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-white/10">
+                    <span class="px-3 text-[10px] text-slate-500 font-bold uppercase tracking-wider">Veya Şununla</span>
+                    <hr class="flex-grow border-white/10">
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3 mt-4">
+                    <button onclick="window.location.href='/api/auth/google/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-google text-red-500 text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/x/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-x-twitter text-white text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/facebook/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-facebook text-blue-500 text-lg"></i></button>
+                </div>
             </div>
+            
             <p class="text-xs text-center text-slate-500 mt-6">Hesabınız yok mu? <button onclick="showRegisterModal()" class="text-indigo-400 font-bold hover:text-indigo-300">Üye Olun</button></p>
         </div>
     </div>
@@ -157,11 +171,25 @@
             <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2">Kayıt Ol</h3>
             <p class="text-sm text-slate-400 text-center mb-6">Sınırsız araçlar için aramıza katıl.</p>
+            
             <div class="space-y-4">
                 <div><label class="text-xs text-slate-400 font-bold ml-1">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com"></div>
                 <div><label class="text-xs text-slate-400 font-bold ml-1">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="En az 6 karakter"></div>
                 <button onclick="processRegister()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text">Ücretsiz Kayıt Ol</span></button>
+                
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-white/10">
+                    <span class="px-3 text-[10px] text-slate-500 font-bold uppercase tracking-wider">Hızlı Kayıt</span>
+                    <hr class="flex-grow border-white/10">
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3 mt-4">
+                    <button onclick="window.location.href='/api/auth/google/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-google text-red-500 text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/x/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-x-twitter text-white text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/facebook/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-facebook text-blue-500 text-lg"></i></button>
+                </div>
             </div>
+            
             <p class="text-xs text-center text-slate-500 mt-6">Zaten üye misiniz? <button onclick="showLoginModal()" class="text-indigo-400 font-bold hover:text-indigo-300">Giriş Yapın</button></p>
         </div>
     </div>
@@ -181,106 +209,7 @@
             </ul>
             <a href="#" id="lemonsqueezy-checkout-link" target="_blank" class="block text-center w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-lg rounded-xl shadow-xl shadow-orange-500/20 transition transform hover:scale-105 relative z-10">Hemen PRO Ol ($9.99/Ay)</a>
         </div>
-    </div>
-    <aside class="w-20 lg:w-72 bg-[#0b0f19] border-r border-white/5 flex flex-col z-50 hidden md:flex">
-        <div class="h-24 flex items-center justify-center lg:justify-start lg:px-8">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl shadow-lg shadow-indigo-500/30">✨</div>
-            <div class="ml-4 hidden lg:block">
-                <h1 class="text-xl font-bold tracking-tight">FileWizard<span class="text-indigo-500">IO</span></h1>
-                <p class="text-[10px] text-slate-500 tracking-widest uppercase">Pro Studio v8.0</p>
-            </div>
-        </div>
-        
-        <nav class="flex-1 px-4 space-y-2 py-6 overflow-y-auto custom-scroll">
-            <button onclick="switchTab('media')" id="nav-media" class="sidebar-link active w-full">
-                <i class="fa-solid fa-cloud-arrow-down text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_media">Video İndirici</span>
-            </button>
-            <button onclick="switchTab('image')" id="nav-image" class="sidebar-link w-full">
-                <i class="fa-solid fa-wand-magic-sparkles text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_image">Görsel Stüdyo</span>
-            </button>
-            <button onclick="switchTab('pdf')" id="nav-pdf" class="sidebar-link w-full">
-                <i class="fa-solid fa-file-pdf text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_pdf">PDF Araçları</span>
-            </button>
-
-            <div class="pt-6 pb-2 hidden lg:block">
-                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider pl-4" data-i18n="home_nav_premium">Premium Araçlar</p>
-            </div>
-            
-            <a href="/araclar/arka-plan-silici" class="sidebar-link w-full">
-                <i class="fa-solid fa-eraser text-xl w-6 text-center text-fuchsia-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_bg">Arka Plan Silici</span>
-            </a>
-            <a href="/araclar/toplu-islem" class="sidebar-link w-full">
-                <i class="fa-solid fa-layer-group text-xl w-6 text-center text-indigo-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_batch">Toplu İşlem</span>
-            </a>
-            <a href="/araclar/ai-studyo" class="sidebar-link w-full">
-                <i class="fa-solid fa-brain text-xl w-6 text-center text-cyan-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_ai">AI Stüdyo</span>
-            </a>
-            <a href="/araclar/bulut-senkronizasyonu" class="sidebar-link w-full">
-                <i class="fa-solid fa-cloud-arrow-up text-xl w-6 text-center text-sky-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_cloud">Bulut Senk.</span>
-            </a>
-            <a href="/araclar/otomatik-filigran" class="sidebar-link w-full">
-                <i class="fa-solid fa-stamp text-xl w-6 text-center text-blue-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_wm">Filigran</span>
-            </a>
-            
-            <a href="/araclar/video-kucultme" class="sidebar-link w-full">
-                <i class="fa-solid fa-compress text-xl w-6 text-center text-amber-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_vc">Video Küçültme</span>
-            </a>
-
-            <a href="/gelistirici-api" class="sidebar-link w-full mt-4 border-t border-white/5 pt-4">
-                <i class="fa-solid fa-code text-xl w-6 text-center text-emerald-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_api">Geliştirici API</span>
-            </a>
-        </nav>
-
-        <div class="p-6 border-t border-white/5 hidden lg:block">
-            <div class="glass-panel p-4 rounded-xl text-center">
-                <p class="text-xs text-slate-400 mb-3" data-i18n="home_support_title">Sorun mu yaşıyorsun?</p>
-                <button onclick="showContact()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition" data-i18n="home_support_btn">Destek Ekibi</button>
-            </div>
-        </div>
-    </aside>
-
-    <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/90 backdrop-blur border-t border-white/10 z-50 flex justify-around p-4 pb-6">
-        <button onclick="switchTab('media')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
-        <button onclick="switchTab('image')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
-        <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
-    </div>
-
-    <main class="flex-1 relative bg-[#050505] overflow-hidden flex flex-col">
-        
-        <div class="md:hidden absolute top-4 left-4 z-40 flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">✨</div>
-            <span class="font-bold">FileWizardIO</span>
-        </div>
-
-        <div class="absolute top-4 right-4 z-50 flex items-center gap-3">
-            
-            <div id="auth-buttons-unlogged" class="flex gap-2">
-                <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition">Giriş Yap</button>
-                <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-500/20 transition">Üye Ol</button>
-            </div>
-
-            <div id="auth-buttons-logged" class="hidden flex items-center gap-2">
-                <span id="pro-badge" class="hidden px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px] font-black rounded uppercase tracking-widest shadow-lg shadow-orange-500/20">PRO</span>
-                <button onclick="showProUpgrade()" id="upgrade-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-indigo-500/30 text-indigo-400 text-xs font-bold hover:bg-indigo-500/10 transition">Yükselt</button>
-                <button onclick="processLogout()" class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/50 transition" title="Çıkış Yap">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
-            </div>
-
-            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800/80 backdrop-blur border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
-                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
-            </button>
-        </div><section id="media-tool" class="w-full h-full overflow-y-auto custom-scroll relative">
+    </div><section id="media-tool" class="w-full h-full overflow-y-auto custom-scroll relative">
             <div class="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
             
             <div class="min-h-full flex flex-col items-center justify-center p-6 relative z-10">
