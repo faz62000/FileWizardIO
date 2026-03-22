@@ -28,6 +28,7 @@ def compress_video_logic(input_path: str, output_path: str, task_id: str, crf: s
         'ffmpeg', '-y', '-i', input_path,
         '-vcodec', 'libx264', '-crf', crf,
         '-preset', 'fast', # Hız ve kalite dengesi
+        '-threads', '1',   # MİLYON DOLARLIK DOKUNUŞ: FFmpeg'in tüm işlemciyi sömürmesini engeller, sunucu çökmez!
         '-acodec', 'aac',  # Ses formatını koruma
         output_path
     ]
