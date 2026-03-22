@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Bulut Senkronizasyonu | FileWizardIO Pro</title>
+    
+    <meta name="description" content="Dosyalarınızı cihazınıza indirmeden, tek tıkla yüksek hızda doğrudan Dropbox bulut hesabınıza aktarın.">
+    <meta name="theme-color" content="#0b0f19">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { 
+                        dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
+                        sky: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }
+                    },
+                    animation: { 'float': 'float 6s ease-in-out infinite' },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: white; min-height: 100vh; display: flex; flex-direction: column; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(20, 25, 40, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .upload-area { border: 2px dashed rgba(56, 189, 248, 0.3); transition: all 0.3s ease; }
+        .upload-area:hover, .upload-area.dragover { border-color: #38bdf8; background: rgba(56, 189, 248, 0.05); }
+        
+        .loader { width: 48px; height: 48px; border: 5px solid #FFF; border-bottom-color: #38bdf8; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="relative">
+
+    <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-sky-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <header class="h-20 border-b border-white/5 flex items-center px-6 md:px-12 justify-between z-10 relative bg-[#0b0f19]/80 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/50 flex items-center justify-center text-sky-400 shadow-lg shadow-sky-500/20">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-tight leading-none text-white">FileWizard<span class="text-sky-400">IO</span></h1>
+                <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Cloud Sync Pro</p>
+            </div>
+        </div>
+        <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline">Ana Siteye Dön</span>
+        </a>
+    </header>
+
+    <main class="flex-1 w-full max-w-6xl mx-auto p-6 md:p-12 z-10 relative flex flex-col lg:flex-row gap-8 items-start">
+        
+        <div class="w-full lg:w-1/2 flex flex-col gap-6">
+            <div class="mb-4 animate-float">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight">Sınırları <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Aşın.</span></h2>
+                <p class="text-slate-400 text-lg">Cihazınızda yer açın. İşlenmiş veya büyük boyutlu dosyalarınızı doğrudan Dropbox bulut hesabınıza fırlatın.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl upload-area flex flex-col items-center justify-center text-center cursor-pointer min-h-[300px] relative overflow-hidden" onclick="document.getElementById('cloud-file-input').click()">
+                <div id="upload-content" class="flex flex-col items-center">
+                    <i class="fa-brands fa-dropbox text-5xl text-sky-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-1 text-xl">Buluta Gönderilecek Dosya</h3>
+                    <p class="text-sm text-slate-400">Görsel, PDF veya Video sürükleyip bırakın</p>
+                </div>
+                
+                <input type="file" id="cloud-file-input" class="hidden" onchange="previewFile(this)">
+                
+                <div id="file-preview-card" class="hidden absolute inset-0 w-full h-full bg-slate-900/90 flex flex-col items-center justify-center p-6 z-10 backdrop-blur-sm">
+                    <i class="fa-solid fa-file-circle-check text-4xl text-sky-400 mb-4"></i>
+                    <h4 id="preview-filename" class="font-bold text-white text-lg truncate w-full px-8 text-center mb-1">dosya_adi.mp4</h4>
+                    <p id="preview-filesize" class="text-sm text-slate-400 mb-4">0 MB</p>
+                    <div id="change-btn" class="bg-slate-800 px-4 py-2 rounded-xl text-xs font-bold text-white border border-white/10 hover:bg-slate-700 transition cursor-pointer">Başka Dosya Seç</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 glass-panel p-8 rounded-3xl">
+            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2">
+                <i class="fa-solid fa-link text-sky-400"></i> Bulut Bağlantısı
+            </h3>
+            
+            <div class="space-y-6">
+                
+                <div>
+                    <label class="text-sm font-bold text-slate-300 mb-2 block">Dropbox Access Token (Erişim Anahtarı)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500"></i>
+                        <input type="password" id="dropbox-token" placeholder="sl.B... (Gizli Tokeniniz)" class="w-full bg-slate-900 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm text-white focus:border-sky-500 outline-none transition font-mono">
+                    </div>
+                    <p class="text-[10px] text-slate-500 mt-2">
+                        <i class="fa-solid fa-circle-info mr-1"></i> Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi sunucularımızda <span class="text-sky-400 font-bold">asla kaydedilmez.</span>
+                    </p>
+                </div>
+
+                <button onclick="startCloudSync()" class="w-full py-4 mt-6 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/20 active:scale-95 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> DOĞRUDAN BULUTA FIRLAT
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div>© 2026 FileWizardIO Enterprise by ForgeLogic LLC.</div>
+            <div class="flex gap-4">
+                <a href="/legal/privacy.html" class="hover:text-sky-400 transition">Gizlilik</a>
+                <a href="/legal/terms.html" class="hover:text-sky-400 transition">Koşullar</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+        <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
+            <div class="loader mb-6"></div>
+            <h3 class="text-xl font-bold text-white mb-1" id="p-title">Senkronize Ediliyor</h3>
+            <p class="text-xs text-slate-400 mb-4" id="p-desc">Bulut bağlantısı kuruluyor...</p>
+            <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div id="p-bar" class="h-full bg-sky-500 w-0 transition-all duration-300"></div></div>
+            <div class="mt-2 text-right text-[10px] text-sky-400 font-mono" id="p-text">0%</div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "/api/cloud";
+
+        // Görsel/Dosya Önizleme
+        function previewFile(input) {
+            const file = input.files[0];
+            if (file) {
+                document.getElementById('upload-content').classList.add('opacity-0');
+                const previewCard = document.getElementById('file-preview-card');
+                
+                document.getElementById('preview-filename').innerText = file.name;
+                document.getElementById('preview-filesize').innerText = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+                
+                previewCard.classList.remove('hidden');
+            }
+        }
+
+        // Sürükle Bırak Desteği
+        const uploadArea = document.querySelector('.upload-area');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'), false);
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const fileInput = document.getElementById('cloud-file-input');
+            fileInput.files = dt.files;
+            previewFile(fileInput);
+        });
+
+        // Ana İşlem Fonksiyonu
+        async function startCloudSync() {
+            const fileInput = document.getElementById('cloud-file-input');
+            const file = fileInput.files[0];
+            const token = document.getElementById('dropbox-token').value.trim();
+
+            if (!file) {
+                return Swal.fire({
+                    icon: 'warning', 
+                    title: 'Dosya Eksik', 
+                    text: 'Lütfen buluta aktarılacak dosyayı seçin.', 
+                    background: '#0b0f19', 
+                    color: '#fff',
+                    confirmButtonColor: '#0ea5e9'
+                });
+            }
+
+            if (!token) {
+                return Swal.fire({
+                    icon: 'warning', 
+                    title: 'Token Eksik', 
+                    text: 'Lütfen Dropbox Access Token bilginizi girin.', 
+                    background: '#0b0f19', 
+                    color: '#fff',
+                    confirmButtonColor: '#0ea5e9'
+                });
+            }
+
+            const tid = "cloud_" + Math.random().toString(36).substr(2, 9);
+            
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('task_id', tid);
+            fd.append('access_token', token);
+
+            startProgress(tid);
+
+            try {
+                const res = await fetch(`${API_URL}/sync-dropbox`, {
+                    method: 'POST',
+                    body: fd
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    Swal.fire({
+                        icon: 'success', 
+                        title: 'Senkronizasyon Başarılı!', 
+                        text: `${data.file_name} dosyası başarıyla Dropbox hesabınıza aktarıldı.`, 
+                        background: '#0b0f19', 
+                        color: '#fff',
+                        timer: 4000,
+                        showConfirmButton: true,
+                        confirmButtonColor: '#0ea5e9'
+                    });
+                    // Temizlik
+                    fileInput.value = '';
+                    document.getElementById('dropbox-token').value = '';
+                    document.getElementById('file-preview-card').classList.add('hidden');
+                    document.getElementById('upload-content').classList.remove('opacity-0');
+                } else {
+                    throw new Error(data.error || "Sunucu hatası");
+                }
+            } catch (e) {
+                closeModal();
+                Swal.fire({
+                    icon: 'error', 
+                    title: 'Aktarım Başarısız', 
+                    text: e.message, 
+                    background: '#0b0f19', 
+                    color: '#fff',
+                    confirmButtonColor: '#ef4444'
+                });
+            }
+        }
+
+        // Progress Bar (SSE) Fonksiyonları
+        function startProgress(tid) {
+            document.getElementById('progress-modal').classList.remove('hidden');
+            document.getElementById('p-bar').style.width = '0%';
+            document.getElementById('p-text').innerText = '0%';
+            
+            const source = new EventSource(`/api/progress/${tid}`);
+            source.onmessage = (e) => {
+                const d = JSON.parse(e.data);
+                document.getElementById('p-bar').style.width = d.percent + '%';
+                document.getElementById('p-text').innerText = d.percent + '%';
+                document.getElementById('p-desc').innerText = d.message;
+                
+                if (d.percent >= 100 || d.message.startsWith('Hata')) {
+                    source.close();
+                    if (d.percent >= 100 && !d.message.startsWith('Hata')) {
+                        setTimeout(closeModal, 800);
+                    }
+                }
+            };
+            
+            source.onerror = () => { source.close(); closeModal(); };
+        }
+
+        function closeModal() { document.getElementById('progress-modal').classList.add('hidden'); }
+    </script>
+</body>
+</html>

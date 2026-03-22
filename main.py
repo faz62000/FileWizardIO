@@ -7,7 +7,7 @@ import os
 import json
 import asyncio
 from shared import progress_store
-from routers import video_router, image_router, pdf_router, watermark_router, developer_router, batch_router, ai_router
+from routers import video_router, image_router, pdf_router, watermark_router, developer_router, batch_router, ai_router, cloud_router
 
 app = FastAPI(
     title="FileWizardIO Pro API",
@@ -37,6 +37,7 @@ app.include_router(watermark_router.router, prefix="/api/watermark", tags=["Wate
 app.include_router(developer_router.router, prefix="/api/developer", tags=["Developer"])
 app.include_router(batch_router.router, prefix="/api/batch", tags=["Batch"])
 app.include_router(ai_router.router, prefix="/api/ai", tags=["AI"])
+app.include_router(cloud_router.router, prefix="/api/cloud", tags=["Cloud"])
 
 # 4. SSE (PROGRESS BAR) STREAM
 @app.get("/api/progress/{task_id}")
@@ -80,6 +81,10 @@ async def get_batch_page():
 @app.get("/araclar/ai-studyo", include_in_schema=False)
 async def get_ai_studio_page():
     return FileResponse("static/ai_studio.html") if os.path.exists("static/ai_studio.html") else JSONResponse({"detail":"not found"}, 404)
+
+@app.get("/araclar/bulut-senkronizasyonu", include_in_schema=False)
+async def get_cloud_sync_page():
+    return FileResponse("static/cloud_sync.html") if os.path.exists("static/cloud_sync.html") else JSONResponse({"detail":"not found"}, 404)
 
 # 6. SEO DOSYALARI
 @app.get("/robots.txt", include_in_schema=False)
