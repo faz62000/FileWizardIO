@@ -1,3 +1,9 @@
+from dotenv import load_dotenv
+
+# --- 401 HATASI ÇÖZÜMÜ: .env dosyasını router'lardan önce zorla okut ---
+load_dotenv()
+# -----------------------------------------------------------------------
+
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
