@@ -10,7 +10,8 @@ from shared import progress_store
 from routers import video_router, image_router, pdf_router, watermark_router, developer_router, batch_router, ai_router, cloud_router, bg_remove_router, video_compress_router
 
 # --- SAAS DÖNÜŞÜMÜ İÇİN YENİ EKLENENLER ---
-from routers import auth_router, lemonsqueezy_router
+# Lemon Squeezy yerine ForgeLogic LLC için Paddle altyapısı eklendi
+from routers import auth_router, paddle_router 
 from database import engine, Base
 
 # Uygulama başlarken veritabanı tablolarını otomatik olarak oluştur (Sadece ilk çalışmada tabloları çizer)
@@ -49,9 +50,9 @@ app.include_router(cloud_router.router, prefix="/api/cloud", tags=["Cloud"])
 app.include_router(bg_remove_router.router, prefix="/api/bg-remove", tags=["Background Remove"])
 app.include_router(video_compress_router.router, prefix="/api/compress", tags=["Video Compress"])
 
-# YENİ: SaaS rotaları (Kayıt, Giriş ve Ödeme Dinleyici)
+# YENİ: SaaS rotaları (Kayıt, Giriş ve Ödeme Dinleyici - Paddle)
 app.include_router(auth_router.router, prefix="/api/auth", tags=["Auth"])
-app.include_router(lemonsqueezy_router.router, prefix="/api/billing", tags=["Billing"])
+app.include_router(paddle_router.router, prefix="/api/billing", tags=["Billing"])
 
 # 4. SSE (PROGRESS BAR) STREAM
 @app.get("/api/progress/{task_id}")
@@ -79,7 +80,7 @@ async def progress_stream(request: Request, task_id: str):
             await asyncio.sleep(0.2)
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
-# 5. MICRO-TOOLS YÖNLENDİRMELERİ - TÜRKÇE (TR - YEREL SEO)
+# 5. MICRO-TOOLS VE YASAL SAYFA YÖNLENDİRMELERİ - TÜRKÇE (TR - YEREL SEO)
 @app.get("/araclar/otomatik-filigran", include_in_schema=False)
 async def get_watermark_page_tr():
     return FileResponse("static/watermark.html") if os.path.exists("static/watermark.html") else JSONResponse({"detail":"not found"}, 404)
@@ -108,10 +109,26 @@ async def get_bg_remove_page_tr():
 async def get_video_compress_page_tr():
     return FileResponse("static/video_compress.html") if os.path.exists("static/video_compress.html") else JSONResponse({"detail":"not found"}, 404)
 
+# --- TR YASAL SAYFALAR (static/legal klasörüne güncellendi) ---
+@app.get("/kosullar", include_in_schema=False)
+async def get_terms_page_tr():
+    return FileResponse("static/legal/terms.html") if os.path.exists("static/legal/terms.html") else JSONResponse({"detail":"not found"}, 404)
 
-# 5.1 MICRO-TOOLS YÖNLENDİRMELERİ - İNGİLİZCE (EN - GLOBAL SEO)
+@app.get("/gizlilik-politikasi", include_in_schema=False)
+async def get_privacy_page_tr():
+    return FileResponse("static/legal/privacy.html") if os.path.exists("static/legal/privacy.html") else JSONResponse({"detail":"not found"}, 404)
 
-# ---> İŞTE BURASI: ANA SAYFA İNGİLİZCE ROTASI EKLENDİ <---
+@app.get("/iade-politikasi", include_in_schema=False)
+async def get_refund_page_tr():
+    return FileResponse("static/legal/refund.html") if os.path.exists("static/legal/refund.html") else JSONResponse({"detail":"not found"}, 404)
+
+@app.get("/cerez-politikasi", include_in_schema=False)
+async def get_cookies_page_tr():
+    return FileResponse("static/legal/cookies.html") if os.path.exists("static/legal/cookies.html") else JSONResponse({"detail":"not found"}, 404)
+
+
+# 5.1 MICRO-TOOLS VE YASAL SAYFA YÖNLENDİRMELERİ - İNGİLİZCE (EN - GLOBAL SEO)
+
 @app.get("/en/", include_in_schema=False)
 @app.get("/en", include_in_schema=False)
 async def get_home_page_en():
@@ -144,6 +161,24 @@ async def get_bg_remove_page_en():
 @app.get("/en/tools/video-compressor", include_in_schema=False)
 async def get_video_compress_page_en():
     return FileResponse("static/video_compress.html") if os.path.exists("static/video_compress.html") else JSONResponse({"detail":"not found"}, 404)
+
+# --- EN YASAL SAYFALAR (static/legal klasörüne güncellendi) ---
+@app.get("/en/terms", include_in_schema=False)
+async def get_terms_page_en():
+    return FileResponse("static/legal/terms.html") if os.path.exists("static/legal/terms.html") else JSONResponse({"detail":"not found"}, 404)
+
+@app.get("/en/privacy-policy", include_in_schema=False)
+async def get_privacy_page_en():
+    return FileResponse("static/legal/privacy.html") if os.path.exists("static/legal/privacy.html") else JSONResponse({"detail":"not found"}, 404)
+
+@app.get("/en/refund-policy", include_in_schema=False)
+async def get_refund_page_en():
+    return FileResponse("static/legal/refund.html") if os.path.exists("static/legal/refund.html") else JSONResponse({"detail":"not found"}, 404)
+
+@app.get("/en/cookie-policy", include_in_schema=False)
+async def get_cookies_page_en():
+    return FileResponse("static/legal/cookies.html") if os.path.exists("static/legal/cookies.html") else JSONResponse({"detail":"not found"}, 404)
+
 
 # 6. SEO DOSYALARI
 @app.get("/robots.txt", include_in_schema=False)

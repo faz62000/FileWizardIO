@@ -1,8 +1,29 @@
+# FileWizardIO Pro - Global SEO & Privacy Configuration
+
 User-agent: *
+# Ana ve Dil Rotalarına İzin Ver
 Allow: /
+Allow: /en/
+Allow: /araclar/
+Allow: /kosullar
+Allow: /gizlilik-politikasi
+Allow: /iade-politikasi
+Allow: /cerez-politikasi
+
+# Statik Varlıkların Taranmasını Garantiye Al (UI/UX SEO Puanı İçin)
 Allow: /static/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Güvenlik ve Gizlilik: Kullanıcı verilerini ve API'yi kesinlikle engelle
 Disallow: /api/
 Disallow: /downloads/
 Disallow: /temp_pdf/
+Disallow: /*?* # URL parametreleri içeren kopya sayfaları engelle (Örn: ?lang=en gibi istenmeyen query'ler)
 
+# Site Haritası (Sitemap) Bildirimi
 Sitemap: https://filewizardio.com/sitemap.xml

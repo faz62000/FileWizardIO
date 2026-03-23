@@ -14,6 +14,15 @@ const routeMap = {
     "/en/developer-api": "/gelistirici-api",
     "/araclar/video-kucultme": "/en/tools/video-compressor",
     "/en/tools/video-compressor": "/araclar/video-kucultme",
+    // YENİ EKLENEN YASAL SAYFA ROTALARI
+    "/kosullar": "/en/terms",
+    "/en/terms": "/kosullar",
+    "/gizlilik-politikasi": "/en/privacy-policy",
+    "/en/privacy-policy": "/gizlilik-politikasi",
+    "/iade-politikasi": "/en/refund-policy",
+    "/en/refund-policy": "/iade-politikasi",
+    "/cerez-politikasi": "/en/cookie-policy",
+    "/en/cookie-policy": "/cerez-politikasi",
     "/": "/en/",
     "/en/": "/"
 };
@@ -39,6 +48,37 @@ const translations = {
         "footer_cookies": "Çerezler",
         "footer_contact": "İletişim",
         
+        // --- AUTH & KULLANICI İŞLEMLERİ (YENİ) ---
+        "header_login": "Giriş Yap",
+        "header_register": "Üye Ol",
+        "header_upgrade": "Yükselt",
+        "auth_login_title": "Hoş Geldiniz",
+        "auth_login_desc": "FileWizardIO hesabınıza giriş yapın.",
+        "auth_email_label": "E-Posta",
+        "auth_email_placeholder": "ornek@mail.com",
+        "auth_pass_label": "Şifre",
+        "auth_pass_placeholder": "••••••••",
+        "auth_pass_reg_placeholder": "En az 6 karakter",
+        "auth_login_btn": "Giriş Yap",
+        "auth_or_with": "Veya Şununla",
+        "auth_no_account": "Hesabınız yok mu?",
+        "auth_register_link": "Üye Olun",
+        "auth_reg_title": "Kayıt Ol",
+        "auth_reg_desc": "Sınırsız araçlar için aramıza katıl.",
+        "auth_reg_btn": "Ücretsiz Kayıt Ol",
+        "auth_quick_reg": "Hızlı Kayıt",
+        "auth_has_account": "Zaten üye misiniz?",
+        "auth_login_link": "Giriş Yapın",
+        
+        // --- PRO YÜKSELTME MODALI (YENİ) ---
+        "upg_title": "PRO'ya Yükselt",
+        "upg_desc": "Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.",
+        "upg_f1": "Limitsiz Video Küçültme (Asla çökmez)",
+        "upg_f2": "AI Arka Plan Silici",
+        "upg_f3": "Yapay Zeka Stüdyosu",
+        "upg_f4": "Öncelikli Sunucu İşlemcisi",
+        "upg_btn": "Hemen PRO Ol ($9.99/Ay)",
+
         // --- ANA SAYFA VİTRİNİ ---
         "home_nav_media": "Video İndirici",
         "home_nav_image": "Görsel Stüdyo",
@@ -234,6 +274,37 @@ const translations = {
         "footer_terms": "Terms of Service",
         "footer_cookies": "Cookies",
         "footer_contact": "Contact",
+
+        // --- AUTH & KULLANICI İŞLEMLERİ (YENİ) ---
+        "header_login": "Login",
+        "header_register": "Sign Up",
+        "header_upgrade": "Upgrade",
+        "auth_login_title": "Welcome Back",
+        "auth_login_desc": "Login to your FileWizardIO account.",
+        "auth_email_label": "Email Address",
+        "auth_email_placeholder": "example@mail.com",
+        "auth_pass_label": "Password",
+        "auth_pass_placeholder": "••••••••",
+        "auth_pass_reg_placeholder": "At least 6 characters",
+        "auth_login_btn": "Sign In",
+        "auth_or_with": "Or Continue With",
+        "auth_no_account": "Don't have an account?",
+        "auth_register_link": "Sign Up Now",
+        "auth_reg_title": "Create Account",
+        "auth_reg_desc": "Join us for unlimited tools.",
+        "auth_reg_btn": "Sign Up for Free",
+        "auth_quick_reg": "Quick Register",
+        "auth_has_account": "Already have an account?",
+        "auth_login_link": "Log In",
+        
+        // --- PRO YÜKSELTME MODALI (YENİ) ---
+        "upg_title": "Upgrade to PRO",
+        "upg_desc": "Go Premium for AI tools and unlimited compression.",
+        "upg_f1": "Unlimited Video Compression (Never crashes)",
+        "upg_f2": "AI Background Remover",
+        "upg_f3": "Artificial Intelligence Studio",
+        "upg_f4": "Priority Server Processing",
+        "upg_btn": "Get PRO Now ($9.99/Mo)",
         
         // --- HOME SHOWCASE ---
         "home_nav_media": "Video Downloader",
