@@ -132,11 +132,19 @@
 </div>
 
 <script>
-    window.onload = function() {
-        var isEnglish = window.location.pathname.indexOf('/en/') !== -1;
-        var lang = isEnglish ? 'en' : 'tr';
-        document.getElementById('content-' + lang).classList.add('active');
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentPath = window.location.pathname;
+        
+        if (currentPath.includes('/en/')) {
+            document.getElementById('content-en').classList.add('active');
+            document.getElementById('content-tr').classList.remove('active');
+            document.documentElement.lang = "en";
+        } else {
+            document.getElementById('content-tr').classList.add('active');
+            document.getElementById('content-en').classList.remove('active');
+            document.documentElement.lang = "tr";
+        }
+    });
 </script>
 
 </body>
