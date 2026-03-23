@@ -85,6 +85,7 @@
         transition: all 0.3s;
         border-left: 2px solid transparent;
         width: 100%;
+        cursor: pointer;
     }
     .sidebar-link:hover {
         color: white;
@@ -261,41 +262,41 @@
                 <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider pl-4" data-i18n="home_nav_premium">Premium Araçlar</p>
             </div>
             
-            <a href="/araclar/arka-plan-silici" class="sidebar-link">
+            <button onclick="navTo('bg')" class="sidebar-link">
                 <i class="fa-solid fa-eraser text-xl w-6 text-center text-fuchsia-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_bg">Arka Plan Silici</span>
-            </a>
-            <a href="/araclar/toplu-islem" class="sidebar-link">
+            </button>
+            <button onclick="navTo('batch')" class="sidebar-link">
                 <i class="fa-solid fa-layer-group text-xl w-6 text-center text-indigo-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_batch">Toplu İşlem</span>
-            </a>
-            <a href="/araclar/ai-studyo" class="sidebar-link">
+            </button>
+            <button onclick="navTo('ai')" class="sidebar-link">
                 <i class="fa-solid fa-brain text-xl w-6 text-center text-cyan-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_ai">AI Stüdyo</span>
-            </a>
-            <a href="/araclar/bulut-senkronizasyonu" class="sidebar-link">
+            </button>
+            <button onclick="navTo('cloud')" class="sidebar-link">
                 <i class="fa-solid fa-cloud-arrow-up text-xl w-6 text-center text-sky-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_cloud">Bulut Senk.</span>
-            </a>
-            <a href="/araclar/otomatik-filigran" class="sidebar-link">
+            </button>
+            <button onclick="navTo('wm')" class="sidebar-link">
                 <i class="fa-solid fa-stamp text-xl w-6 text-center text-blue-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_wm">Filigran</span>
-            </a>
+            </button>
             
-            <a href="/araclar/video-kucultme" class="sidebar-link">
+            <button onclick="navTo('vc')" class="sidebar-link">
                 <i class="fa-solid fa-compress text-xl w-6 text-center text-amber-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_vc">Video Küçültme</span>
-            </a>
+            </button>
 
             <button onclick="switchTab('pricing')" id="nav-pricing" class="sidebar-link mt-4 border-t border-white/5 pt-4">
                 <i class="fa-solid fa-tag text-xl w-6 text-center text-emerald-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_pricing">Fiyatlandırma</span>
             </button>
 
-            <a href="/gelistirici-api" class="sidebar-link border-t border-white/5 pt-4">
+            <button onclick="navTo('api')" class="sidebar-link border-t border-white/5 pt-4">
                 <i class="fa-solid fa-code text-xl w-6 text-center text-indigo-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_api">Geliştirici API</span>
-            </a>
+            </button>
         </nav>
 
         <div class="p-6 border-t border-white/5 hidden lg:block">
@@ -562,10 +563,10 @@
                 </div>
 
                 <div class="flex items-center gap-4 lg:gap-6 text-[10px] text-slate-400 font-medium shrink-0">
-                    <a href="/gizlilik-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
-                    <a href="/kosullar" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
-                    <a href="/cerez-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</a>
-                    <a href="/iade-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade</a>
+                    <button onclick="navTo('privacy')" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</button>
+                    <button onclick="navTo('terms')" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</button>
+                    <button onclick="navTo('cookies')" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</button>
+                    <button onclick="navTo('refund')" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade</button>
                     <button onclick="showContact()" class="hover:text-indigo-400 transition font-bold text-indigo-500" data-i18n="footer_contact">İletişim</button>
                 </div>
 
@@ -589,6 +590,41 @@
     <script>
         const API_URL = "/api";
         let cropper, pdfMode = null, pdfTaskId = null, filters = { brightness: 100, contrast: 100, saturation: 100 }, currentPreset = 'none';
+
+        // --- YENİ DİNAMİK YÖNLENDİRİCİ ---
+        function navTo(key) {
+            const routes = {
+                en: {
+                    bg: '/en/tools/background-remover',
+                    batch: '/en/tools/batch-processing',
+                    ai: '/en/tools/ai-studio',
+                    cloud: '/en/tools/cloud-sync',
+                    wm: '/en/tools/auto-watermark',
+                    vc: '/en/tools/video-compressor',
+                    api: '/en/developer-api',
+                    privacy: '/en/privacy-policy',
+                    terms: '/en/terms',
+                    cookies: '/en/cookie-policy',
+                    refund: '/en/refund-policy'
+                },
+                tr: {
+                    bg: '/araclar/arka-plan-silici',
+                    batch: '/araclar/toplu-islem',
+                    ai: '/araclar/ai-studyo',
+                    cloud: '/araclar/bulut-senkronizasyonu',
+                    wm: '/araclar/otomatik-filigran',
+                    vc: '/araclar/video-kucultme',
+                    api: '/gelistirici-api',
+                    privacy: '/gizlilik-politikasi',
+                    terms: '/kosullar',
+                    cookies: '/cerez-politikasi',
+                    refund: '/iade-politikasi'
+                }
+            };
+            const lang = window.CURRENT_LANG || 'tr';
+            window.location.href = routes[lang][key];
+        }
+        // ---------------------------------
 
         Paddle.Environment.set('sandbox'); 
         Paddle.Initialize({
