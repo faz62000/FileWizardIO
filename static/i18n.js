@@ -46,9 +46,10 @@ const translations = {
         "footer_privacy": "Gizlilik",
         "footer_terms": "Koşullar",
         "footer_cookies": "Çerezler",
+        "footer_refund": "İade",
         "footer_contact": "İletişim",
         
-        // --- AUTH & KULLANICI İŞLEMLERİ (YENİ) ---
+        // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Giriş Yap",
         "header_register": "Üye Ol",
         "header_upgrade": "Yükselt",
@@ -70,7 +71,7 @@ const translations = {
         "auth_has_account": "Zaten üye misiniz?",
         "auth_login_link": "Giriş Yapın",
         
-        // --- PRO YÜKSELTME MODALI (YENİ) ---
+        // --- PRO YÜKSELTME MODALI ---
         "upg_title": "PRO'ya Yükselt",
         "upg_desc": "Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.",
         "upg_f1": "Limitsiz Video Küçültme (Asla çökmez)",
@@ -273,9 +274,10 @@ const translations = {
         "footer_privacy": "Privacy Policy",
         "footer_terms": "Terms of Service",
         "footer_cookies": "Cookies",
+        "footer_refund": "Refund Policy",
         "footer_contact": "Contact",
 
-        // --- AUTH & KULLANICI İŞLEMLERİ (YENİ) ---
+        // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Login",
         "header_register": "Sign Up",
         "header_upgrade": "Upgrade",
@@ -297,7 +299,7 @@ const translations = {
         "auth_has_account": "Already have an account?",
         "auth_login_link": "Log In",
         
-        // --- PRO YÜKSELTME MODALI (YENİ) ---
+        // --- PRO YÜKSELTME MODALI ---
         "upg_title": "Upgrade to PRO",
         "upg_desc": "Go Premium for AI tools and unlimited compression.",
         "upg_f1": "Unlimited Video Compression (Never crashes)",
@@ -513,7 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    // Placeholder çevirileri
     const placeholders = document.querySelectorAll("[data-i18n-placeholder]");
     placeholders.forEach(el => {
         const key = el.getAttribute("data-i18n-placeholder");
