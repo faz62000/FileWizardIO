@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>FileWizardIO Pro | Ultimate Media Suite</title>
     
-    <meta name="description" content="FileWizardIO Pro: Yapay zeka destekli video indirici, profesyonel resim stüdyosu ve gelişmiş PDF araçları (Birleştir, Sıkıştır, Düzenle). Hepsi tek platformda.">
-    <meta name="keywords" content="video indirici, tiktok filigransız, pdf birleştir, pdf sıkıştır, resim düzenleyici, arka plan silme, filewizardio">
+    <meta name="description" content="FileWizardIO Pro: Yapay zeka destekli medya yedekleme, profesyonel resim stüdyosu ve gelişmiş PDF araçları. Hepsi tek platformda.">
+    <meta name="keywords" content="medya yedekleme, sosyal medya arşivi, pdf birleştir, pdf sıkıştır, resim düzenleyici, arka plan silme, filewizardio">
     <meta name="theme-color" content="#0b0f19">
     
     <meta property="og:title" content="FileWizardIO Pro | Ultimate Media Suite">
-    <meta property="og:description" content="FileWizardIO Pro: Yapay zeka destekli video indirici, profesyonel resim stüdyosu ve gelişmiş PDF araçları. Hepsi tek platformda.">
+    <meta property="og:description" content="FileWizardIO Pro: Yapay zeka destekli medya arşivi, profesyonel resim stüdyosu ve gelişmiş PDF araçları. Hepsi tek platformda.">
     <meta property="og:image" content="https://filewizardio.com/og-image.jpg">
     <meta property="og:url" content="https://filewizardio.com/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FileWizardIO Pro | Ultimate Media Suite">
-    <meta name="twitter:description" content="FileWizardIO Pro: Yapay zeka destekli video indirici, profesyonel resim stüdyosu ve gelişmiş PDF araçları.">
+    <meta name="twitter:description" content="FileWizardIO Pro: Yapay zeka destekli medya arşivi, profesyonel resim stüdyosu ve gelişmiş PDF araçları.">
     <meta name="twitter:image" content="https://filewizardio.com/og-image.jpg">
 
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -247,7 +247,7 @@
         <nav class="flex-1 px-4 space-y-2 py-6 overflow-y-auto custom-scroll">
             <button onclick="switchTab('media')" id="nav-media" class="sidebar-link active">
                 <i class="fa-solid fa-cloud-arrow-down text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_media">Video İndirici</span>
+                <span class="hidden lg:block font-medium" data-i18n="home_nav_media">Medya Yedekleme</span>
             </button>
             <button onclick="switchTab('image')" id="nav-image" class="sidebar-link">
                 <i class="fa-solid fa-wand-magic-sparkles text-xl w-6 text-center"></i>
@@ -288,8 +288,13 @@
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_vc">Video Küçültme</span>
             </a>
 
-            <a href="/gelistirici-api" class="sidebar-link mt-4 border-t border-white/5 pt-4">
-                <i class="fa-solid fa-code text-xl w-6 text-center text-emerald-400"></i>
+            <button onclick="switchTab('pricing')" id="nav-pricing" class="sidebar-link mt-4 border-t border-white/5 pt-4">
+                <i class="fa-solid fa-tag text-xl w-6 text-center text-emerald-400"></i>
+                <span class="hidden lg:block font-medium" data-i18n="home_nav_pricing">Fiyatlandırma</span>
+            </button>
+
+            <a href="/gelistirici-api" class="sidebar-link border-t border-white/5 pt-4">
+                <i class="fa-solid fa-code text-xl w-6 text-center text-indigo-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_api">Geliştirici API</span>
             </a>
         </nav>
@@ -306,6 +311,7 @@
         <button onclick="switchTab('media')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
         <button onclick="switchTab('image')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
         <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
+        <button onclick="switchTab('pricing')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-tag text-xl"></i></button>
     </div>
 
     <main class="flex-1 relative bg-[#050505] overflow-hidden flex flex-col pb-24 md:pb-0">
@@ -340,14 +346,14 @@
             
             <div class="min-h-full flex flex-col items-center justify-center p-6 relative z-10">
                 <div class="text-center mb-12 animate-float">
-                    <h2 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-500 mb-4 tracking-tight" data-i18n="home_hero_title">Sınırsız.</h2>
-                    <p class="text-slate-400 text-lg md:text-xl" data-i18n="home_hero_desc">YouTube, TikTok, Instagram, X. <span class="text-white font-bold">Filigransız İndir.</span></p>
+                    <h2 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-500 mb-4 tracking-tight" data-i18n="home_hero_title">Profesyonel.</h2>
+                    <p class="text-slate-400 text-lg md:text-xl" data-i18n="home_hero_desc">İçeriklerinizi güvenle yedekleyin ve <span class="text-white font-bold">kişisel arşivinizi oluşturun.</span></p>
                 </div>
 
                 <div class="w-full max-w-3xl">
                     <div class="glass-panel p-2 rounded-2xl flex items-center shadow-2xl shadow-indigo-500/10 transition-all focus-within:ring-2 ring-indigo-500/50">
                         <div class="pl-4 pr-2 text-indigo-400"><i class="fa-solid fa-link"></i></div>
-                        <input type="text" id="urlInput" oninput="detectPlatform(this.value)" class="w-full bg-transparent border-none focus:ring-0 text-white p-4 text-lg placeholder-slate-600 font-light" placeholder="Video bağlantısını yapıştır..." data-i18n-placeholder="home_input_placeholder" autocomplete="off">
+                        <input type="text" id="urlInput" oninput="detectPlatform(this.value)" class="w-full bg-transparent border-none focus:ring-0 text-white p-4 text-lg placeholder-slate-600 font-light" placeholder="Medya bağlantısını buraya yapıştırın..." data-i18n-placeholder="home_input_placeholder" autocomplete="off">
                         <button onclick="pasteUrl()" class="hidden md:block px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold tracking-wider text-slate-300 transition mr-2" data-i18n="home_btn_paste">YAPIŞTIR</button>
                     </div>
                 </div>
@@ -360,8 +366,12 @@
                 </div>
 
                 <button onclick="fetchInfo()" id="btn-fetch" class="mt-10 px-10 py-4 bg-white text-black hover:bg-indigo-50 font-bold rounded-full shadow-xl shadow-white/10 transition hover:scale-105 flex items-center gap-3" data-i18n="home_btn_fetch">
-                    <i class="fa-solid fa-bolt text-indigo-600"></i> Videoyu Getir
+                    <i class="fa-solid fa-cloud-arrow-down text-indigo-600"></i> Medyayı Hazırla
                 </button>
+                
+                <p class="mt-6 text-[10px] text-slate-500 max-w-xl text-center">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Bu araç sadece kişisel kullanım ve veri yedekleme amaçlıdır. Lütfen içerik üreticilerinin telif haklarına saygı gösterin.
+                </p>
 
                 <div id="media-result" class="hidden mt-12 w-full max-w-4xl glass-panel rounded-3xl overflow-hidden border border-white/10 animate-[fadeInUp_0.5s_ease-out]">
                     <div class="flex flex-col md:flex-row">
@@ -371,17 +381,58 @@
                         </div>
                         <div class="p-8 md:w-2/3 flex flex-col justify-between">
                             <div>
-                                <h3 id="video-title" class="text-2xl font-bold leading-tight mb-2 line-clamp-2">Video Başlığı</h3>
+                                <h3 id="video-title" class="text-2xl font-bold leading-tight mb-2 line-clamp-2">Medya Başlığı</h3>
                                 <div class="flex gap-4 text-sm text-slate-400 mb-6">
-                                    <span id="uploader-tag"><i class="fa-solid fa-user-circle mr-1"></i> Kanal</span>
+                                    <span id="uploader-tag"><i class="fa-solid fa-user-circle mr-1"></i> Kaynak</span>
                                     <span id="duration-tag"><i class="fa-solid fa-clock mr-1"></i> 00:00</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
-                                <button onclick="startDownload('best')" class="py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm shadow-lg shadow-indigo-500/20">En Yüksek Kalite (MP4)</button>
-                                <button onclick="startDownload('mp3')" class="py-3 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold text-sm">Sadece Ses (MP3)</button>
+                                <button onclick="startDownload('best')" class="py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm shadow-lg shadow-indigo-500/20">Arşivi Kaydet (MP4)</button>
+                                <button onclick="startDownload('mp3')" class="py-3 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold text-sm">Sesi Yedekle (MP3)</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing-tool" class="hidden w-full h-full overflow-y-auto custom-scroll relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <div class="min-h-full flex flex-col items-center py-20 px-6 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Basit ve Şeffaf Fiyatlandırma</h2>
+                    <p class="text-slate-400 text-lg">İhtiyacınıza uygun planı seçin. Gizli ücret veya sürpriz yok.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                    <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col">
+                        <h3 class="text-2xl font-bold text-white mb-2">Başlangıç</h3>
+                        <div class="text-4xl font-black text-white mb-6">$0 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
+                        <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
+                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Standart Medya Yedekleme</li>
+                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Temel PDF Araçları (Günde 3)</li>
+                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Standart Görsel Düzenleyici</li>
+                            <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Yapay Zeka Arka Plan Silici</li>
+                            <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Video Sıkıştırma Aracı</li>
+                        </ul>
+                        <button onclick="showRegisterModal()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition">Ücretsiz Başla</button>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl border border-indigo-500/50 bg-indigo-900/10 relative flex flex-col transform md:-translate-y-4 shadow-2xl shadow-indigo-500/20">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs font-black px-4 py-1 rounded-full tracking-widest uppercase">En Popüler</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">FileWizard PRO</h3>
+                        <div class="text-4xl font-black text-indigo-400 mb-6">$9.99 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
+                        <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız Medya Yedekleme</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız PDF Birleştirme & Sıkıştırma</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> AI Arka Plan Silici (Limitsiz)</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Yüksek Boyutlu Video Küçültme</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Öncelikli Sunucu İşlemcisi (Hızlı İşlem)</li>
+                        </ul>
+                        <button onclick="launchPaddleCheckout()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition">Hemen PRO Ol</button>
+                        <p class="text-center text-[10px] text-slate-500 mt-3">İstediğiniz zaman iptal edebilirsiniz.</p>
                     </div>
                 </div>
             </div>
@@ -697,7 +748,7 @@
                 document.getElementById('duration-tag').innerHTML = `<i class="fa-solid fa-clock"></i> ${data.duration}`;
                 document.getElementById('media-result').classList.remove('hidden');
             } catch(e) { Swal.fire({icon:'error', title:'Bulunamadı', text:'Video gizli veya silinmiş.', background:'#0b0f19', color:'#fff'}); }
-            finally { btn.innerHTML = '<i class="fa-solid fa-bolt text-indigo-600"></i> Videoyu Getir'; }
+            finally { btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down text-indigo-600"></i> Medyayı Hazırla'; }
         }
         
         async function startDownload(fmt) {
@@ -709,13 +760,13 @@
                 const res = await fetch(`${API_URL}/download-media`, {method:'POST', body:fd});
                 if(res.ok) {
                     const blob = await res.blob();
-                    const uploader = document.getElementById('uploader-tag').innerText.replace(' Kanal', '').trim().replace(/[^a-zA-Z0-9]/g, '');
+                    const uploader = document.getElementById('uploader-tag').innerText.replace(' Kaynak', '').trim().replace(/[^a-zA-Z0-9]/g, '');
                     const date = new Date();
                     const ts = String(date.getMonth()+1).padStart(2,'0') + String(date.getDate()).padStart(2,'0') + String(date.getHours()).padStart(2,'0') + String(date.getMinutes()).padStart(2,'0');
                     const filename = `${uploader}_${ts}.${fmt === 'mp3' ? 'mp3' : 'mp4'}`;
                     const a = document.createElement('a'); a.href = window.URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a);
                 } else throw new Error();
-            } catch(e) { closeModal(); Swal.fire({icon:'error', title:'Hata', text:'İndirme başarısız.', background:'#0b0f19', color:'#fff'}); }
+            } catch(e) { closeModal(); Swal.fire({icon:'error', title:'Hata', text:'İşlem başarısız.', background:'#0b0f19', color:'#fff'}); }
         }
 
         function pasteUrl() { navigator.clipboard.readText().then(t => { document.getElementById('urlInput').value = t; }); }
