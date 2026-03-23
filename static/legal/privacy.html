@@ -27,27 +27,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        .lang-switch {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-        }
-        .lang-switch button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-        .lang-switch button:hover {
-            background-color: #1d4ed8;
-        }
         h1 {
             font-size: 2.2em;
             margin-bottom: 10px;
@@ -96,12 +75,7 @@
 <body>
 
 <div class="container">
-    <div class="lang-switch">
-        <button onclick="switchLang('en')">English</button>
-        <button onclick="switchLang('tr')">Türkçe</button>
-    </div>
-
-    <div id="content-en" class="lang-content active">
+    <div id="content-en" class="lang-content">
         <h1>Privacy Policy</h1>
         <div class="meta-info">
             <p><strong>Company:</strong> ForgeLogic LLC</p>
@@ -137,7 +111,7 @@
         <h2>5. Your Rights & Contact</h2>
         <p>Depending on your location, you may have the right to access, update, export, or delete the information we hold about you. If you wish to exercise these rights, or if you have any questions about this Privacy Policy, please contact our Data Protection Officer at <strong>info@forgelogiclab.com</strong> or call us at <strong>+1 (302) 280-1080</strong>.</p>
         
-        <a href="/" class="back-link">&larr; Back to Home</a>
+        <a href="/en/" class="back-link">&larr; Back to Home</a>
     </div>
 
     <div id="content-tr" class="lang-content">
@@ -181,26 +155,10 @@
 </div>
 
 <script>
-    function switchLang(lang) {
-        document.querySelectorAll('.lang-content').forEach(function(el) {
-            el.classList.remove('active');
-        });
-        document.getElementById('content-' + lang).classList.add('active');
-        window.location.hash = lang;
-    }
-
     window.onload = function() {
-        var hash = window.location.hash.substring(1);
-        if (hash === 'tr' || hash === 'en') {
-            switchLang(hash);
-        } else {
-            var userLang = navigator.language || navigator.userLanguage; 
-            if (userLang.startsWith('tr')) {
-                switchLang('tr');
-            } else {
-                switchLang('en');
-            }
-        }
+        var isEnglish = window.location.pathname.indexOf('/en/') !== -1;
+        var lang = isEnglish ? 'en' : 'tr';
+        document.getElementById('content-' + lang).classList.add('active');
     }
 </script>
 

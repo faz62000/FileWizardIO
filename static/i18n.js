@@ -15,7 +15,7 @@ const routeMap = {
     "/araclar/video-kucultme": "/en/tools/video-compressor",
     "/en/tools/video-compressor": "/araclar/video-kucultme",
     
-    // YENİ EKLENEN YASAL SAYFA ROTALARI
+    // YASAL SAYFA ROTALARI
     "/kosullar": "/en/terms",
     "/en/terms": "/kosullar",
     "/gizlilik-politikasi": "/en/privacy-policy",
@@ -49,6 +49,8 @@ const translations = {
         "footer_cookies": "Çerezler",
         "footer_refund": "İade",
         "footer_contact": "İletişim",
+        "prog_title": "İşleniyor",
+        "prog_desc": "Sunucu ile iletişim kuruluyor...",
         
         // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Giriş Yap",
@@ -102,6 +104,8 @@ const translations = {
         "home_input_placeholder": "Medya bağlantısını buraya yapıştırın...",
         "home_btn_paste": "YAPIŞTIR",
         "home_btn_fetch": "<i class='fa-solid fa-cloud-arrow-down text-indigo-600'></i> Medyayı Hazırla",
+        "home_btn_mp4": "Arşivi Kaydet (MP4)",
+        "home_btn_mp3": "Sesi Yedekle (MP3)",
         
         "home_pdf_edit_title": "Canlı Düzenle",
         "home_pdf_edit_desc": "Sayfaları döndür, sil veya yerini değiştir. Görsel editör.",
@@ -111,6 +115,33 @@ const translations = {
         "home_pdf_compress_desc": "Kaliteyi koruyarak dosya boyutunu %80'e kadar küçült.",
         "home_pdf_drop": "Dosyaları buraya bırakın",
         "home_pdf_btn_select": "Dosya Seç",
+        "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Geri Dön",
+
+        // --- GÖRSEL STÜDYO (YENİ EKLENEN ÇEVİRİLER) ---
+        "img_btn_upload": "Görsel Yükle",
+        "img_placeholder": "Düzenlemek için bir görsel seçin",
+        "img_tab_crop": "KIRP",
+        "img_tab_filter": "FİLTRE",
+        "img_tab_adjust": "AYAR",
+        "img_tab_export": "ÇIKTI",
+        "img_crop_free": "Serbest",
+        "img_crop_square": "1:1 Kare",
+        "img_crop_yt": "16:9 YT",
+        "img_crop_story": "9:16 Story",
+        "img_crop_insta": "4:5 Insta",
+        "img_filter_normal": "Normal",
+        "img_filter_bw": "B&W",
+        "img_filter_sepia": "Sepia",
+        "img_filter_vintage": "Vintage",
+        "img_adj_bright": "Parlaklık",
+        "img_adj_contrast": "Kontrast",
+        "img_adj_sat": "Doygunluk",
+        "img_exp_ai": "AI Silgi",
+        "img_exp_ai_desc": "Arka planı otomatik sil.",
+        "img_fmt_png": "PNG (Yüksek Kalite)",
+        "img_fmt_jpg": "JPG (Düşük Boyut)",
+        "img_fmt_webp": "WEBP (Web İçin)",
+        "img_btn_process": "İŞLE & İNDİR",
 
         // --- ARKA PLAN SİLİCİ ---
         "bg_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-500'>Dekupe.</span>",
@@ -126,8 +157,6 @@ const translations = {
         "bg_info_3_title": "Kayıpsız Şeffaflık",
         "bg_info_3_desc": "Çıktılar her zaman profesyonel tasarım programlarıyla uyumlu şeffaf PNG formatındadır.",
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> ARKA PLANI SİL VE İNDİR",
-        "bg_modal_title": "İşleniyor",
-        "bg_modal_desc": "Yapay zeka nesneyi analiz ediyor...",
         
         // --- TOPLU İŞLEM ---
         "batch_title": "Toplu <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Dönüştürücü.</span>",
@@ -147,8 +176,6 @@ const translations = {
         "batch_pixel": "Piksel",
         "batch_resize_info": "Boş bırakırsanız orijinal boyut korunur. Yükseklik otomatik ayarlanır.",
         "batch_btn_process": "<i class='fa-solid fa-bolt'></i> TÜMÜNÜ İŞLE VE İNDİR (.ZIP)",
-        "batch_modal_title": "İşleniyor",
-        "batch_modal_desc": "Dosyalar hazırlanıyor...",
 
         // --- AI STUDIO ---
         "ai_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500'>Detaylar.</span>",
@@ -164,8 +191,6 @@ const translations = {
         "ai_model_3_title": "AI Denoise (Pürüz Giderme)",
         "ai_model_3_desc": "Düşük ışıkta çekilmiş karlı (noise) fotoğraflardaki pürüzleri filtreler ve yüzeyleri pürüzsüzleştirir.",
         "ai_btn_process": "<i class='fa-solid fa-bolt'></i> YAPAY ZEKA İLE İYİLEŞTİR VE İNDİR",
-        "ai_modal_title": "İşleniyor",
-        "ai_modal_desc": "Yapay zeka pikselleri analiz ediyor...",
 
         // --- CLOUD SYNC ---
         "cloud_title": "Sınırları <span class='text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500'>Aşın.</span>",
@@ -178,8 +203,6 @@ const translations = {
         "cloud_token_placeholder": "sl.B... (Gizli Tokeniniz)",
         "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> DOĞRUDAN BULUTA FIRLAT",
-        "cloud_modal_title": "Senkronize Ediliyor",
-        "cloud_modal_desc": "Bulut bağlantısı kuruluyor...",
 
         // --- DEVELOPER API ---
         "dev_title": "Geliştirici <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>API.</span>",
@@ -215,8 +238,6 @@ const translations = {
         "wm_fmt_jpg": "JPG (Daha Düşük Dosya Boyutu)",
         "wm_fmt_webp": "WEBP (Web Optimizasyonu)",
         "wm_btn_process": "<i class='fa-solid fa-wand-magic-sparkles'></i> LOGOYU UYGULA VE İNDİR",
-        "wm_modal_title": "İşleniyor",
-        "wm_modal_desc": "Sunucu ile iletişim kuruluyor...",
 
         // --- VIDEO COMPRESSOR ---
         "vc_title": "Boyutu Küçült. <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500'>Kaliteyi Koru.</span>",
@@ -233,41 +254,6 @@ const translations = {
         "vc_level_extreme_title": "Maksimum (WhatsApp Uyumlu)",
         "vc_level_extreme_desc": "Dosya boyutunu radikal şekilde (%80'e kadar) düşürür. Sosyal medya gönderimleri için idealdir.",
         "vc_btn_process": "<i class='fa-solid fa-compress'></i> SIKIŞTIR VE İNDİR",
-        "vc_modal_title": "İşleniyor",
-        "vc_modal_desc": "Video analiz ediliyor...",
-
-        // --- JS ALERTS (SWEETALERT) ---
-        "swal_error_title": "İşlem Başarısız",
-        "swal_missing_file_title": "Görsel Eksik",
-        "swal_missing_file_text": "Lütfen fotoğraf yükleyin.",
-        "swal_success_title": "Mükemmel!",
-        "swal_success_wm_text": "Markalama başarıyla tamamlandı.",
-        "swal_limit_title": "Limit Aşıldı",
-        "swal_limit_text": "Tek seferde en fazla 50 dosya yükleyebilirsiniz.",
-        "swal_invalid_file_title": "Sadece görsel dosyaları kabul edilir.",
-        "swal_missing_batch_title": "Dosya Yok",
-        "swal_missing_batch_text": "Lütfen işlenecek görselleri yükleyin.",
-        "swal_success_batch_title": "İşlem Başarılı!",
-        "swal_success_batch_text": "Tüm görselleriniz ZIP olarak indirildi.",
-        "swal_missing_ai_title": "Görsel Eksik",
-        "swal_missing_ai_text": "Lütfen iyileştirilecek fotoğrafı yükleyin.",
-        "swal_success_ai_title": "Mükemmel!",
-        "swal_success_ai_text": "Görseliniz yapay zeka ile başarıyla iyileştirildi.",
-        "swal_missing_cloud_file_title": "Dosya Eksik",
-        "swal_missing_cloud_file_text": "Lütfen buluta aktarılacak dosyayı seçin.",
-        "swal_missing_token_title": "Token Eksik",
-        "swal_missing_token_text": "Lütfen Dropbox Access Token bilginizi girin.",
-        "swal_success_cloud_title": "Senkronizasyon Başarılı!",
-        "swal_success_cloud_text": "Dosya başarıyla Dropbox hesabınıza aktarıldı.",
-        "swal_missing_email_title": "E-Posta Eksik",
-        "swal_missing_email_text": "Lütfen geçerli bir e-posta adresi girin.",
-        "swal_missing_key_title": "Anahtar Eksik",
-        "swal_missing_key_text": "Lütfen sorgulanacak API anahtarını girin.",
-        "swal_success_key_title": "Anahtar Oluşturuldu",
-        "swal_success_key_text": "API anahtarınız oluşturuldu. Lütfen güvenli bir yere kaydedin.",
-        "swal_missing_vc_title": "Video Eksik",
-        "swal_missing_vc_text": "Lütfen sıkıştırılacak videoyu yükleyin.",
-        "swal_success_vc_text": "Videonuz başarıyla sıkıştırıldı ve indirildi."
     },
     "en": {
         // --- COMMON ---
@@ -278,6 +264,8 @@ const translations = {
         "footer_cookies": "Cookies",
         "footer_refund": "Refund Policy",
         "footer_contact": "Contact",
+        "prog_title": "Processing",
+        "prog_desc": "Communicating with server...",
 
         // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Login",
@@ -331,6 +319,8 @@ const translations = {
         "home_input_placeholder": "Paste media link here...",
         "home_btn_paste": "PASTE",
         "home_btn_fetch": "<i class='fa-solid fa-cloud-arrow-down text-indigo-600'></i> Prepare Media",
+        "home_btn_mp4": "Save Archive (MP4)",
+        "home_btn_mp3": "Backup Audio (MP3)",
         
         "home_pdf_edit_title": "Live Edit",
         "home_pdf_edit_desc": "Rotate, delete, or reorder pages. Visual editor.",
@@ -340,6 +330,33 @@ const translations = {
         "home_pdf_compress_desc": "Reduce file size up to 80% while keeping quality.",
         "home_pdf_drop": "Drop files here",
         "home_pdf_btn_select": "Select File",
+        "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Go Back",
+
+        // --- GÖRSEL STÜDYO (YENİ EKLENEN ÇEVİRİLER) ---
+        "img_btn_upload": "Upload Image",
+        "img_placeholder": "Select an image to edit",
+        "img_tab_crop": "CROP",
+        "img_tab_filter": "FILTER",
+        "img_tab_adjust": "ADJUST",
+        "img_tab_export": "EXPORT",
+        "img_crop_free": "Free",
+        "img_crop_square": "1:1 Square",
+        "img_crop_yt": "16:9 YT",
+        "img_crop_story": "9:16 Story",
+        "img_crop_insta": "4:5 Insta",
+        "img_filter_normal": "Normal",
+        "img_filter_bw": "B&W",
+        "img_filter_sepia": "Sepia",
+        "img_filter_vintage": "Vintage",
+        "img_adj_bright": "Brightness",
+        "img_adj_contrast": "Contrast",
+        "img_adj_sat": "Saturation",
+        "img_exp_ai": "AI Eraser",
+        "img_exp_ai_desc": "Automatically remove background.",
+        "img_fmt_png": "PNG (High Quality)",
+        "img_fmt_jpg": "JPG (Lower Size)",
+        "img_fmt_webp": "WEBP (For Web)",
+        "img_btn_process": "PROCESS & DOWNLOAD",
 
         // --- BG REMOVER ---
         "bg_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-500'>Cutout.</span>",
@@ -355,8 +372,6 @@ const translations = {
         "bg_info_3_title": "Lossless Transparency",
         "bg_info_3_desc": "Outputs are always in transparent PNG format compatible with professional design software.",
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> REMOVE BG & DOWNLOAD",
-        "bg_modal_title": "Processing",
-        "bg_modal_desc": "AI is analyzing the object...",
 
         // --- BATCH PROCESSING ---
         "batch_title": "Bulk <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Converter.</span>",
@@ -376,8 +391,6 @@ const translations = {
         "batch_pixel": "Pixels",
         "batch_resize_info": "Leave blank to keep original size. Height adjusts automatically.",
         "batch_btn_process": "<i class='fa-solid fa-bolt'></i> PROCESS ALL & DOWNLOAD (.ZIP)",
-        "batch_modal_title": "Processing",
-        "batch_modal_desc": "Preparing files...",
 
         // --- AI STUDIO ---
         "ai_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500'>Details.</span>",
@@ -393,8 +406,6 @@ const translations = {
         "ai_model_3_title": "AI Denoise",
         "ai_model_3_desc": "Filters out noise in low-light photos and smoothes surfaces.",
         "ai_btn_process": "<i class='fa-solid fa-bolt'></i> ENHANCE WITH AI & DOWNLOAD",
-        "ai_modal_title": "Processing",
-        "ai_modal_desc": "AI is analyzing pixels...",
 
         // --- CLOUD SYNC ---
         "cloud_title": "Break the <span class='text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500'>Limits.</span>",
@@ -407,8 +418,6 @@ const translations = {
         "cloud_token_placeholder": "sl.B... (Your Secret Token)",
         "cloud_token_info": "Enter the token from your Dropbox Developer panel. This info is <span class='text-sky-400 font-bold'>never saved</span> on our servers.",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> UPLOAD DIRECTLY TO CLOUD",
-        "cloud_modal_title": "Synchronizing",
-        "cloud_modal_desc": "Establishing cloud connection...",
 
         // --- DEVELOPER API ---
         "dev_title": "Developer <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>API.</span>",
@@ -444,8 +453,6 @@ const translations = {
         "wm_fmt_jpg": "JPG (Lower File Size)",
         "wm_fmt_webp": "WEBP (Web Optimization)",
         "wm_btn_process": "<i class='fa-solid fa-wand-magic-sparkles'></i> APPLY LOGO & DOWNLOAD",
-        "wm_modal_title": "Processing",
-        "wm_modal_desc": "Communicating with server...",
 
         // --- VIDEO COMPRESSOR ---
         "vc_title": "Shrink Size. <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500'>Keep Quality.</span>",
@@ -461,42 +468,7 @@ const translations = {
         "vc_level_medium_desc": "Reduces file size by around 50% with no visible quality loss.",
         "vc_level_extreme_title": "Extreme (WhatsApp Ready)",
         "vc_level_extreme_desc": "Radically reduces file size (up to 80%). Ideal for social media sharing.",
-        "vc_btn_process": "<i class='fa-solid fa-compress'></i> COMPRESS & DOWNLOAD",
-        "vc_modal_title": "Processing",
-        "vc_modal_desc": "Analyzing video...",
-
-        // --- JS ALERTS (SWEETALERT) ---
-        "swal_error_title": "Operation Failed",
-        "swal_missing_file_title": "Missing Image",
-        "swal_missing_file_text": "Please upload a photo.",
-        "swal_success_title": "Excellent!",
-        "swal_success_wm_text": "Watermark successfully added.",
-        "swal_limit_title": "Limit Exceeded",
-        "swal_limit_text": "You can upload a maximum of 50 files at a time.",
-        "swal_invalid_file_title": "Only image files are accepted.",
-        "swal_missing_batch_title": "No Files",
-        "swal_missing_batch_text": "Please upload images to process.",
-        "swal_success_batch_title": "Process Successful!",
-        "swal_success_batch_text": "All your images have been downloaded as a ZIP.",
-        "swal_missing_ai_title": "Missing Image",
-        "swal_missing_ai_text": "Please upload a photo to enhance.",
-        "swal_success_ai_title": "Excellent!",
-        "swal_success_ai_text": "Your image has been successfully enhanced with AI.",
-        "swal_missing_cloud_file_title": "Missing File",
-        "swal_missing_cloud_file_text": "Please select a file to upload to the cloud.",
-        "swal_missing_token_title": "Missing Token",
-        "swal_missing_token_text": "Please enter your Dropbox Access Token.",
-        "swal_success_cloud_title": "Sync Successful!",
-        "swal_success_cloud_text": "File successfully transferred to your Dropbox account.",
-        "swal_missing_email_title": "Missing Email",
-        "swal_missing_email_text": "Please enter a valid email address.",
-        "swal_missing_key_title": "Missing Key",
-        "swal_missing_key_text": "Please enter the API key to check.",
-        "swal_success_key_title": "Key Generated",
-        "swal_success_key_text": "Your API key has been generated. Please save it securely.",
-        "swal_missing_vc_title": "Missing Video",
-        "swal_missing_vc_text": "Please upload a video to compress.",
-        "swal_success_vc_text": "Your video has been successfully compressed and downloaded."
+        "vc_btn_process": "<i class='fa-solid fa-compress'></i> COMPRESS & DOWNLOAD"
     }
 };
 
