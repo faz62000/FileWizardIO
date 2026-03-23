@@ -82,7 +82,7 @@ const translations = {
         "upg_btn": "Hemen PRO Ol ($9.99/Ay)",
 
         // --- ANA SAYFA VİTRİNİ ---
-        "home_nav_media": "Video İndirici",
+        "home_nav_media": "Medya Yedekleme",
         "home_nav_image": "Görsel Stüdyo",
         "home_nav_pdf": "PDF Araçları",
         "home_nav_premium": "PREMİUM ARAÇLAR",
@@ -92,15 +92,16 @@ const translations = {
         "home_nav_cloud": "Bulut Senk.",
         "home_nav_wm": "Filigran",
         "home_nav_vc": "Video Küçültme",
+        "home_nav_pricing": "Fiyatlandırma",
         "home_nav_api": "Geliştirici API",
         "home_support_title": "Sorun mu yaşıyorsun?",
         "home_support_btn": "Destek Ekibi",
         
-        "home_hero_title": "Sınırsız.",
-        "home_hero_desc": "YouTube, TikTok, Instagram, X. <span class='text-white font-bold'>Filigransız İndir.</span>",
-        "home_input_placeholder": "Video bağlantısını yapıştır...",
+        "home_hero_title": "Profesyonel.",
+        "home_hero_desc": "İçeriklerinizi güvenle yedekleyin ve <span class='text-white font-bold'>kişisel arşivinizi oluşturun.</span>",
+        "home_input_placeholder": "Medya bağlantısını buraya yapıştırın...",
         "home_btn_paste": "YAPIŞTIR",
-        "home_btn_fetch": "<i class='fa-solid fa-bolt text-indigo-600'></i> Videoyu Getir",
+        "home_btn_fetch": "<i class='fa-solid fa-cloud-arrow-down text-indigo-600'></i> Medyayı Hazırla",
         
         "home_pdf_edit_title": "Canlı Düzenle",
         "home_pdf_edit_desc": "Sayfaları döndür, sil veya yerini değiştir. Görsel editör.",
@@ -175,7 +176,7 @@ const translations = {
         "cloud_settings_title": "Bulut Bağlantısı",
         "cloud_token_label": "Dropbox Access Token (Erişim Anahtarı)",
         "cloud_token_placeholder": "sl.B... (Gizli Tokeniniz)",
-        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. This info is <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
+        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> DOĞRUDAN BULUTA FIRLAT",
         "cloud_modal_title": "Senkronize Ediliyor",
         "cloud_modal_desc": "Bulut bağlantısı kuruluyor...",
@@ -194,7 +195,7 @@ const translations = {
         "dev_doc_title": "Hızlı Başlangıç (cURL)",
         "dev_used_quota": "Kullanılan",
         "dev_rem_quota": "Kalan Kota",
-        "dev_api_desc": "Verilen bir YouTube, TikTok veya Instagram bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.",
+        "dev_api_desc": "Verilen bir sosyal medya bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.",
         "dev_curl_example": "cURL Örneği",
         "dev_example_res": "Örnek Yanıt (JSON)",
         
@@ -310,7 +311,7 @@ const translations = {
         "upg_btn": "Get PRO Now ($9.99/Mo)",
         
         // --- HOME SHOWCASE ---
-        "home_nav_media": "Video Downloader",
+        "home_nav_media": "Media Backup",
         "home_nav_image": "Image Studio",
         "home_nav_pdf": "PDF Tools",
         "home_nav_premium": "PREMIUM TOOLS",
@@ -320,15 +321,16 @@ const translations = {
         "home_nav_cloud": "Cloud Sync",
         "home_nav_wm": "Watermark",
         "home_nav_vc": "Video Compressor",
+        "home_nav_pricing": "Pricing",
         "home_nav_api": "Developer API",
         "home_support_title": "Need help?",
         "home_support_btn": "Support Team",
         
-        "home_hero_title": "Limitless.",
-        "home_hero_desc": "YouTube, TikTok, Instagram, X. <span class='text-white font-bold'>Download without Watermark.</span>",
-        "home_input_placeholder": "Paste video link...",
+        "home_hero_title": "Professional.",
+        "home_hero_desc": "Securely back up your content and <span class='text-white font-bold'>build your personal archive.</span>",
+        "home_input_placeholder": "Paste media link here...",
         "home_btn_paste": "PASTE",
-        "home_btn_fetch": "<i class='fa-solid fa-bolt text-indigo-600'></i> Fetch Video",
+        "home_btn_fetch": "<i class='fa-solid fa-cloud-arrow-down text-indigo-600'></i> Prepare Media",
         
         "home_pdf_edit_title": "Live Edit",
         "home_pdf_edit_desc": "Rotate, delete, or reorder pages. Visual editor.",
@@ -422,7 +424,7 @@ const translations = {
         "dev_doc_title": "Quick Start (cURL)",
         "dev_used_quota": "Used",
         "dev_rem_quota": "Remaining",
-        "dev_api_desc": "Resolves metadata, title, and format information of media from a given YouTube, TikTok, or Instagram link at high speed.",
+        "dev_api_desc": "Resolves metadata, title, and format information of media from a given social media link at high speed.",
         "dev_curl_example": "cURL Example",
         "dev_example_res": "Example Response (JSON)",
         
