@@ -1,4 +1,4 @@
-// URL Yönlendirme Haritası
+// URL Yönlendirme Haritası (Kısa ve Clean URL)
 const routeMap = {
     "/araclar/arka-plan-silici": "/en/tools/background-remover",
     "/en/tools/background-remover": "/araclar/arka-plan-silici",
@@ -14,6 +14,7 @@ const routeMap = {
     "/en/developer-api": "/gelistirici-api",
     "/araclar/video-kucultme": "/en/tools/video-compressor",
     "/en/tools/video-compressor": "/araclar/video-kucultme",
+    
     // YENİ EKLENEN YASAL SAYFA ROTALARI
     "/kosullar": "/en/terms",
     "/en/terms": "/kosullar",
@@ -174,7 +175,7 @@ const translations = {
         "cloud_settings_title": "Bulut Bağlantısı",
         "cloud_token_label": "Dropbox Access Token (Erişim Anahtarı)",
         "cloud_token_placeholder": "sl.B... (Gizli Tokeniniz)",
-        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi sunucularımızda <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
+        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. This info is <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> DOĞRUDAN BULUTA FIRLAT",
         "cloud_modal_title": "Senkronize Ediliyor",
         "cloud_modal_desc": "Bulut bağlantısı kuruluyor...",
@@ -515,6 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
+    // Placeholder çevirileri
     const placeholders = document.querySelectorAll("[data-i18n-placeholder]");
     placeholders.forEach(el => {
         const key = el.getAttribute("data-i18n-placeholder");
