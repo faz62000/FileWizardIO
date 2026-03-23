@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Request, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import get_db
-# Kendi veritabanı yapınıza göre User modelini içe aktarın (models.py veya database.py içinde olabilir)
-from database import User 
+
+# HATANIN ÇÖZÜMÜ: User modeli database'den değil models dosyasından çağırıldı
+from models import User 
 import os
 import json
 import hmac
@@ -55,13 +56,17 @@ async def paddle_webhook(request: Request, db: Session = Depends(get_db)):
         status = data.get("status")
 
         if user_id:
-            user = db.query(User).filter(User.id == str(user_id)).first()
+            # UYUM DÜZELTMESİ: models.py içindeki id (Integer) olduğu için int(user_id) yapıldı
+            user = db.query(User).filter(User.id == int(user_id)).first()
             if user:
                 if status in ["active", "trialing"]:
-                    user.is_pro = True
+                    # UYUM DÜZELTMESİ: models.py içindeki is_premium değeri kullanıldı
+                    user.is_premium = True
                     user.subscription_id = data.get("id")
+                    user.subscription_status = status
                 else:
-                    user.is_pro = False
+                    user.is_premium = False
+                    user.subscription_status = status
                 db.commit()
 
     elif event_type == "subscription.canceled":
@@ -69,9 +74,9 @@ async def paddle_webhook(request: Request, db: Session = Depends(get_db)):
         user_id = custom_data.get("user_id")
         
         if user_id:
-            user = db.query(User).filter(User.id == str(user_id)).first()
+            user = db.query(User).filter(User.id == int(user_id)).first()
             if user:
-                user.is_pro = False
+                user.is_premium = False
                 user.subscription_status = "canceled"
                 db.commit()
 
