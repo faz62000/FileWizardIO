@@ -18,8 +18,10 @@ from fastapi_sso.sso.twitter import TwitterSSO
 router = APIRouter()
 
 # --- SSO (SOSYAL GİRİŞ) YAPILANDIRMASI ---
-# DigitalOcean'da çalışırken HOST_URL kendi alan adınız olmalıdır (örn: https://filewizardio.com)
-HOST_URL = os.environ.get("HOST_URL", "http://localhost:8000")
+# DÜZELTME: Google "invalid_client" hatasını çözmek için HOST_URL canlı domain olarak sabitlendi.
+# Lütfen Google Cloud Console'da "Yetkilendirilmiş yönlendirme URI'leri" kısmına 
+# "https://filewizardio.com/api/auth/google/callback" adresini eklediğinden emin ol.
+HOST_URL = os.environ.get("HOST_URL", "https://filewizardio.com")
 
 google_sso = GoogleSSO(
     client_id=os.environ.get("GOOGLE_CLIENT_ID", "your-google-id"),

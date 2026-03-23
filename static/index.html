@@ -18,7 +18,7 @@
     <meta name="twitter:title" content="FileWizardIO Pro | Ultimate Media Suite">
     <meta name="twitter:description" content="FileWizardIO Pro: Yapay zeka destekli video indirici, profesyonel resim stüdyosu ve gelişmiş PDF araçları.">
     <meta name="twitter:image" content="https://filewizardio.com/og-image.jpg">
-    
+
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +31,7 @@
 
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
-    <script src="/i18n.js?v=8.3.1"></script>
+    <script src="/i18n.js?v=8.3"></script>
 
     <script>
         tailwind.config = {
@@ -52,6 +52,7 @@
         }
     </script>
     <style>
+       /* 1. Temel Sayfa Yapılandırması (Global) */
     body { 
         background-color: #050505; 
         color: white; 
@@ -61,30 +62,49 @@
         font-family: 'Outfit', sans-serif;
     }
 
+    /* 2. Özelleştirilmiş Kaydırma Çubukları (Custom Scrollbar) */
     .custom-scroll::-webkit-scrollbar { width: 5px; } 
     .custom-scroll::-webkit-scrollbar-thumb { 
         background: #334155; 
         border-radius: 10px; 
     }
 
+    /* 3. Kullanıcı Arayüzü Bileşenleri (UI Components) */
     .glass-panel { 
         background: rgba(20, 25, 40, 0.7); 
         backdrop-filter: blur(20px); 
         border: 1px solid rgba(255, 255, 255, 0.05); 
     }
 
+    /* UI ÇÖZÜMÜ: Linkleri sola yaslamak için zorunlu CSS özellikleri eklendi */
     .sidebar-link { 
-        @apply flex items-center justify-start text-left gap-4 p-4 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-300 border-l-2 border-transparent w-full; 
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        gap: 1rem !important;
+        padding: 1rem !important;
+        color: #94a3b8;
+        border-radius: 0.75rem;
+        transition: all 0.3s;
+        border-left: 2px solid transparent;
+        width: 100%;
     }
-    
+    .sidebar-link:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
     .sidebar-link.active { 
-        @apply text-indigo-400 bg-indigo-500/10 border-indigo-500; 
+        color: #818cf8 !important; 
+        background-color: rgba(99, 102, 241, 0.1) !important; 
+        border-left-color: #6366f1 !important; 
     }
 
     .tool-card { 
         @apply bg-slate-800/50 border border-white/5 rounded-2xl p-6 hover:border-indigo-500/50 transition cursor-pointer group hover:-translate-y-1; 
     }
 
+    /* 4. PDF Stüdyosu Tasarımı (Grid & Pages) */
     #pdf-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
@@ -111,6 +131,7 @@
         background: #1e293b;
     }
 
+    /* 5. Yükleme Animasyonu (Global Loader) */
     .loader { 
         width: 48px; 
         height: 48px; 
@@ -127,13 +148,17 @@
         100% { transform: rotate(360deg); } 
     }
 
+    /* 6. Mobil Uyumluluk (Responsive Design) */
     @media (max-width: 640px) {
         #pdf-grid {
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 1.25rem;
             padding: 10px;
         }
-        body { overflow-y: auto; }
+        
+        body {
+            overflow-y: auto;
+        }
     }
     </style>
 </head>
@@ -149,6 +174,7 @@
             <div class="space-y-4">
                 <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
                 <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="••••••••" data-i18n-placeholder="auth_pass_placeholder"></div>
+                
                 <button onclick="processLogin()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text" data-i18n="auth_login_btn">Giriş Yap</span></button>
                 
                 <div class="flex items-center my-4">
@@ -178,6 +204,7 @@
             <div class="space-y-4">
                 <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
                 <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="En az 6 karakter" data-i18n-placeholder="auth_pass_reg_placeholder"></div>
+                
                 <button onclick="processRegister()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text" data-i18n="auth_reg_btn">Ücretsiz Kayıt Ol</span></button>
                 
                 <div class="flex items-center my-4">
@@ -210,6 +237,7 @@
                 <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f3">Yapay Zeka Stüdyosu</span></li>
                 <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f4">Öncelikli Sunucu İşlemcisi</span></li>
             </ul>
+            
             <button onclick="launchPaddleCheckout()" class="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-lg rounded-xl shadow-xl shadow-orange-500/20 transition transform hover:scale-105 relative z-10">
                 <span data-i18n="upg_btn">Hemen PRO Ol ($9.99/Ay)</span>
             </button>
@@ -487,10 +515,10 @@
                 </div>
 
                 <div class="flex items-center gap-4 lg:gap-6 text-[10px] text-slate-400 font-medium shrink-0">
-                    <a href="/gizlilik-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
-                    <a href="/kosullar" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
-                    <a href="/cerez-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</a>
-                    <a href="/iade-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade</a>
+                    <a href="/legal/privacy.html" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
+                    <a href="/legal/terms.html" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
+                    <a href="/legal/cookies.html" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</a>
+                    <a href="/legal/refund.html" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade Politikası</a>
                     <button onclick="showContact()" class="hover:text-indigo-400 transition font-bold text-indigo-500" data-i18n="footer_contact">İletişim</button>
                 </div>
 
@@ -515,8 +543,7 @@
         const API_URL = "/api";
         let cropper, pdfMode = null, pdfTaskId = null, filters = { brightness: 100, contrast: 100, saturation: 100 }, currentPreset = 'none';
 
-        // SAAS DÖNÜŞÜMÜ: Paddle.js Başlatma Bloğu
-        // Uyarı: Sandbox kullanımı test_ tokeni gerektirebilir, testlerinizi buna göre yapın.
+        // --- SAAS DÖNÜŞÜMÜ: Paddle.js Başlatma Bloğu ---
         Paddle.Environment.set('sandbox'); 
         Paddle.Initialize({
             token: 'live_316ea7de499a0e6df59a332f47f',
@@ -524,14 +551,13 @@
                 if (data.name === "checkout.completed") {
                     Swal.fire({icon:'success', title:'Tebrikler!', text:'PRO hesabınız aktif edildi.', background:'#0b0f19', color:'#fff'});
                     closeAuthModals();
-                    checkAuthState(); // Durumu güncelleyip PRO rozetini açmak için eklendi
+                    checkAuthState(); 
                 } else if (data.name === "checkout.closed") {
                     console.log("Kullanıcı ödeme ekranını kapattı.");
                 }
             }
         });
 
-        // Yeni Paddle Ödeme Tetikleyici Fonksiyon
         function launchPaddleCheckout() {
             const token = getToken();
             if (!token) {
@@ -549,11 +575,11 @@
                     }
                 ],
                 customData: {
-                    // Kullanıcıyı belirlemek için gerekli veri. Canlıda JWT içinden alınabilir.
                     user_id: "1" 
                 }
             });
         }
+        // ------------------------------------------------
 
         // --- NAVIGATION ---
         function switchTab(id) {
@@ -769,6 +795,7 @@
             } else { Swal.fire({icon:'error', title:'Hata', background:'#0b0f19', color:'#fff'}); }
         }
 
+        // --- UTILS ---
         function startProgress(tid) {
             document.getElementById('progress-modal').classList.remove('hidden');
             const source = new EventSource(`${API_URL}/progress/${tid}`);
@@ -802,6 +829,8 @@
             }); 
         }
 
+        // --- SAAS DÖNÜŞÜMÜ: YENİ KİMLİK DOĞRULAMA (AUTH) FONKSİYONLARI ---
+        
         function getToken() { return localStorage.getItem('fw_token'); }
         function setToken(token) { localStorage.setItem('fw_token', token); }
         function removeToken() { localStorage.removeItem('fw_token'); }
@@ -852,7 +881,7 @@
             } catch(e) {
                 Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
             } finally {
-                btnText.innerText = window.t('auth_login_btn');
+                btnText.innerText = 'Giriş Yap';
             }
         }
 
@@ -880,7 +909,7 @@
             } catch(e) {
                 Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
             } finally {
-                btnText.innerText = window.t('auth_reg_btn');
+                btnText.innerText = 'Ücretsiz Kayıt Ol';
             }
         }
 
@@ -890,6 +919,7 @@
             Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
         }
 
+        // Sayfa yüklendiğinde kullanıcının giriş yapıp yapmadığını kontrol et
         window.addEventListener('DOMContentLoaded', checkAuthState);
     </script>
 </body>
