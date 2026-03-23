@@ -8,6 +8,7 @@ from security import get_password_hash, verify_password, create_access_token, AC
 from datetime import timedelta
 import os
 import secrets
+from dotenv import load_dotenv
 
 # --- SAAS DÖNÜŞÜMÜ İÇİN EKLENEN SSO KÜTÜPHANELERİ ---
 from fastapi_sso.sso.google import GoogleSSO
@@ -17,10 +18,10 @@ from fastapi_sso.sso.twitter import TwitterSSO
 
 router = APIRouter()
 
+# --- ÇEVRE DEĞİŞKENLERİNİ (ENV) ZORLA OKUTMA (401 HATASI ÇÖZÜMÜ) ---
+load_dotenv()
+
 # --- SSO (SOSYAL GİRİŞ) YAPILANDIRMASI ---
-# DÜZELTME: Google "invalid_client" hatasını çözmek için HOST_URL canlı domain olarak sabitlendi.
-# Lütfen Google Cloud Console'da "Yetkilendirilmiş yönlendirme URI'leri" kısmına 
-# "https://filewizardio.com/api/auth/google/callback" adresini eklediğinden emin ol.
 HOST_URL = os.environ.get("HOST_URL", "https://filewizardio.com")
 
 google_sso = GoogleSSO(

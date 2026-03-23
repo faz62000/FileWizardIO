@@ -31,7 +31,7 @@
 
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
-    <script src="/i18n.js?v=8.3"></script>
+    <script src="/i18n.js?v=8.3.2"></script>
 
     <script>
         tailwind.config = {
@@ -52,7 +52,6 @@
         }
     </script>
     <style>
-       /* 1. Temel Sayfa Yapılandırması (Global) */
     body { 
         background-color: #050505; 
         color: white; 
@@ -62,21 +61,19 @@
         font-family: 'Outfit', sans-serif;
     }
 
-    /* 2. Özelleştirilmiş Kaydırma Çubukları (Custom Scrollbar) */
     .custom-scroll::-webkit-scrollbar { width: 5px; } 
     .custom-scroll::-webkit-scrollbar-thumb { 
         background: #334155; 
         border-radius: 10px; 
     }
 
-    /* 3. Kullanıcı Arayüzü Bileşenleri (UI Components) */
     .glass-panel { 
         background: rgba(20, 25, 40, 0.7); 
         backdrop-filter: blur(20px); 
         border: 1px solid rgba(255, 255, 255, 0.05); 
     }
 
-    /* UI ÇÖZÜMÜ: Linkleri sola yaslamak için zorunlu CSS özellikleri eklendi */
+    /* Linkleri sola yaslamak için zorunlu CSS özellikleri */
     .sidebar-link { 
         display: flex !important;
         align-items: center !important;
@@ -104,7 +101,6 @@
         @apply bg-slate-800/50 border border-white/5 rounded-2xl p-6 hover:border-indigo-500/50 transition cursor-pointer group hover:-translate-y-1; 
     }
 
-    /* 4. PDF Stüdyosu Tasarımı (Grid & Pages) */
     #pdf-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
@@ -131,7 +127,6 @@
         background: #1e293b;
     }
 
-    /* 5. Yükleme Animasyonu (Global Loader) */
     .loader { 
         width: 48px; 
         height: 48px; 
@@ -148,17 +143,13 @@
         100% { transform: rotate(360deg); } 
     }
 
-    /* 6. Mobil Uyumluluk (Responsive Design) */
     @media (max-width: 640px) {
         #pdf-grid {
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 1.25rem;
             padding: 10px;
         }
-        
-        body {
-            overflow-y: auto;
-        }
+        body { overflow-y: auto; }
     }
     </style>
 </head>
@@ -515,10 +506,10 @@
                 </div>
 
                 <div class="flex items-center gap-4 lg:gap-6 text-[10px] text-slate-400 font-medium shrink-0">
-                    <a href="/legal/privacy.html" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
-                    <a href="/legal/terms.html" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
-                    <a href="/legal/cookies.html" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</a>
-                    <a href="/legal/refund.html" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade Politikası</a>
+                    <a href="/gizlilik-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</a>
+                    <a href="/kosullar" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</a>
+                    <a href="/cerez-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</a>
+                    <a href="/iade-politikasi" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade</a>
                     <button onclick="showContact()" class="hover:text-indigo-400 transition font-bold text-indigo-500" data-i18n="footer_contact">İletişim</button>
                 </div>
 
@@ -543,7 +534,7 @@
         const API_URL = "/api";
         let cropper, pdfMode = null, pdfTaskId = null, filters = { brightness: 100, contrast: 100, saturation: 100 }, currentPreset = 'none';
 
-        // --- SAAS DÖNÜŞÜMÜ: Paddle.js Başlatma Bloğu ---
+        // --- SAAS DÖNÜŞÜMÜ: Paddle Checkout Fonksiyonları (Orijinal dosyaya geri eklendi) ---
         Paddle.Environment.set('sandbox'); 
         Paddle.Initialize({
             token: 'live_316ea7de499a0e6df59a332f47f',
@@ -566,20 +557,120 @@
                 setTimeout(showLoginModal, 1500);
                 return;
             }
-
             Paddle.Checkout.open({
-                items: [
-                    {
-                        priceId: 'pri_01kmcpxt8rns9sd99jg6bhmzd4',
-                        quantity: 1
-                    }
-                ],
-                customData: {
-                    user_id: "1" 
-                }
+                items: [{ priceId: 'pri_01kmcpxt8rns9sd99jg6bhmzd4', quantity: 1 }],
+                customData: { user_id: "1" }
             });
         }
-        // ------------------------------------------------
+        
+        function showContact() { 
+            Swal.fire({
+                title: window.t('footer_contact'), 
+                html: `
+                    <div class="text-left space-y-3 mt-4 text-sm text-slate-300">
+                        <p><strong class="text-white"><i class="fa-solid fa-building text-indigo-400 mr-2"></i></strong> ForgeLogic LLC</p>
+                        <p><strong class="text-white"><i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i></strong> 8 The Green, STE B<br>Dover, DE, 19901, United States</p>
+                        <p><strong class="text-white"><i class="fa-solid fa-phone text-indigo-400 mr-2"></i></strong> <a href="tel:+13022801080" class="hover:text-indigo-400 transition">+1 (302) 280-1080</a></p>
+                        <p><strong class="text-white"><i class="fa-solid fa-envelope text-indigo-400 mr-2"></i></strong> <a href="mailto:info@forgelogiclab.com" class="hover:text-indigo-400 transition">info@forgelogiclab.com</a></p>
+                    </div>
+                `, 
+                background: '#0b0f19', 
+                color: '#fff',
+                confirmButtonColor: '#4f46e5'
+            }); 
+        }
+
+        // --- AUTH FONKSİYONLARI (Orijinal dosyaya geri eklendi) ---
+        function getToken() { return localStorage.getItem('fw_token'); }
+        function setToken(token) { localStorage.setItem('fw_token', token); }
+        function removeToken() { localStorage.removeItem('fw_token'); }
+
+        function checkAuthState() {
+            const token = getToken();
+            if (token) {
+                document.getElementById('auth-buttons-unlogged').classList.add('hidden');
+                document.getElementById('auth-buttons-logged').classList.remove('hidden');
+                document.getElementById('auth-buttons-logged').classList.add('flex');
+            } else {
+                document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
+                document.getElementById('auth-buttons-logged').classList.add('hidden');
+                document.getElementById('auth-buttons-logged').classList.remove('flex');
+            }
+        }
+
+        function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
+        function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
+        function showProUpgrade() { closeAuthModals(); document.getElementById('upgrade-modal').classList.remove('hidden'); }
+        function closeAuthModals() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('register-modal').classList.add('hidden');
+            document.getElementById('upgrade-modal').classList.add('hidden');
+        }
+
+        async function processLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            if(!email || !password) return Swal.fire({icon:'warning', title:'Hata', text:'Lütfen tüm alanları doldurun.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('login-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await res.json();
+                if(res.ok) {
+                    setToken(data.access_token);
+                    checkAuthState();
+                    closeAuthModals();
+                    Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+                } else throw new Error(data.detail || 'Giriş başarısız. Lütfen e-posta veya şifrenizi kontrol edin.');
+            } catch(e) {
+                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
+            } finally {
+                btnText.innerText = window.t('auth_login_btn');
+            }
+        }
+
+        async function processRegister() {
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            if(!email || password.length < 6) return Swal.fire({icon:'warning', title:'Hata', text:'Geçerli bir e-posta ve en az 6 haneli şifre girin.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('reg-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await res.json();
+                if(res.ok) {
+                    setToken(data.access_token);
+                    checkAuthState();
+                    closeAuthModals();
+                    Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+                } else throw new Error(data.detail || 'Kayıt başarısız. Bu e-posta kullanılıyor olabilir.');
+            } catch(e) {
+                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
+            } finally {
+                btnText.innerText = window.t('auth_reg_btn');
+            }
+        }
+
+        function processLogout() {
+            removeToken();
+            checkAuthState();
+            Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+        }
+
+        window.addEventListener('DOMContentLoaded', checkAuthState);
+        // -----------------------------------------------------------------
 
         // --- NAVIGATION ---
         function switchTab(id) {
@@ -795,7 +886,6 @@
             } else { Swal.fire({icon:'error', title:'Hata', background:'#0b0f19', color:'#fff'}); }
         }
 
-        // --- UTILS ---
         function startProgress(tid) {
             document.getElementById('progress-modal').classList.remove('hidden');
             const source = new EventSource(`${API_URL}/progress/${tid}`);
@@ -811,116 +901,6 @@
             };
         }
         function closeModal() { document.getElementById('progress-modal').classList.add('hidden'); }
-        
-        function showContact() { 
-            Swal.fire({
-                title: window.t('footer_contact'), 
-                html: `
-                    <div class="text-left space-y-3 mt-4 text-sm text-slate-300">
-                        <p><strong class="text-white"><i class="fa-solid fa-building text-indigo-400 mr-2"></i></strong> ForgeLogic LLC</p>
-                        <p><strong class="text-white"><i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i></strong> 8 The Green, STE B<br>Dover, DE, 19901, United States</p>
-                        <p><strong class="text-white"><i class="fa-solid fa-phone text-indigo-400 mr-2"></i></strong> <a href="tel:+13022801080" class="hover:text-indigo-400 transition">+1 (302) 280-1080</a></p>
-                        <p><strong class="text-white"><i class="fa-solid fa-envelope text-indigo-400 mr-2"></i></strong> <a href="mailto:info@forgelogiclab.com" class="hover:text-indigo-400 transition">info@forgelogiclab.com</a></p>
-                    </div>
-                `, 
-                background: '#0b0f19', 
-                color: '#fff',
-                confirmButtonColor: '#4f46e5'
-            }); 
-        }
-
-        // --- SAAS DÖNÜŞÜMÜ: YENİ KİMLİK DOĞRULAMA (AUTH) FONKSİYONLARI ---
-        
-        function getToken() { return localStorage.getItem('fw_token'); }
-        function setToken(token) { localStorage.setItem('fw_token', token); }
-        function removeToken() { localStorage.removeItem('fw_token'); }
-
-        function checkAuthState() {
-            const token = getToken();
-            if (token) {
-                document.getElementById('auth-buttons-unlogged').classList.add('hidden');
-                document.getElementById('auth-buttons-logged').classList.remove('hidden');
-                document.getElementById('auth-buttons-logged').classList.add('flex');
-            } else {
-                document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
-                document.getElementById('auth-buttons-logged').classList.add('hidden');
-                document.getElementById('auth-buttons-logged').classList.remove('flex');
-            }
-        }
-
-        function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
-        function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
-        function showProUpgrade() { closeAuthModals(); document.getElementById('upgrade-modal').classList.remove('hidden'); }
-        function closeAuthModals() {
-            document.getElementById('login-modal').classList.add('hidden');
-            document.getElementById('register-modal').classList.add('hidden');
-            document.getElementById('upgrade-modal').classList.add('hidden');
-        }
-
-        async function processLogin() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            if(!email || !password) return Swal.fire({icon:'warning', title:'Hata', text:'Lütfen tüm alanları doldurun.', background:'#0b0f19', color:'#fff'});
-            
-            const btnText = document.getElementById('login-btn-text');
-            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-            
-            try {
-                const res = await fetch(`${API_URL}/auth/login`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({email, password})
-                });
-                const data = await res.json();
-                if(res.ok) {
-                    setToken(data.access_token);
-                    checkAuthState();
-                    closeAuthModals();
-                    Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
-                } else throw new Error(data.detail || 'Giriş başarısız. Lütfen e-posta veya şifrenizi kontrol edin.');
-            } catch(e) {
-                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
-            } finally {
-                btnText.innerText = 'Giriş Yap';
-            }
-        }
-
-        async function processRegister() {
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-password').value;
-            if(!email || password.length < 6) return Swal.fire({icon:'warning', title:'Hata', text:'Geçerli bir e-posta ve en az 6 haneli şifre girin.', background:'#0b0f19', color:'#fff'});
-            
-            const btnText = document.getElementById('reg-btn-text');
-            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-            
-            try {
-                const res = await fetch(`${API_URL}/auth/register`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({email, password})
-                });
-                const data = await res.json();
-                if(res.ok) {
-                    setToken(data.access_token);
-                    checkAuthState();
-                    closeAuthModals();
-                    Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
-                } else throw new Error(data.detail || 'Kayıt başarısız. Bu e-posta kullanılıyor olabilir.');
-            } catch(e) {
-                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
-            } finally {
-                btnText.innerText = 'Ücretsiz Kayıt Ol';
-            }
-        }
-
-        function processLogout() {
-            removeToken();
-            checkAuthState();
-            Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
-        }
-
-        // Sayfa yüklendiğinde kullanıcının giriş yapıp yapmadığını kontrol et
-        window.addEventListener('DOMContentLoaded', checkAuthState);
     </script>
 </body>
 </html>
