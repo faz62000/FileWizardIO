@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-	<meta name="google-site-verification" content="gD0V650F2GlAN2z2NviERm9SI3KeuQwhOH8ex7mwehc" />
+    <meta name="google-site-verification" content="gD0V650F2GlAN2z2NviERm9SI3KeuQwhOH8ex7mwehc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>FileWizardIO Pro | Ultimate Media Suite</title>
     
@@ -41,12 +41,12 @@
                     fontFamily: { sans: ['Outfit', 'sans-serif'] },
                     colors: { 
                         dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
-                        accent: { 500: '#6366f1', 600: '#4f46e5' }
+                        accent: { 500: '#3b82f6', 600: '#2563eb' }
                     },
                     animation: { 'float': 'float 6s ease-in-out infinite', 'pulse-glow': 'pulseGlow 3s infinite' },
                     keyframes: {
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
-                        pulseGlow: { '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(99,102,241,0.2)' }, '50%': { opacity: 0.8, boxShadow: '0 0 40px rgba(99,102,241,0.5)' } }
+                        pulseGlow: { '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(59,130,246,0.2)' }, '50%': { opacity: 0.8, boxShadow: '0 0 40px rgba(59,130,246,0.5)' } }
                     }
                 }
             }
@@ -93,13 +93,13 @@
         background-color: rgba(255, 255, 255, 0.05);
     }
     .sidebar-link.active { 
-        color: #818cf8 !important; 
-        background-color: rgba(99, 102, 241, 0.1) !important; 
-        border-left-color: #6366f1 !important; 
+        color: #60a5fa !important; 
+        background-color: rgba(59, 130, 246, 0.1) !important; 
+        border-left-color: #3b82f6 !important; 
     }
 
     .tool-card { 
-        @apply bg-slate-800/50 border border-white/5 rounded-2xl p-6 hover:border-indigo-500/50 transition cursor-pointer group hover:-translate-y-1; 
+        @apply bg-slate-800/50 border border-white/5 rounded-2xl p-6 hover:border-blue-500/50 transition cursor-pointer group hover:-translate-y-1; 
     }
 
     #pdf-grid {
@@ -132,7 +132,7 @@
         width: 48px; 
         height: 48px; 
         border: 5px solid #FFF; 
-        border-bottom-color: #6366f1; 
+        border-bottom-color: #3b82f6; 
         border-radius: 50%; 
         display: inline-block; 
         box-sizing: border-box; 
@@ -154,20 +154,20 @@
     }
     </style>
 </head>
-<body class="flex">
+<body class="flex h-screen w-screen bg-[#050505] text-white overflow-hidden">
 
     <div id="login-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
         <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
             <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
+            <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center text-2xl text-blue-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_login_title">Hoş Geldiniz</h3>
             <p class="text-sm text-slate-400 text-center mb-6" data-i18n="auth_login_desc">FileWizardIO hesabınıza giriş yapın.</p>
             
             <div class="space-y-4">
-                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
-                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="••••••••" data-i18n-placeholder="auth_pass_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 outline-none transition" placeholder="••••••••" data-i18n-placeholder="auth_pass_placeholder"></div>
                 
-                <button onclick="processLogin()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text" data-i18n="auth_login_btn">Giriş Yap</span></button>
+                <button onclick="processLogin()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text" data-i18n="auth_login_btn">Giriş Yap</span></button>
                 
                 <div class="flex items-center my-4">
                     <hr class="flex-grow border-white/10">
@@ -182,22 +182,22 @@
                 </div>
             </div>
             
-            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_no_account">Hesabınız yok mu?</span> <button onclick="showRegisterModal()" class="text-indigo-400 font-bold hover:text-indigo-300" data-i18n="auth_register_link">Üye Olun</button></p>
+            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_no_account">Hesabınız yok mu?</span> <button onclick="showRegisterModal()" class="text-blue-400 font-bold hover:text-blue-300" data-i18n="auth_register_link">Üye Olun</button></p>
         </div>
     </div>
 
     <div id="register-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
         <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
             <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="w-12 h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center text-2xl text-indigo-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
+            <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center text-2xl text-blue-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_reg_title">Kayıt Ol</h3>
             <p class="text-sm text-slate-400 text-center mb-6" data-i18n="auth_reg_desc">Sınırsız araçlar için aramıza katıl.</p>
             
             <div class="space-y-4">
-                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
-                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-indigo-500 outline-none transition" placeholder="En az 6 karakter" data-i18n-placeholder="auth_pass_reg_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 outline-none transition" placeholder="En az 6 karakter" data-i18n-placeholder="auth_pass_reg_placeholder"></div>
                 
-                <button onclick="processRegister()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text" data-i18n="auth_reg_btn">Ücretsiz Kayıt Ol</span></button>
+                <button onclick="processRegister()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text" data-i18n="auth_reg_btn">Ücretsiz Kayıt Ol</span></button>
                 
                 <div class="flex items-center my-4">
                     <hr class="flex-grow border-white/10">
@@ -212,7 +212,7 @@
                 </div>
             </div>
             
-            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_has_account">Zaten üye misiniz?</span> <button onclick="showLoginModal()" class="text-indigo-400 font-bold hover:text-indigo-300" data-i18n="auth_login_link">Giriş Yapın</button></p>
+            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_has_account">Zaten üye misiniz?</span> <button onclick="showLoginModal()" class="text-blue-400 font-bold hover:text-blue-300" data-i18n="auth_login_link">Giriş Yapın</button></p>
         </div>
     </div>
 
@@ -236,11 +236,11 @@
         </div>
     </div>
     
-    <aside class="w-20 lg:w-72 bg-[#0b0f19] border-r border-white/5 flex flex-col z-50 hidden md:flex">
+    <aside class="w-20 lg:w-72 bg-[#0b0f19] border-r border-white/5 flex flex-col z-50 hidden md:flex shrink-0">
         <div class="h-24 flex items-center justify-center lg:justify-start lg:px-8">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xl shadow-lg shadow-indigo-500/30">✨</div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">✨</div>
             <div class="ml-4 hidden lg:block">
-                <h1 class="text-xl font-bold tracking-tight">FileWizard<span class="text-indigo-500">IO</span></h1>
+                <h1 class="text-xl font-bold tracking-tight">FileWizard<span class="text-blue-500">IO</span></h1>
                 <p class="text-[10px] text-slate-500 tracking-widest uppercase">Pro Studio v8.0</p>
             </div>
         </div>
@@ -264,11 +264,11 @@
             </div>
             
             <button onclick="navTo('bg')" class="sidebar-link">
-                <i class="fa-solid fa-eraser text-xl w-6 text-center text-fuchsia-400"></i>
+                <i class="fa-solid fa-eraser text-xl w-6 text-center text-emerald-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_bg">Arka Plan Silici</span>
             </button>
             <button onclick="navTo('batch')" class="sidebar-link">
-                <i class="fa-solid fa-layer-group text-xl w-6 text-center text-indigo-400"></i>
+                <i class="fa-solid fa-layer-group text-xl w-6 text-center text-blue-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_batch">Toplu İşlem</span>
             </button>
             <button onclick="navTo('ai')" class="sidebar-link">
@@ -295,7 +295,7 @@
             </button>
 
             <button onclick="navTo('api')" class="sidebar-link border-t border-white/5 pt-4">
-                <i class="fa-solid fa-code text-xl w-6 text-center text-indigo-400"></i>
+                <i class="fa-solid fa-code text-xl w-6 text-center text-blue-400"></i>
                 <span class="hidden lg:block font-medium" data-i18n="home_nav_api">Geliştirici API</span>
             </button>
         </nav>
@@ -303,288 +303,293 @@
         <div class="p-6 border-t border-white/5 hidden lg:block">
             <div class="glass-panel p-4 rounded-xl text-center">
                 <p class="text-xs text-slate-400 mb-3" data-i18n="home_support_title">Sorun mu yaşıyorsun?</p>
-                <button onclick="showContact()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition" data-i18n="home_support_btn">Destek Ekibi</button>
+                <button onclick="showContact()" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition" data-i18n="home_support_btn">Destek Ekibi</button>
             </div>
         </div>
     </aside>
 
     <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/90 backdrop-blur border-t border-white/10 z-50 flex justify-around p-4 pb-6">
-        <button onclick="switchTab('media')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
-        <button onclick="switchTab('image')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
-        <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
-        <button onclick="switchTab('pricing')" class="text-slate-400 hover:text-indigo-400 active:text-indigo-400"><i class="fa-solid fa-tag text-xl"></i></button>
+        <button onclick="switchTab('media')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
+        <button onclick="switchTab('image')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
+        <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
+        <button onclick="switchTab('pricing')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-tag text-xl"></i></button>
     </div>
 
-    <main class="flex-1 relative bg-[#050505] overflow-hidden flex flex-col pb-24 md:pb-0">
+    <main class="flex-1 flex flex-col min-w-0 h-full relative bg-[#050505]">
         
-        <div class="md:hidden absolute top-4 left-4 z-40 flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">✨</div>
-            <span class="font-bold">FileWizardIO</span>
-        </div>
-
-        <div class="absolute top-4 right-4 z-50 flex items-center gap-3">
-            
-            <div id="auth-buttons-unlogged" class="flex gap-2">
-                <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition"><span data-i18n="header_login">Giriş Yap</span></button>
-                <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-500/20 transition"><span data-i18n="header_register">Üye Ol</span></button>
+        <header class="w-full flex justify-between md:justify-end items-center p-4 bg-[#050505]/80 backdrop-blur border-b border-white/5 z-40 shrink-0">
+            <div class="md:hidden flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">✨</div>
+                <span class="font-bold text-lg">FileWizardIO</span>
             </div>
+            
+            <div class="flex items-center gap-3">
+                <div id="auth-buttons-unlogged" class="flex gap-2">
+                    <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition"><span data-i18n="header_login">Giriş Yap</span></button>
+                    <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-500/20 transition"><span data-i18n="header_register">Üye Ol</span></button>
+                </div>
 
-            <div id="auth-buttons-logged" class="hidden flex items-center gap-2">
-                <span id="pro-badge" class="hidden px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px] font-black rounded uppercase tracking-widest shadow-lg shadow-orange-500/20">PRO</span>
-                <button onclick="showProUpgrade()" id="upgrade-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-indigo-500/30 text-indigo-400 text-xs font-bold hover:bg-indigo-500/10 transition"><span data-i18n="header_upgrade">Yükselt</span></button>
-                <button onclick="processLogout()" class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/50 transition" title="Çıkış Yap">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                <div id="auth-buttons-logged" class="hidden flex items-center gap-2">
+                    <span id="pro-badge" class="hidden px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px] font-black rounded uppercase tracking-widest shadow-lg shadow-orange-500/20">PRO</span>
+                    <button onclick="showProUpgrade()" id="upgrade-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-blue-500/30 text-blue-400 text-xs font-bold hover:bg-blue-500/10 transition"><span data-i18n="header_upgrade">Yükselt</span></button>
+                    <button onclick="processLogout()" class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/50 transition" title="Çıkış Yap">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+
+                <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800/80 backdrop-blur border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
+                    <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
                 </button>
             </div>
+        </header>
 
-            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800/80 backdrop-blur border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
-                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
-            </button>
-        </div>
-
-        <section id="media-tool" class="w-full h-full overflow-y-auto custom-scroll relative">
-            <div class="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+        <div class="flex-1 relative overflow-hidden">
             
-            <div class="min-h-full flex flex-col items-center justify-center p-6 relative z-10">
-                <div class="text-center mb-12 animate-float">
-                    <h2 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-500 mb-4 tracking-tight" data-i18n="home_hero_title">Profesyonel.</h2>
-                    <p class="text-slate-400 text-lg md:text-xl" data-i18n="home_hero_desc">İçeriklerinizi güvenle yedekleyin ve <span class="text-white font-bold">kişisel arşivinizi oluşturun.</span></p>
-                </div>
-
-                <div class="w-full max-w-3xl">
-                    <div class="glass-panel p-2 rounded-2xl flex items-center shadow-2xl shadow-indigo-500/10 transition-all focus-within:ring-2 ring-indigo-500/50">
-                        <div class="pl-4 pr-2 text-indigo-400"><i class="fa-solid fa-link"></i></div>
-                        <input type="text" id="urlInput" oninput="detectPlatform(this.value)" class="w-full bg-transparent border-none focus:ring-0 text-white p-4 text-lg placeholder-slate-600 font-light" placeholder="Medya bağlantısını buraya yapıştırın..." data-i18n-placeholder="home_input_placeholder" autocomplete="off">
-                        <button onclick="pasteUrl()" class="hidden md:block px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold tracking-wider text-slate-300 transition mr-2" data-i18n="home_btn_paste">YAPIŞTIR</button>
-                    </div>
-                </div>
-
-                <div class="mt-12 flex gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500" id="platform-icons">
-                    <i class="fa-brands fa-youtube text-3xl text-red-500 transition-transform hover:scale-125" id="icon-youtube"></i>
-                    <i class="fa-brands fa-tiktok text-3xl text-pink-500 transition-transform hover:scale-125" id="icon-tiktok"></i>
-                    <i class="fa-brands fa-instagram text-3xl text-purple-500 transition-transform hover:scale-125" id="icon-instagram"></i>
-                    <i class="fa-brands fa-x-twitter text-3xl text-white transition-transform hover:scale-125" id="icon-x"></i>
-                </div>
-
-                <button onclick="fetchInfo()" id="btn-fetch" class="mt-10 px-10 py-4 bg-white text-black hover:bg-indigo-50 font-bold rounded-full shadow-xl shadow-white/10 transition hover:scale-105 flex items-center gap-3" data-i18n="home_btn_fetch">
-                    <i class="fa-solid fa-cloud-arrow-down text-indigo-600"></i> Medyayı Hazırla
-                </button>
+            <section id="media-tool" class="absolute inset-0 overflow-y-auto custom-scroll pb-24 md:pb-0">
+                <div class="absolute top-[-20%] left-[20%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
                 
-                <p class="mt-6 text-[10px] text-slate-500 max-w-xl text-center">
-                    <i class="fa-solid fa-shield-halved mr-1"></i> Bu araç sadece kişisel kullanım ve veri yedekleme amaçlıdır. Lütfen içerik üreticilerinin telif haklarına saygı gösterin.
-                </p>
+                <div class="min-h-full flex flex-col items-center justify-center p-6 relative z-10">
+                    <div class="text-center mb-12 animate-float">
+                        <h2 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-blue-500 mb-4 tracking-tight" data-i18n="home_hero_title">Profesyonel.</h2>
+                        <p class="text-slate-400 text-lg md:text-xl" data-i18n="home_hero_desc">İçeriklerinizi güvenle yedekleyin ve <span class="text-white font-bold">kişisel arşivinizi oluşturun.</span></p>
+                    </div>
 
-                <div id="media-result" class="hidden mt-12 w-full max-w-4xl glass-panel rounded-3xl overflow-hidden border border-white/10 animate-[fadeInUp_0.5s_ease-out]">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-1/3 bg-black relative group">
-                            <img id="thumb" class="w-full h-full object-cover opacity-80">
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition"><i class="fa-solid fa-play text-4xl"></i></div>
+                    <div class="w-full max-w-3xl">
+                        <div class="glass-panel p-2 rounded-2xl flex items-center shadow-2xl shadow-blue-500/10 transition-all focus-within:ring-2 ring-blue-500/50">
+                            <div class="pl-4 pr-2 text-blue-400"><i class="fa-solid fa-link"></i></div>
+                            <input type="text" id="urlInput" oninput="detectPlatform(this.value)" class="w-full bg-transparent border-none focus:ring-0 text-white p-4 text-lg placeholder-slate-600 font-light" placeholder="Medya bağlantısını buraya yapıştırın..." data-i18n-placeholder="home_input_placeholder" autocomplete="off">
+                            <button onclick="pasteUrl()" class="hidden md:block px-6 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold tracking-wider text-slate-300 transition mr-2" data-i18n="home_btn_paste">YAPIŞTIR</button>
                         </div>
-                        <div class="p-8 md:w-2/3 flex flex-col justify-between">
-                            <div>
-                                <h3 id="video-title" class="text-2xl font-bold leading-tight mb-2 line-clamp-2">Medya Başlığı</h3>
-                                <div class="flex gap-4 text-sm text-slate-400 mb-6">
-                                    <span id="uploader-tag"><i class="fa-solid fa-user-circle mr-1"></i> Kaynak</span>
-                                    <span id="duration-tag"><i class="fa-solid fa-clock mr-1"></i> 00:00</span>
+                    </div>
+
+                    <div class="mt-12 flex gap-4 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500" id="platform-icons">
+                        <i class="fa-brands fa-youtube text-3xl text-red-500 transition-transform hover:scale-125" id="icon-youtube"></i>
+                        <i class="fa-brands fa-tiktok text-3xl text-slate-200 transition-transform hover:scale-125" id="icon-tiktok"></i>
+                        <i class="fa-brands fa-instagram text-3xl text-amber-500 transition-transform hover:scale-125" id="icon-instagram"></i>
+                        <i class="fa-brands fa-x-twitter text-3xl text-white transition-transform hover:scale-125" id="icon-x"></i>
+                    </div>
+
+                    <button onclick="fetchInfo()" id="btn-fetch" class="mt-10 px-10 py-4 bg-white text-black hover:bg-blue-50 font-bold rounded-full shadow-xl shadow-white/10 transition hover:scale-105 flex items-center gap-3" data-i18n="home_btn_fetch">
+                        <i class="fa-solid fa-cloud-arrow-down text-blue-600"></i> Medyayı Hazırla
+                    </button>
+                    
+                    <p class="mt-6 text-[10px] text-slate-500 max-w-xl text-center">
+                        <i class="fa-solid fa-shield-halved mr-1"></i> Bu araç sadece kişisel kullanım ve veri yedekleme amaçlıdır. Lütfen içerik üreticilerinin telif haklarına saygı gösterin.
+                    </p>
+
+                    <div id="media-result" class="hidden mt-12 w-full max-w-4xl glass-panel rounded-3xl overflow-hidden border border-white/10 animate-[fadeInUp_0.5s_ease-out]">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-black relative group">
+                                <img id="thumb" class="w-full h-full object-cover opacity-80">
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition"><i class="fa-solid fa-play text-4xl"></i></div>
+                            </div>
+                            <div class="p-8 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <h3 id="video-title" class="text-2xl font-bold leading-tight mb-2 line-clamp-2">Medya Başlığı</h3>
+                                    <div class="flex gap-4 text-sm text-slate-400 mb-6">
+                                        <span id="uploader-tag"><i class="fa-solid fa-user-circle mr-1"></i> Kaynak</span>
+                                        <span id="duration-tag"><i class="fa-solid fa-clock mr-1"></i> 00:00</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button onclick="startDownload('best')" class="py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20" data-i18n="home_btn_mp4">Arşivi Kaydet (MP4)</button>
+                                    <button onclick="startDownload('mp3')" class="py-3 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold text-sm" data-i18n="home_btn_mp3">Sesi Yedekle (MP3)</button>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button onclick="startDownload('best')" class="py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm shadow-lg shadow-indigo-500/20" data-i18n="home_btn_mp4">Arşivi Kaydet (MP4)</button>
-                                <button onclick="startDownload('mp3')" class="py-3 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold text-sm" data-i18n="home_btn_mp3">Sesi Yedekle (MP3)</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pricing-tool" class="hidden absolute inset-0 overflow-y-auto custom-scroll pb-24 md:pb-0">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+                
+                <div class="min-h-full flex flex-col items-center py-20 px-6 relative z-10">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Basit ve Şeffaf Fiyatlandırma</h2>
+                        <p class="text-slate-400 text-lg">İhtiyacınıza uygun planı seçin. Gizli ücret veya sürpriz yok.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col">
+                            <h3 class="text-2xl font-bold text-white mb-2">Başlangıç</h3>
+                            <div class="text-4xl font-black text-white mb-6">$0 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
+                            <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
+                                <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Standart Medya Yedekleme</li>
+                                <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Temel PDF Araçları (Günde 3)</li>
+                                <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Standart Görsel Düzenleyici</li>
+                                <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Yapay Zeka Arka Plan Silici</li>
+                                <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Video Sıkıştırma Aracı</li>
+                            </ul>
+                            <button onclick="showRegisterModal()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition">Ücretsiz Başla</button>
+                        </div>
+
+                        <div class="glass-panel p-8 rounded-3xl border border-blue-500/50 bg-blue-900/10 relative flex flex-col transform md:-translate-y-4 shadow-2xl shadow-blue-500/20">
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs font-black px-4 py-1 rounded-full tracking-widest uppercase">En Popüler</div>
+                            <h3 class="text-2xl font-bold text-white mb-2">FileWizard PRO</h3>
+                            <div class="text-4xl font-black text-blue-400 mb-6">$9.99 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
+                            <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
+                                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız Medya Yedekleme</li>
+                                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız PDF Birleştirme & Sıkıştırma</li>
+                                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> AI Arka Plan Silici (Limitsiz)</li>
+                                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Yüksek Boyutlu Video Küçültme</li>
+                                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Öncelikli Sunucu İşlemcisi (Hızlı İşlem)</li>
+                            </ul>
+                            <button onclick="launchPaddleCheckout()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition">Hemen PRO Ol</button>
+                            <p class="text-center text-[10px] text-slate-500 mt-3">İstediğiniz zaman iptal edebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="image-tool" class="hidden absolute inset-0 flex flex-col md:flex-row pb-24 md:pb-0 overflow-hidden">
+                <div class="flex-1 bg-[#050505] relative flex flex-col group h-full">
+                    <div class="absolute top-4 left-4 z-20"> 
+                        <button onclick="document.getElementById('image-input-pro').click()" class="bg-blue-600/90 text-white px-4 py-2 rounded-lg font-bold shadow-lg backdrop-blur flex items-center gap-2 hover:bg-blue-500 transition">
+                            <i class="fa-solid fa-upload"></i> <span data-i18n="img_btn_upload">Görsel Yükle</span>
+                        </button>
+                        <input type="file" id="image-input-pro" class="hidden" accept="image/*">
+                    </div>
+                    <div class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-slate-900/90 backdrop-blur rounded-full px-4 py-2 flex gap-4 z-20 opacity-0 group-hover:opacity-100 transition duration-300 border border-white/10">
+                        <button onclick="cropper.zoom(0.1)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button onclick="cropper.zoom(-0.1)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button onclick="rotateImage(-90)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button onclick="resetEditor()" class="text-red-400 hover:text-white"><i class="fa-solid fa-trash-arrow-up"></i></button>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center p-4 overflow-hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgydjJIMUMxeiIgZmlsbD0iIzMzMyIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3N2Zz4=')]">
+                        <div id="upload-placeholder" class="text-center opacity-50">
+                            <i class="fa-regular fa-image text-6xl mb-4"></i>
+                            <p data-i18n="img_placeholder">Düzenlemek için bir görsel seçin</p>
+                        </div>
+                        <div id="cropper-container" class="hidden w-full h-full"><img id="image-to-crop" class="max-w-full"></div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-80 bg-[#0b0f19] border-l border-white/5 flex flex-col z-30 shrink-0 h-full">
+                    <div class="flex border-b border-white/5 shrink-0">
+                        <button onclick="switchConfigTab('crop')" class="flex-1 py-4 text-xs font-bold text-blue-400 border-b-2 border-blue-500 bg-white/5 tab-btn" data-i18n="img_tab_crop">KIRP</button>
+                        <button onclick="switchConfigTab('filter')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_filter">FİLTRE</button>
+                        <button onclick="switchConfigTab('adjust')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_adjust">AYAR</button>
+                        <button onclick="switchConfigTab('export')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_export">ÇIKTI</button>
+                    </div>
+
+                    <div class="flex-1 p-6 overflow-y-auto custom-scroll relative">
+                        <div id="panel-crop" class="space-y-4">
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="setPassportMode(NaN, NaN, NaN)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-blue-600 transition" data-i18n="img_crop_free">Serbest</button>
+                                <button onclick="setPassportMode(1, 1, 1)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-blue-600 transition" data-i18n="img_crop_square">1:1 Kare</button>
+                                <button onclick="setPassportMode(16, 9, 1.77)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-blue-600 transition" data-i18n="img_crop_yt">16:9 YT</button>
+                                <button onclick="setPassportMode(9, 16, 0.56)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-blue-600 transition" data-i18n="img_crop_story">9:16 Story</button>
+                                <button onclick="setPassportMode(4, 5, 0.8)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-blue-600 transition" data-i18n="img_crop_insta">4:5 Insta</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing-tool" class="hidden w-full h-full overflow-y-auto custom-scroll relative">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-            
-            <div class="min-h-full flex flex-col items-center py-20 px-6 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Basit ve Şeffaf Fiyatlandırma</h2>
-                    <p class="text-slate-400 text-lg">İhtiyacınıza uygun planı seçin. Gizli ücret veya sürpriz yok.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-                    <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col">
-                        <h3 class="text-2xl font-bold text-white mb-2">Başlangıç</h3>
-                        <div class="text-4xl font-black text-white mb-6">$0 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
-                        <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
-                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Standart Medya Yedekleme</li>
-                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Temel PDF Araçları (Günde 3)</li>
-                            <li><i class="fa-solid fa-check text-indigo-400 mr-2"></i> Standart Görsel Düzenleyici</li>
-                            <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Yapay Zeka Arka Plan Silici</li>
-                            <li class="opacity-50"><i class="fa-solid fa-xmark text-slate-500 mr-2"></i> Video Sıkıştırma Aracı</li>
-                        </ul>
-                        <button onclick="showRegisterModal()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition">Ücretsiz Başla</button>
-                    </div>
-
-                    <div class="glass-panel p-8 rounded-3xl border border-indigo-500/50 bg-indigo-900/10 relative flex flex-col transform md:-translate-y-4 shadow-2xl shadow-indigo-500/20">
-                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs font-black px-4 py-1 rounded-full tracking-widest uppercase">En Popüler</div>
-                        <h3 class="text-2xl font-bold text-white mb-2">FileWizard PRO</h3>
-                        <div class="text-4xl font-black text-indigo-400 mb-6">$9.99 <span class="text-lg text-slate-500 font-normal">/ ay</span></div>
-                        <ul class="space-y-4 mb-8 flex-1 text-slate-300 text-sm">
-                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız Medya Yedekleme</li>
-                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Sınırsız PDF Birleştirme & Sıkıştırma</li>
-                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> AI Arka Plan Silici (Limitsiz)</li>
-                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Yüksek Boyutlu Video Küçültme</li>
-                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Öncelikli Sunucu İşlemcisi (Hızlı İşlem)</li>
-                        </ul>
-                        <button onclick="launchPaddleCheckout()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition">Hemen PRO Ol</button>
-                        <p class="text-center text-[10px] text-slate-500 mt-3">İstediğiniz zaman iptal edebilirsiniz.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="image-tool" class="hidden w-full h-full flex flex-col md:flex-row">
-            <div class="flex-1 bg-[#050505] relative flex flex-col group">
-                <div class="absolute top-4 left-4 z-20 mt-10 md:mt-0"> 
-                    <button onclick="document.getElementById('image-input-pro').click()" class="bg-indigo-600/90 text-white px-4 py-2 rounded-lg font-bold shadow-lg backdrop-blur flex items-center gap-2 hover:bg-indigo-500 transition">
-                        <i class="fa-solid fa-upload"></i> <span data-i18n="img_btn_upload">Görsel Yükle</span>
-                    </button>
-                    <input type="file" id="image-input-pro" class="hidden" accept="image/*">
-                </div>
-                <div class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-slate-900/90 backdrop-blur rounded-full px-4 py-2 flex gap-4 z-20 opacity-0 group-hover:opacity-100 transition duration-300 border border-white/10 mt-10 md:mt-0">
-                    <button onclick="cropper.zoom(0.1)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-                    <button onclick="cropper.zoom(-0.1)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
-                    <button onclick="rotateImage(-90)" class="text-slate-300 hover:text-white"><i class="fa-solid fa-rotate-left"></i></button>
-                    <button onclick="resetEditor()" class="text-red-400 hover:text-white"><i class="fa-solid fa-trash-arrow-up"></i></button>
-                </div>
-                <div class="flex-1 flex items-center justify-center p-4 overflow-hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgydjJIMUMxeiIgZmlsbD0iIzMzMyIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3N2Zz4=')]">
-                    <div id="upload-placeholder" class="text-center opacity-50">
-                        <i class="fa-regular fa-image text-6xl mb-4"></i>
-                        <p data-i18n="img_placeholder">Düzenlemek için bir görsel seçin</p>
-                    </div>
-                    <div id="cropper-container" class="hidden w-full h-full"><img id="image-to-crop" class="max-w-full"></div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-80 bg-[#0b0f19] border-l border-white/5 flex flex-col z-30">
-                <div class="flex border-b border-white/5">
-                    <button onclick="switchConfigTab('crop')" class="flex-1 py-4 text-xs font-bold text-indigo-400 border-b-2 border-indigo-500 bg-white/5 tab-btn" data-i18n="img_tab_crop">KIRP</button>
-                    <button onclick="switchConfigTab('filter')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_filter">FİLTRE</button>
-                    <button onclick="switchConfigTab('adjust')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_adjust">AYAR</button>
-                    <button onclick="switchConfigTab('export')" class="flex-1 py-4 text-xs font-bold text-slate-500 hover:text-white tab-btn" data-i18n="img_tab_export">ÇIKTI</button>
-                </div>
-
-                <div class="flex-1 p-6 overflow-y-auto custom-scroll relative">
-                    <div id="panel-crop" class="space-y-4">
-                        <div class="grid grid-cols-3 gap-2">
-                            <button onclick="setPassportMode(NaN, NaN, NaN)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-indigo-600 transition" data-i18n="img_crop_free">Serbest</button>
-                            <button onclick="setPassportMode(1, 1, 1)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-indigo-600 transition" data-i18n="img_crop_square">1:1 Kare</button>
-                            <button onclick="setPassportMode(16, 9, 1.77)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-indigo-600 transition" data-i18n="img_crop_yt">16:9 YT</button>
-                            <button onclick="setPassportMode(9, 16, 0.56)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-indigo-600 transition" data-i18n="img_crop_story">9:16 Story</button>
-                            <button onclick="setPassportMode(4, 5, 0.8)" class="bg-slate-800 p-2 rounded text-[10px] hover:bg-indigo-600 transition" data-i18n="img_crop_insta">4:5 Insta</button>
+                        <div id="panel-filter" class="hidden space-y-4">
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="applyPreset('none')" class="h-20 bg-slate-800 rounded-lg border-2 border-blue-500 relative overflow-hidden group"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold bg-black/50" data-i18n="img_filter_normal">Normal</span></button>
+                                <button onclick="applyPreset('grayscale')" class="h-20 bg-slate-800 rounded-lg border-2 border-transparent hover:border-blue-500 relative overflow-hidden grayscale"><div class="w-full h-full bg-[url('/favicon.png')] bg-cover"></div><span class="absolute bottom-1 w-full text-center text-[10px] font-bold bg-black/50" data-i18n="img_filter_bw">B&W</span></button>
+                                <button onclick="applyPreset('sepia')" class="h-20 bg-yellow-900/50 rounded-lg border-2 border-transparent hover:border-blue-500 relative"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold" data-i18n="img_filter_sepia">Sepia</span></button>
+                                <button onclick="applyPreset('vintage')" class="h-20 bg-cyan-900/50 rounded-lg border-2 border-transparent hover:border-blue-500 relative"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold" data-i18n="img_filter_vintage">Vintage</span></button>
+                            </div>
+                        </div>
+                        <div id="panel-adjust" class="hidden space-y-6">
+                            <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_bright">Parlaklık</span><span id="val-brightness">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-blue-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('brightness', this.value)"></div>
+                            <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_contrast">Kontrast</span><span id="val-contrast">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-blue-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('contrast', this.value)"></div>
+                            <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_sat">Doygunluk</span><span id="val-saturation">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-blue-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('saturation', this.value)"></div>
+                        </div>
+                        <div id="panel-export" class="hidden space-y-6">
+                             <div class="glass-panel p-4 rounded-xl border-blue-500/30">
+                                <div class="flex justify-between items-center mb-2"><span class="text-xs font-bold text-white"><i class="fa-solid fa-wand-magic-sparkles text-blue-400"></i> <span data-i18n="img_exp_ai">AI Silgi</span></span><input type="checkbox" id="bg-remove-toggle" class="accent-blue-500"></div>
+                                <p class="text-[10px] text-slate-400" data-i18n="img_exp_ai_desc">Arka planı otomatik sil.</p>
+                             </div>
+                             <select id="target-format" class="w-full bg-slate-800 p-3 rounded-lg text-xs text-white border border-white/10 outline-none">
+                                 <option value="png" data-i18n="img_fmt_png">PNG (Yüksek Kalite)</option>
+                                 <option value="jpg" data-i18n="img_fmt_jpg">JPG (Düşük Boyut)</option>
+                                 <option value="webp" data-i18n="img_fmt_webp">WEBP (Web İçin)</option>
+                             </select>
                         </div>
                     </div>
-                    <div id="panel-filter" class="hidden space-y-4">
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="applyPreset('none')" class="h-20 bg-slate-800 rounded-lg border-2 border-indigo-500 relative overflow-hidden group"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold bg-black/50" data-i18n="img_filter_normal">Normal</span></button>
-                            <button onclick="applyPreset('grayscale')" class="h-20 bg-slate-800 rounded-lg border-2 border-transparent hover:border-indigo-500 relative overflow-hidden grayscale"><div class="w-full h-full bg-[url('/favicon.png')] bg-cover"></div><span class="absolute bottom-1 w-full text-center text-[10px] font-bold bg-black/50" data-i18n="img_filter_bw">B&W</span></button>
-                            <button onclick="applyPreset('sepia')" class="h-20 bg-yellow-900/50 rounded-lg border-2 border-transparent hover:border-indigo-500 relative"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold" data-i18n="img_filter_sepia">Sepia</span></button>
-                            <button onclick="applyPreset('vintage')" class="h-20 bg-purple-900/50 rounded-lg border-2 border-transparent hover:border-indigo-500 relative"><span class="absolute bottom-1 w-full text-center text-[10px] font-bold" data-i18n="img_filter_vintage">Vintage</span></button>
-                        </div>
-                    </div>
-                    <div id="panel-adjust" class="hidden space-y-6">
-                        <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_bright">Parlaklık</span><span id="val-brightness">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-indigo-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('brightness', this.value)"></div>
-                        <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_contrast">Kontrast</span><span id="val-contrast">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-indigo-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('contrast', this.value)"></div>
-                        <div><div class="flex justify-between text-xs mb-2"><span data-i18n="img_adj_sat">Doygunluk</span><span id="val-saturation">100%</span></div><input type="range" min="0" max="200" value="100" class="w-full accent-indigo-500 h-1 bg-slate-700 rounded-lg" oninput="updateFilter('saturation', this.value)"></div>
-                    </div>
-                    <div id="panel-export" class="hidden space-y-6">
-                         <div class="glass-panel p-4 rounded-xl border-indigo-500/30">
-                            <div class="flex justify-between items-center mb-2"><span class="text-xs font-bold text-white"><i class="fa-solid fa-wand-magic-sparkles text-indigo-400"></i> <span data-i18n="img_exp_ai">AI Silgi</span></span><input type="checkbox" id="bg-remove-toggle" class="accent-indigo-500"></div>
-                            <p class="text-[10px] text-slate-400" data-i18n="img_exp_ai_desc">Arka planı otomatik sil.</p>
-                         </div>
-                         <select id="target-format" class="w-full bg-slate-800 p-3 rounded-lg text-xs text-white border border-white/10 outline-none">
-                             <option value="png" data-i18n="img_fmt_png">PNG (Yüksek Kalite)</option>
-                             <option value="jpg" data-i18n="img_fmt_jpg">JPG (Düşük Boyut)</option>
-                             <option value="webp" data-i18n="img_fmt_webp">WEBP (Web İçin)</option>
-                         </select>
+
+                    <div class="p-4 border-t border-white/5 bg-[#0b0f19] shrink-0">
+                        <button onclick="processProImage()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 active:scale-95 transition" data-i18n="img_btn_process">İŞLE & İNDİR</button>
                     </div>
                 </div>
+            </section>
 
-                <div class="p-4 border-t border-white/5 bg-[#0b0f19]">
-                    <button onclick="processProImage()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 active:scale-95 transition" data-i18n="img_btn_process">İŞLE & İNDİR</button>
-                </div>
-            </div>
-        </section>
+            <section id="pdf-tool" class="hidden absolute inset-0 flex flex-col p-8 items-center justify-center relative overflow-hidden pb-24 md:pb-0">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-[#050505] to-[#050505] pointer-events-none"></div>
 
-        <section id="pdf-tool" class="hidden w-full h-full flex flex-col p-8 items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-[#050505] to-[#050505] pointer-events-none"></div>
+                <div id="pdf-dashboard" class="w-full max-w-5xl z-10 grid grid-cols-1 md:grid-cols-3 gap-6 animate-[fadeInUp_0.5s_ease-out]">
+                    
+                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('edit')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-pen-to-square text-3xl text-blue-400"></i></div>
+                        <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_edit_title">Canlı Düzenle</h3>
+                        <p class="text-sm text-slate-400" data-i18n="home_pdf_edit_desc">Sayfaları döndür, sil veya yerini değiştir. Görsel editör.</p>
+                    </div>
 
-            <div id="pdf-dashboard" class="w-full max-w-5xl z-10 grid grid-cols-1 md:grid-cols-3 gap-6 animate-[fadeInUp_0.5s_ease-out]">
-                
-                <div class="glass-panel p-8 rounded-3xl hover:border-indigo-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('edit')">
-                    <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-pen-to-square text-3xl text-blue-400"></i></div>
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_edit_title">Canlı Düzenle</h3>
-                    <p class="text-sm text-slate-400" data-i18n="home_pdf_edit_desc">Sayfaları döndür, sil veya yerini değiştir. Görsel editör.</p>
+                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('merge')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-layer-group text-3xl text-cyan-400"></i></div>
+                        <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_merge_title">PDF Birleştir</h3>
+                        <p class="text-sm text-slate-400" data-i18n="home_pdf_merge_desc">Birden fazla PDF dosyasını tek bir dosyada topla.</p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('compress')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-file-zipper text-3xl text-green-400"></i></div>
+                        <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_compress_title">PDF Sıkıştır</h3>
+                        <p class="text-sm text-slate-400" data-i18n="home_pdf_compress_desc">Kaliteyi koruyarak dosya boyutunu %80'e kadar küçült.</p>
+                    </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl hover:border-indigo-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('merge')">
-                    <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-layer-group text-3xl text-purple-400"></i></div>
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_merge_title">PDF Birleştir</h3>
-                    <p class="text-sm text-slate-400" data-i18n="home_pdf_merge_desc">Birden fazla PDF dosyasını tek bir dosyada topla.</p>
+                <div id="pdf-workspace" class="hidden w-full h-full flex flex-col z-10">
+                    <div class="h-16 flex items-center justify-between border-b border-white/5 mb-4 shrink-0">
+                        <button onclick="closePdfWorkspace()" class="text-slate-400 hover:text-white flex items-center gap-2 font-bold" data-i18n="pdf_btn_back"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
+                        <h3 id="pdf-mode-title" class="text-lg font-bold text-blue-400">Mod</h3>
+                        <div id="pdf-actions"></div>
+                    </div>
+                    
+                    <div id="pdf-content-area" class="flex-1 overflow-y-auto custom-scroll flex flex-col items-center justify-center border-2 border-dashed border-slate-800 rounded-2xl bg-slate-900/20">
+                        <i class="fa-solid fa-cloud-arrow-up text-5xl text-slate-600 mb-4"></i>
+                        <p class="text-slate-400 mb-4" data-i18n="home_pdf_drop">Dosyaları buraya bırakın</p>
+                        <button onclick="document.getElementById('pdf-input-dynamic').click()" class="px-6 py-2 bg-blue-600 rounded-lg font-bold hover:bg-blue-500" data-i18n="home_pdf_btn_select">Dosya Seç</button>
+                        <input type="file" id="pdf-input-dynamic" class="hidden" accept="application/pdf">
+                    </div>
+                    
+                    <div id="pdf-grid" class="hidden grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4 overflow-y-auto w-full"></div>
                 </div>
-
-                <div class="glass-panel p-8 rounded-3xl hover:border-indigo-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('compress')">
-                    <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-file-zipper text-3xl text-green-400"></i></div>
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_compress_title">PDF Sıkıştır</h3>
-                    <p class="text-sm text-slate-400" data-i18n="home_pdf_compress_desc">Kaliteyi koruyarak dosya boyutunu %80'e kadar küçült.</p>
-                </div>
-            </div>
-
-            <div id="pdf-workspace" class="hidden w-full h-full flex flex-col">
-                <div class="h-16 flex items-center justify-between border-b border-white/5 mb-4 shrink-0">
-                    <button onclick="closePdfWorkspace()" class="text-slate-400 hover:text-white flex items-center gap-2 font-bold" data-i18n="pdf_btn_back"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
-                    <h3 id="pdf-mode-title" class="text-lg font-bold text-indigo-400">Mod</h3>
-                    <div id="pdf-actions"></div>
-                </div>
-                
-                <div id="pdf-content-area" class="flex-1 overflow-y-auto custom-scroll flex flex-col items-center justify-center border-2 border-dashed border-slate-800 rounded-2xl bg-slate-900/20">
-                    <i class="fa-solid fa-cloud-arrow-up text-5xl text-slate-600 mb-4"></i>
-                    <p class="text-slate-400 mb-4" data-i18n="home_pdf_drop">Dosyaları buraya bırakın</p>
-                    <button onclick="document.getElementById('pdf-input-dynamic').click()" class="px-6 py-2 bg-indigo-600 rounded-lg font-bold hover:bg-indigo-500" data-i18n="home_pdf_btn_select">Dosya Seç</button>
-                    <input type="file" id="pdf-input-dynamic" class="hidden" accept="application/pdf">
-                </div>
-                
-                <div id="pdf-grid" class="hidden grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4 overflow-y-auto w-full"></div>
-            </div>
-        </section>
+            </section>
+        </div>
         
-        <footer class="w-full py-4 bg-[#0b0f19]/80 backdrop-blur-md border-t border-white/5 mt-auto shrink-0 z-20 overflow-hidden">
+        <footer class="w-full py-4 bg-[#0b0f19]/80 backdrop-blur-md border-t border-white/5 shrink-0 z-40 overflow-hidden hidden md:block">
             <div class="max-w-7xl mx-auto px-6 flex flex-col xl:flex-row items-center justify-between gap-4 whitespace-nowrap">
                 
                 <div class="flex items-center gap-3 shrink-0">
-                    <div class="w-5 h-5 rounded bg-indigo-600 flex items-center justify-center text-[8px]">✨</div>
-                    <span class="text-xs font-bold text-white tracking-tighter">FileWizard<span class="text-indigo-500">IO</span></span>
+                    <div class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center text-[8px]">✨</div>
+                    <span class="text-xs font-bold text-white tracking-tighter">FileWizard<span class="text-blue-500">IO</span></span>
                     <span class="hidden md:inline-block text-[10px] text-slate-600 border-l border-white/10 pl-3">High-Performance Engine</span>
                 </div>
 
                 <div class="flex items-center gap-4 lg:gap-6 text-[10px] text-slate-400 font-medium shrink-0">
-                    <button onclick="navTo('privacy')" class="hover:text-indigo-400 transition" data-i18n="footer_privacy">Gizlilik</button>
-                    <button onclick="navTo('terms')" class="hover:text-indigo-400 transition" data-i18n="footer_terms">Koşullar</button>
-                    <button onclick="navTo('cookies')" class="hover:text-indigo-400 transition" data-i18n="footer_cookies">Çerezler</button>
-                    <button onclick="navTo('refund')" class="hover:text-indigo-400 transition" data-i18n="footer_refund">İade</button>
-                    <button onclick="showContact()" class="hover:text-indigo-400 transition font-bold text-indigo-500" data-i18n="footer_contact">İletişim</button>
+                    <button onclick="navTo('privacy')" class="hover:text-blue-400 transition" data-i18n="footer_privacy">Gizlilik</button>
+                    <button onclick="navTo('terms')" class="hover:text-blue-400 transition" data-i18n="footer_terms">Koşullar</button>
+                    <button onclick="navTo('cookies')" class="hover:text-blue-400 transition" data-i18n="footer_cookies">Çerezler</button>
+                    <button onclick="navTo('refund')" class="hover:text-blue-400 transition" data-i18n="footer_refund">İade</button>
+                    <button onclick="showContact()" class="hover:text-blue-400 transition font-bold text-blue-500" data-i18n="footer_contact">İletişim</button>
                 </div>
 
                 <div class="flex items-center gap-3 shrink-0">
                     <span class="text-[9px] text-slate-600" data-i18n="footer_copy">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</span>
-                    <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded border border-indigo-500/20">v8.2.2 Stable</span>
+                    <span class="text-[9px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20">v8.2.2 Stable</span>
                 </div>
             </div>
         </footer>
     </main>
+
     <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
         <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
             <div class="loader mb-6"></div>
             <h3 class="text-xl font-bold text-white mb-1" id="p-title" data-i18n="prog_title">İşleniyor</h3>
             <p class="text-xs text-slate-400 mb-4" id="p-desc" data-i18n="prog_desc">Sunucu ile iletişim kuruluyor...</p>
-            <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div id="p-bar" class="h-full bg-indigo-500 w-0 transition-all duration-300"></div></div>
-            <div class="mt-2 text-right text-[10px] text-indigo-400 font-mono" id="p-text">0%</div>
+            <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden"><div id="p-bar" class="h-full bg-blue-500 w-0 transition-all duration-300"></div></div>
+            <div class="mt-2 text-right text-[10px] text-blue-400 font-mono" id="p-text">0%</div>
         </div>
     </div>
 
@@ -660,15 +665,15 @@
                 title: window.t('footer_contact'), 
                 html: `
                     <div class="text-left space-y-3 mt-4 text-sm text-slate-300">
-                        <p><strong class="text-white"><i class="fa-solid fa-building text-indigo-400 mr-2"></i></strong> ForgeLogic LLC</p>
-                        <p><strong class="text-white"><i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i></strong> 8 The Green, STE B<br>Dover, DE, 19901, United States</p>
-                        <p><strong class="text-white"><i class="fa-solid fa-phone text-indigo-400 mr-2"></i></strong> <a href="tel:+13022801080" class="hover:text-indigo-400 transition">+1 (302) 280-1080</a></p>
-                        <p><strong class="text-white"><i class="fa-solid fa-envelope text-indigo-400 mr-2"></i></strong> <a href="mailto:info@forgelogiclab.com" class="hover:text-indigo-400 transition">info@forgelogiclab.com</a></p>
+                        <p><strong class="text-white"><i class="fa-solid fa-building text-blue-400 mr-2"></i></strong> ForgeLogic LLC</p>
+                        <p><strong class="text-white"><i class="fa-solid fa-location-dot text-blue-400 mr-2"></i></strong> 8 The Green, STE B<br>Dover, DE, 19901, United States</p>
+                        <p><strong class="text-white"><i class="fa-solid fa-phone text-blue-400 mr-2"></i></strong> <a href="tel:+13022801080" class="hover:text-blue-400 transition">+1 (302) 280-1080</a></p>
+                        <p><strong class="text-white"><i class="fa-solid fa-envelope text-blue-400 mr-2"></i></strong> <a href="mailto:info@forgelogiclab.com" class="hover:text-blue-400 transition">info@forgelogiclab.com</a></p>
                     </div>
                 `, 
                 background: '#0b0f19', 
                 color: '#fff',
-                confirmButtonColor: '#4f46e5'
+                confirmButtonColor: '#3b82f6'
             }); 
         }
 
@@ -763,7 +768,7 @@
         window.addEventListener('DOMContentLoaded', checkAuthState);
 
         function switchTab(id) {
-            document.querySelectorAll('section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.flex-1 > section').forEach(el => el.classList.add('hidden'));
             document.getElementById(id + '-tool').classList.remove('hidden');
             document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
             const btn = document.getElementById('nav-' + id);
@@ -827,8 +832,8 @@
         function switchConfigTab(tab) {
             document.querySelectorAll('[id^="panel-"]').forEach(el => el.classList.add('hidden'));
             document.getElementById('panel-'+tab).classList.remove('hidden');
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('text-indigo-400', 'border-indigo-500', 'bg-white/5'));
-            event.target.classList.add('text-indigo-400', 'border-indigo-500', 'bg-white/5');
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('text-blue-400', 'border-blue-500', 'bg-white/5'));
+            event.target.classList.add('text-blue-400', 'border-blue-500', 'bg-white/5');
         }
 
         function applyPreset(name) {
@@ -932,7 +937,7 @@
                     <div class="flex justify-between">
                         <span class="text-[10px] text-slate-400 page-num">Sayfa ${i+1}</span>
                         <div class="flex gap-1">
-                            <button onclick="rotatePdfPage(this, 90)" class="text-indigo-400 hover:text-white"><i class="fa-solid fa-rotate-right"></i></button>
+                            <button onclick="rotatePdfPage(this, 90)" class="text-blue-400 hover:text-white"><i class="fa-solid fa-rotate-right"></i></button>
                             <button onclick="this.closest('.pdf-page-card').remove(); updatePdfNums()" class="text-red-400 hover:text-white"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
