@@ -153,7 +153,7 @@ const translations = {
         
         "upg_title": "PRO'ya Yükselt",
         "upg_desc": "Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.",
-        "upg_f1": "Limitsiz Video Küçültme (Asla çökmez)",
+        "upg_f1": "Limitsiz Video Küçültme",
         "upg_f2": "AI Arka Plan Silici",
         "upg_f3": "Yapay Zeka Stüdyosu",
         "upg_f4": "Öncelikli Sunucu İşlemcisi",
@@ -402,7 +402,7 @@ const translations = {
         
         "upg_title": "Upgrade to PRO",
         "upg_desc": "Go Premium for AI tools and unlimited compression.",
-        "upg_f1": "Unlimited Video Compression (Never crashes)",
+        "upg_f1": "Unlimited Video Compression",
         "upg_f2": "AI Background Remover",
         "upg_f3": "Artificial Intelligence Studio",
         "upg_f4": "Priority Server Processing",
