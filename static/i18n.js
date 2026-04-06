@@ -27,8 +27,6 @@ const routeMap = {
 
 window.CURRENT_LANG = window.location.pathname.startsWith("/en/") ? "en" : "tr";
 
-// Yasal sayfalarda URL bazlı dil tespiti HTML içinden yapıldığı için 
-// i18n içindeki CURRENT_LANG değişkenini override etme ihtimalini engelliyoruz.
 if (window.location.pathname.includes('/legal/')) {
     if (document.documentElement.lang === "en") window.CURRENT_LANG = "en";
     else window.CURRENT_LANG = "tr";
@@ -37,7 +35,6 @@ if (window.location.pathname.includes('/legal/')) {
 function toggleLanguage() {
     const currentPath = window.location.pathname;
     
-    // Eğer yasal bir sayfadaysak HTML içi dil toggle mantığını çalıştırırız
     if(currentPath.includes('/legal/')) {
         const trContent = document.getElementById('content-tr');
         const enContent = document.getElementById('content-en');
@@ -57,7 +54,6 @@ function toggleLanguage() {
             if(langBtnText) langBtnText.innerText = "EN";
         }
         
-        // Sadece yasal sayfalar için i18n yeniden yükle
         const elements = document.querySelectorAll("[data-i18n]");
         elements.forEach(el => {
             const key = el.getAttribute("data-i18n");
@@ -68,7 +64,6 @@ function toggleLanguage() {
         return;
     }
 
-    // Normal araç sayfaları için URL yönlendirmesi
     if (routeMap[currentPath]) {
         window.location.href = routeMap[currentPath];
     } else {
@@ -130,6 +125,10 @@ const translations = {
         "swal_missing_vc_title": "Video Eksik",
         "swal_missing_vc_text": "Lütfen sıkıştırılacak videoyu yükleyin.",
         "swal_success_vc_text": "Videonuz başarıyla sıkıştırıldı ve indirildi.",
+
+        // YENİ EKLENEN PAYWALL ÇEVİRİLERİ
+        "swal_auth_required_title": "Premium Kilitli",
+        "swal_auth_required_text": "Bu araca erişmek için hesap oluşturmalı ve PRO plana (9.99$/Ay) geçmelisiniz.",
 
         "header_login": "Giriş Yap",
         "header_register": "Üye Ol",
@@ -375,6 +374,10 @@ const translations = {
         "swal_missing_vc_title": "Video Missing",
         "swal_missing_vc_text": "Please upload a video to compress.",
         "swal_success_vc_text": "Your video has been successfully compressed and downloaded.",
+
+        // NEW PAYWALL TRANSLATIONS
+        "swal_auth_required_title": "Premium Locked",
+        "swal_auth_required_text": "You must create an account and upgrade to PRO ($9.99/Mo) to access this tool.",
 
         "header_login": "Login",
         "header_register": "Sign Up",

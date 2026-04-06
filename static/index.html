@@ -57,7 +57,6 @@
         }
     </script>
     <style>
-    /* Kayma ve pull-to-refresh sorunlarını kökünden çözen Milyon Dolarlık Standart CSS */
     html, body { 
         background-color: #050505; 
         color: white; 
@@ -149,12 +148,16 @@
         100% { transform: rotate(360deg); } 
     }
 
-    @media (max-width: 640px) {
+    /* TELEFON ISINMASINI ENGELLEYEN VE AĞIR ANİMASYONLARI MOBİLDE KAPATAN KOD */
+    @media (max-width: 768px) {
         #pdf-grid {
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 1.25rem;
             padding: 10px;
         }
+        .animate-float { animation: none !important; transform: none !important; }
+        .animate-pulse-glow { animation: none !important; display: none !important; }
+        .blur-\[120px\], .blur-\[100px\] { display: none !important; }
     }
     </style>
 </head>
@@ -639,7 +642,6 @@
         const API_URL = "/api";
         let cropper, pdfMode = null, pdfTaskId = null, filters = { brightness: 100, contrast: 100, saturation: 100 }, currentPreset = 'none';
 
-        // --- YENİ DİNAMİK YÖNLENDİRİCİ (PAYWALL EKLENDİ) ---
         function navTo(key) {
             const routes = {
                 en: { bg: '/en/tools/background-remover', batch: '/en/tools/batch-processing', ai: '/en/tools/ai-studio', cloud: '/en/tools/cloud-sync', wm: '/en/tools/auto-watermark', vc: '/en/tools/video-compressor', api: '/en/developer-api', privacy: '/en/privacy-policy', terms: '/en/terms', cookies: '/en/cookie-policy', refund: '/en/refund-policy' },
@@ -649,7 +651,6 @@
             window.location.href = routes[lang][key];
         }
 
-        // MİLYON DOLARLIK PADDLE PAYWALL ÇÖZÜMÜ
         function navToPremium(key) {
             const token = getToken();
             if (!token) {
@@ -669,7 +670,6 @@
                 navTo(key);
             }
         }
-        // ---------------------------------
 
         Paddle.Environment.set('sandbox'); 
         Paddle.Initialize({
@@ -712,7 +712,6 @@
             }); 
         }
 
-        // --- OTURUM YÖNETİMİ (SESSION MANAGEMENT) ---
         function getToken() { return localStorage.getItem('fw_token'); }
         function setToken(token) { localStorage.setItem('fw_token', token); }
         function removeToken() { localStorage.removeItem('fw_token'); }
@@ -720,8 +719,8 @@
         let inactivityTime = 0;
         let idleInterval;
         let tokenRefreshInterval;
-        const WARNING_TIME = 14 * 60; // 14. dakikada uyarı
-        const REFRESH_RATE = 5 * 60 * 1000; // 5 dakikada bir
+        const WARNING_TIME = 14 * 60;
+        const REFRESH_RATE = 5 * 60 * 1000;
 
         function resetIdleTime() { inactivityTime = 0; }
 
@@ -785,7 +784,6 @@
                 clearInterval(idleInterval); clearInterval(tokenRefreshInterval);
             }
         }
-        // --------------------------------------------
 
         function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
         function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
