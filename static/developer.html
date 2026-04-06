@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Geliştirici API Portalı | FileWizardIO by ForgeLogic LLC</title>
     
-    <meta name="description" content="FileWizardIO güçlü medya işleme ve video indirme motorunu kendi projelerinize entegre edin. Geliştirici API dokümantasyonu.">
+    <meta name="description" content="FileWizardIO güçlü medya işleme ve video indirme motorunu kendi projelerinizde entegre edin. Geliştirici API dokümantasyonu.">
     <meta name="theme-color" content="#020617">
     <link rel="icon" type="image/png" href="/favicon.png">
     
@@ -33,102 +33,104 @@
         }
     </script>
     <style>
-        body { background-color: #020617; color: white; min-height: 100vh; display: flex; flex-direction: column; }
+        body { background-color: #020617; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
         .glass-panel { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .code-block { background-color: #0f172a; border: 1px solid #1e293b; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; }
         .neon-glow { text-shadow: 0 0 10px rgba(52, 211, 153, 0.5); }
     </style>
 </head>
-<body class="relative overflow-x-hidden">
+<body class="flex flex-col min-h-screen">
 
-    <header class="h-20 border-b border-white/5 flex items-center px-6 md:px-12 justify-between z-10 relative bg-slate-950/80 backdrop-blur-md">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
+    <div class="fixed top-[-10%] right-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-emerald-600/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none z-0"></div>
+
+    <header class="h-20 border-b border-white/5 flex items-center px-4 md:px-12 justify-between z-40 sticky top-0 bg-slate-950/90 backdrop-blur-md">
+        <a href="/" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
                 <i class="fa-solid fa-code"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold tracking-tight leading-none text-white">FileWizard<span class="text-emerald-400">IO</span></h1>
-                <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-mono">Developer API v1.0</p>
+                <h1 class="text-base md:text-xl font-bold tracking-tight leading-none text-white group-hover:text-emerald-400 transition-colors">FileWizard<span class="text-emerald-400">IO</span></h1>
+                <p class="text-[8px] md:text-[10px] text-slate-400 tracking-widest uppercase mt-0.5 font-mono">Developer API</p>
             </div>
-        </div>
+        </a>
         
-        <div class="flex items-center gap-6">
-            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10 hover:bg-slate-800 transition text-xs font-bold text-slate-300 hover:text-white">
-                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
+        <div class="flex items-center gap-3 md:gap-4">
+            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 md:px-4 md:py-2 rounded-lg bg-slate-900 border border-white/10 hover:bg-slate-800 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
+                <i class="fa-solid fa-globe md:mr-2"></i> <span id="lang-btn-text" class="hidden md:inline">EN</span>
             </button>
-            <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
-                <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline" data-i18n="nav_return">Ana Siteye Dön</span>
+            <a href="/" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-500 hover:border-emerald-400 transition shadow-lg group" data-i18n-title="nav_home_tooltip">
+                <i class="fa-solid fa-house group-hover:text-white"></i>
             </a>
         </div>
     </header>
 
-    <main class="flex-1 w-full max-w-7xl mx-auto p-6 md:p-12 z-10 relative grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <main class="flex-1 w-full max-w-7xl mx-auto p-4 md:p-8 lg:p-12 z-10 relative grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-start">
         
-        <div class="lg:col-span-5 space-y-8">
-            <div class="mb-8">
-                <h2 class="text-4xl font-black text-white mb-3" data-i18n="dev_title">Gücü <span class="text-emerald-400 neon-glow">Entegre Edin.</span></h2>
-                <p class="text-slate-400 text-sm" data-i18n="dev_desc">FileWizardIO medya motorunu REST API üzerinden kendi projelerinizde kullanın. Hemen ücretsiz bir anahtar oluşturun.</p>
+        <div class="lg:col-span-5 space-y-6 md:space-y-8">
+            <div class="mb-4 md:mb-8">
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight" data-i18n="dev_title">Gücü <span class="text-emerald-400 neon-glow">Entegre Edin.</span></h2>
+                <p class="text-slate-400 text-xs md:text-sm" data-i18n="dev_desc">FileWizardIO medya motorunu REST API üzerinden kendi projelerinizde kullanın. Hemen ücretsiz bir anahtar oluşturun.</p>
             </div>
 
-            <div class="glass-panel p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 border-b border-white/10 pb-4" data-i18n="dev_get_key_title">
+            <div class="glass-panel p-6 md:p-8 rounded-3xl">
+                <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2 border-b border-white/10 pb-4" data-i18n="dev_get_key_title">
                     <i class="fa-solid fa-key text-emerald-400"></i> API Anahtarı Al
                 </h3>
                 <div class="space-y-4">
                     <div>
-                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block" data-i18n="dev_email_label">Şirket / Geliştirici E-postası</label>
-                        <input type="email" id="dev-email" placeholder="dev@sirketiniz.com" data-i18n-placeholder="dev_email_placeholder" class="w-full bg-slate-900 border border-white/10 rounded-xl p-4 text-sm text-white focus:border-emerald-500 outline-none transition">
+                        <label class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block" data-i18n="dev_email_label">Şirket / Geliştirici E-postası</label>
+                        <input type="email" id="dev-email" placeholder="dev@sirketiniz.com" data-i18n-placeholder="dev_email_placeholder" class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 md:p-4 text-xs md:text-sm text-white focus:border-emerald-500 outline-none transition">
                     </div>
-                    <button onclick="generateApiKey()" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition flex justify-center items-center gap-2" data-i18n="dev_btn_generate">
+                    <button onclick="generateApiKey()" class="w-full py-3 md:py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition flex justify-center items-center gap-2 text-sm md:text-base" data-i18n="dev_btn_generate">
                         <span>ANAHTAR OLUŞTUR</span> <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
                 
                 <div id="api-result-box" class="hidden mt-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
-                    <p class="text-xs text-emerald-400 mb-2 font-bold" data-i18n="swal_success_key_title">Yeni API Anahtarınız (Gizli Tutun!)</p>
+                    <p class="text-[10px] md:text-xs text-emerald-400 mb-2 font-bold" data-i18n="swal_success_key_title">Yeni API Anahtarınız (Gizli Tutun!)</p>
                     <div class="flex items-center gap-2">
-                        <input type="text" id="new-api-key" readonly class="w-full bg-transparent text-white font-mono text-sm outline-none">
+                        <input type="text" id="new-api-key" readonly class="w-full bg-transparent text-white font-mono text-xs md:text-sm outline-none">
                         <button onclick="copyToClipboard('new-api-key')" class="text-slate-400 hover:text-white"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="glass-panel p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 border-b border-white/10 pb-4" data-i18n="dev_quota_title">
+            <div class="glass-panel p-6 md:p-8 rounded-3xl">
+                <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2 border-b border-white/10 pb-4" data-i18n="dev_quota_title">
                     <i class="fa-solid fa-chart-pie text-blue-400"></i> Kota Durumu
                 </h3>
-                <div class="flex gap-2">
-                    <input type="text" id="check-api-key" placeholder="API Anahtarınızı girin..." data-i18n-placeholder="dev_key_placeholder" class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 text-sm text-white focus:border-blue-500 outline-none transition font-mono">
-                    <button onclick="checkStats()" class="px-6 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition" data-i18n="dev_btn_check">Sorgula</button>
+                <div class="flex flex-col md:flex-row gap-2">
+                    <input type="text" id="check-api-key" placeholder="API Anahtarınızı girin..." data-i18n-placeholder="dev_key_placeholder" class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 text-xs md:text-sm text-white focus:border-blue-500 outline-none transition font-mono">
+                    <button onclick="checkStats()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl transition text-sm" data-i18n="dev_btn_check">Sorgula</button>
                 </div>
                 
                 <div id="stats-result" class="hidden mt-6 grid grid-cols-2 gap-4">
                     <div class="bg-slate-900 p-4 rounded-xl text-center border border-white/5">
-                        <span class="block text-[10px] text-slate-400 uppercase mb-1" data-i18n="dev_used_quota">Kullanılan</span>
-                        <span id="stat-used" class="text-2xl font-bold text-white">0</span>
+                        <span class="block text-[9px] md:text-[10px] text-slate-400 uppercase mb-1" data-i18n="dev_used_quota">Kullanılan</span>
+                        <span id="stat-used" class="text-xl md:text-2xl font-bold text-white">0</span>
                     </div>
                     <div class="bg-slate-900 p-4 rounded-xl text-center border border-white/5">
-                        <span class="block text-[10px] text-slate-400 uppercase mb-1" data-i18n="dev_rem_quota">Kalan Kota</span>
-                        <span id="stat-rem" class="text-2xl font-bold text-emerald-400">0</span>
+                        <span class="block text-[9px] md:text-[10px] text-slate-400 uppercase mb-1" data-i18n="dev_rem_quota">Kalan Kota</span>
+                        <span id="stat-rem" class="text-xl md:text-2xl font-bold text-emerald-400">0</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="lg:col-span-7 glass-panel p-8 rounded-3xl">
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+        <div class="lg:col-span-7 glass-panel p-6 md:p-8 rounded-3xl">
+            <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 flex items-center gap-3">
                 <i class="fa-solid fa-book-open text-slate-400"></i> <span data-i18n="dev_doc_title">Dokümantasyon</span>
             </h3>
             
-            <div class="space-y-8">
+            <div class="space-y-6 md:space-y-8">
                 <div>
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded">POST</span>
-                        <span class="font-mono text-sm text-white">/api/developer/v1/video-info</span>
+                    <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-3">
+                        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] md:text-xs font-bold px-3 py-1 rounded w-max">POST</span>
+                        <span class="font-mono text-xs md:text-sm text-white break-all">/api/developer/v1/video-info</span>
                     </div>
-                    <p class="text-sm text-slate-400 mb-4" data-i18n="dev_api_desc">Verilen bir YouTube, TikTok veya Instagram bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.</p>
+                    <p class="text-xs md:text-sm text-slate-400 mb-4" data-i18n="dev_api_desc">Verilen bir YouTube, TikTok veya Instagram bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.</p>
                     
-                    <div class="code-block rounded-xl overflow-hidden text-xs">
+                    <div class="code-block rounded-xl overflow-hidden text-[10px] md:text-xs">
                         <div class="bg-slate-900 px-4 py-2 border-b border-white/5 flex justify-between items-center">
                             <span class="text-slate-400 font-bold" data-i18n="dev_curl_example">cURL Örneği</span>
                             <button onclick="copyCode('curl-code')" class="text-slate-500 hover:text-white"><i class="fa-regular fa-copy"></i></button>
@@ -142,8 +144,8 @@
                 </div>
 
                 <div>
-                    <h4 class="text-sm font-bold text-white mb-3" data-i18n="dev_example_res">Örnek Yanıt (JSON)</h4>
-                    <div class="code-block rounded-xl overflow-hidden text-xs">
+                    <h4 class="text-xs md:text-sm font-bold text-white mb-3" data-i18n="dev_example_res">Örnek Yanıt (JSON)</h4>
+                    <div class="code-block rounded-xl overflow-hidden text-[10px] md:text-xs">
                         <div class="p-4 overflow-x-auto text-emerald-300">
 <pre>{
   "success": true,
@@ -164,7 +166,7 @@
 
     <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-slate-950/50">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div data-i18n="footer_copy">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
+            <div data-i18n="footer_copy" class="text-center md:text-left">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
             <div class="flex gap-4">
                 <a href="/legal/privacy.html" class="hover:text-emerald-400 transition" data-i18n="footer_privacy">Gizlilik</a>
                 <a href="/legal/terms.html" class="hover:text-emerald-400 transition" data-i18n="footer_terms">Koşullar</a>
@@ -177,7 +179,7 @@
 
         async function generateApiKey() {
             const email = document.getElementById('dev-email').value;
-            if(!email) return Swal.fire({icon: 'error', title: window.t('swal_error_title'), text: window.t('swal_missing_email_text'), background: '#0f172a', color: '#fff'});
+            if(!email) return Swal.fire({icon: 'error', title: window.t('swal_error_title') || 'Hata', text: window.t('swal_missing_email_text') || 'Email giriniz', background: '#0f172a', color: '#fff'});
             
             try {
                 const fd = new FormData(); fd.append('email', email); fd.append('plan', 'free');
@@ -187,18 +189,18 @@
                 if(data.success) {
                     document.getElementById('api-result-box').classList.remove('hidden');
                     document.getElementById('new-api-key').value = data.api_key;
-                    Swal.fire({icon: 'success', title: window.t('swal_success_key_title'), text: window.t('swal_success_key_text'), background: '#0f172a', color: '#fff', timer: 1500, showConfirmButton: false});
+                    Swal.fire({icon: 'success', title: window.t('swal_success_key_title') || 'Başarılı', text: window.t('swal_success_key_text') || 'Anahtar oluşturuldu', background: '#0f172a', color: '#fff', timer: 1500, showConfirmButton: false});
                 } else {
                     throw new Error(data.error);
                 }
             } catch (e) {
-                Swal.fire({icon: 'error', title: window.t('swal_error_title'), text: e.message, background: '#0f172a', color: '#fff'});
+                Swal.fire({icon: 'error', title: window.t('swal_error_title') || 'Hata', text: e.message, background: '#0f172a', color: '#fff'});
             }
         }
 
         async function checkStats() {
             const key = document.getElementById('check-api-key').value;
-            if(!key) return Swal.fire({icon: 'warning', title: window.t('swal_missing_key_title'), text: window.t('swal_missing_key_text'), background: '#0f172a', color: '#fff'});
+            if(!key) return Swal.fire({icon: 'warning', title: window.t('swal_missing_key_title') || 'Eksik', text: window.t('swal_missing_key_text') || 'Anahtar giriniz', background: '#0f172a', color: '#fff'});
             
             try {
                 const fd = new FormData(); fd.append('api_key', key);
@@ -213,7 +215,7 @@
                     throw new Error(data.error);
                 }
             } catch (e) {
-                Swal.fire({icon: 'error', title: window.t('swal_error_title'), text: e.message, background: '#0f172a', color: '#fff'});
+                Swal.fire({icon: 'error', title: window.t('swal_error_title') || 'Hata', text: e.message, background: '#0f172a', color: '#fff'});
             }
         }
 

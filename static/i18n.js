@@ -43,6 +43,7 @@ const translations = {
     "tr": {
         // --- ORTAK ---
         "nav_return": "Ana Siteye Dön",
+        "nav_home_tooltip": "Ana Sayfa",
         "footer_copy": "© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.",
         "footer_privacy": "Gizlilik",
         "footer_terms": "Koşullar",
@@ -52,6 +53,41 @@ const translations = {
         "prog_title": "İşleniyor",
         "prog_desc": "Sunucu ile iletişim kuruluyor...",
         
+        // --- SWAL (ALERTS) ---
+        "swal_missing_title": "Eksik Görsel",
+        "swal_missing_text": "Lütfen işlenecek görseli seçin.",
+        "swal_success_title": "Başarılı",
+        "swal_success_text": "İşlem kusursuzca tamamlandı.",
+        "swal_error_title": "İşlem Başarısız",
+        "swal_limit_title": "Limit Aşıldı",
+        "swal_limit_text": "Maksimum 50 dosya yükleyebilirsiniz.",
+        "swal_invalid_file_title": "Sadece görsel dosyaları desteklenir.",
+        "swal_missing_batch_title": "Dosya Yok",
+        "swal_missing_batch_text": "Lütfen en az bir görsel yükleyin.",
+        "swal_success_batch_title": "Toplu İşlem Tamam",
+        "swal_success_batch_text": "Dosyalarınız sıkıştırılarak ZIP formatında indirildi.",
+        "swal_missing_ai_title": "Eksik Görsel",
+        "swal_missing_ai_text": "Lütfen iyileştirilecek görseli seçin.",
+        "swal_success_ai_title": "Mükemmel",
+        "swal_success_ai_text": "Yapay zeka işlemi başarıyla tamamlandı.",
+        "swal_missing_cloud_file_title": "Dosya Eksik",
+        "swal_missing_cloud_file_text": "Lütfen buluta aktarılacak dosyayı seçin.",
+        "swal_missing_token_title": "Token Eksik",
+        "swal_missing_token_text": "Dropbox erişim anahtarınızı (Token) girmelisiniz.",
+        "swal_success_cloud_title": "Buluta Aktarıldı",
+        "swal_success_cloud_text": "Dosyanız başarıyla Dropbox hesabınıza gönderildi.",
+        "swal_missing_email_text": "Lütfen geçerli bir e-posta adresi girin.",
+        "swal_success_key_title": "API Anahtarınız Hazır",
+        "swal_success_key_text": "Lütfen anahtarınızı güvenli bir yere kopyalayın.",
+        "swal_missing_key_title": "Eksik Bilgi",
+        "swal_missing_key_text": "Lütfen sorgulamak için API anahtarınızı girin.",
+        "swal_missing_file_title": "Eksik Dosya",
+        "swal_missing_file_text": "Lütfen hem ana görseli hem de logonuzu yükleyin.",
+        "swal_success_wm_text": "Markalama başarıyla tamamlandı.",
+        "swal_missing_vc_title": "Video Eksik",
+        "swal_missing_vc_text": "Lütfen sıkıştırılacak videoyu yükleyin.",
+        "swal_success_vc_text": "Videonuz başarıyla sıkıştırıldı ve indirildi.",
+
         // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Giriş Yap",
         "header_register": "Üye Ol",
@@ -117,7 +153,7 @@ const translations = {
         "home_pdf_btn_select": "Dosya Seç",
         "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Geri Dön",
 
-        // --- GÖRSEL STÜDYO (YENİ EKLENEN ÇEVİRİLER) ---
+        // --- GÖRSEL STÜDYO ---
         "img_btn_upload": "Görsel Yükle",
         "img_placeholder": "Düzenlemek için bir görsel seçin",
         "img_tab_crop": "KIRP",
@@ -144,7 +180,7 @@ const translations = {
         "img_btn_process": "İŞLE & İNDİR",
 
         // --- ARKA PLAN SİLİCİ ---
-        "bg_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-500'>Dekupe.</span>",
+        "bg_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>Dekupe.</span>",
         "bg_desc": "Yapay zeka (U²-Net) motorumuzla fotoğraflarınızın arka planını saç teline kadar ayırın ve saniyeler içinde şeffaf PNG'ye dönüştürün.",
         "bg_drop_title": "Sihri Başlatmak İçin Sürükleyin",
         "bg_drop_desc": "veya bilgisayarınızdan seçmek için tıklayın (JPEG, PNG, WEBP)",
@@ -159,7 +195,7 @@ const translations = {
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> ARKA PLANI SİL VE İNDİR",
         
         // --- TOPLU İŞLEM ---
-        "batch_title": "Toplu <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Dönüştürücü.</span>",
+        "batch_title": "Toplu <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'>Dönüştürücü.</span>",
         "batch_desc": "Tek seferde 50 dosyaya kadar yükleyin. Görselleri topluca yeniden boyutlandırın, formatını değiştirin ve zamandan tasarruf edin.",
         "batch_drop_title": "Görselleri Buraya Sürükleyin",
         "batch_drop_desc": "veya seçmek için tıklayın (Maks: 50 Dosya, JPEG/PNG/WEBP)",
@@ -201,29 +237,29 @@ const translations = {
         "cloud_settings_title": "Bulut Bağlantısı",
         "cloud_token_label": "Dropbox Access Token (Erişim Anahtarı)",
         "cloud_token_placeholder": "sl.B... (Gizli Tokeniniz)",
-        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
+        "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi sunucularımızda <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> DOĞRUDAN BULUTA FIRLAT",
 
         // --- DEVELOPER API ---
-        "dev_title": "Geliştirici <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>API.</span>",
-        "dev_desc": "FileWizard motorunu kendi uygulamalarınıza bağlayın. Otomasyon süreçlerinizi saniyeler içinde ayağa kaldırın.",
+        "dev_title": "Gücü <span class='text-emerald-400 neon-glow'>Entegre Edin.</span>",
+        "dev_desc": "FileWizardIO medya motorunu REST API üzerinden kendi projelerinizde kullanın. Hemen ücretsiz bir anahtar oluşturun.",
         "dev_get_key_title": "API Anahtarı Al",
-        "dev_email_label": "E-Posta Adresi",
-        "dev_email_placeholder": "sirket@domain.com",
-        "dev_btn_generate": "<i class='fa-solid fa-key'></i> ANAHTAR OLUŞTUR",
+        "dev_email_label": "Şirket / Geliştirici E-postası",
+        "dev_email_placeholder": "dev@sirketiniz.com",
+        "dev_btn_generate": "ANAHTAR OLUŞTUR",
         "dev_quota_title": "Kota Durumu",
         "dev_key_label": "API Anahtarınız",
-        "dev_key_placeholder": "fw_live_...",
-        "dev_btn_check": "<i class='fa-solid fa-magnifying-glass'></i> Sorgula",
-        "dev_doc_title": "Hızlı Başlangıç (cURL)",
+        "dev_key_placeholder": "API Anahtarınızı girin...",
+        "dev_btn_check": "Sorgula",
+        "dev_doc_title": "Dokümantasyon",
         "dev_used_quota": "Kullanılan",
         "dev_rem_quota": "Kalan Kota",
-        "dev_api_desc": "Verilen bir sosyal medya bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.",
+        "dev_api_desc": "Verilen bir YouTube, TikTok veya Instagram bağlantısındaki medyanın meta verilerini, başlığını ve format bilgilerini yüksek hızda çözer.",
         "dev_curl_example": "cURL Örneği",
         "dev_example_res": "Örnek Yanıt (JSON)",
         
         // --- AUTO WATERMARK ---
-        "wm_main_title": "Görsellerinizi <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Markalayın.</span>",
+        "wm_main_title": "Görsellerinizi <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-500'>Markalayın.</span>",
         "wm_main_desc": "İçeriklerinizi koruyun. Logonuzu saniyeler içinde, profesyonel kalitede görsellerinize entegre edin.",
         "wm_box1_title": "1. Ana Görsel",
         "wm_box1_desc": "Filigran eklenecek fotoğrafı seçin",
@@ -254,10 +290,25 @@ const translations = {
         "vc_level_extreme_title": "Maksimum (WhatsApp Uyumlu)",
         "vc_level_extreme_desc": "Dosya boyutunu radikal şekilde (%80'e kadar) düşürür. Sosyal medya gönderimleri için idealdir.",
         "vc_btn_process": "<i class='fa-solid fa-compress'></i> SIKIŞTIR VE İNDİR",
+        
+        "footer_copy_wm": "© 2026 FileWizardIO by ForgeLogic LLC. Tüm hakları saklıdır.",
+        "footer_privacy_wm": "Gizlilik Politikası",
+        "footer_terms_wm": "Kullanım Koşulları",
+        "wm_modal_title": "İşleniyor",
+        "wm_modal_desc": "Sunucu ile iletişim kuruluyor...",
+        "ai_modal_title": "İşleniyor",
+        "ai_modal_desc": "Yapay zeka pikselleri analiz ediyor...",
+        "batch_modal_title": "İşleniyor",
+        "batch_modal_desc": "Dosyalar hazırlanıyor...",
+        "cloud_modal_title": "Senkronize Ediliyor",
+        "cloud_modal_desc": "Bulut bağlantısı kuruluyor...",
+        "vc_modal_title": "İşleniyor",
+        "vc_modal_desc": "Video analiz ediliyor..."
     },
     "en": {
         // --- COMMON ---
         "nav_return": "Back to Home",
+        "nav_home_tooltip": "Home",
         "footer_copy": "© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.",
         "footer_privacy": "Privacy Policy",
         "footer_terms": "Terms of Service",
@@ -266,6 +317,41 @@ const translations = {
         "footer_contact": "Contact",
         "prog_title": "Processing",
         "prog_desc": "Communicating with server...",
+
+        // --- SWAL (ALERTS) ---
+        "swal_missing_title": "Missing Image",
+        "swal_missing_text": "Please select an image to process.",
+        "swal_success_title": "Success",
+        "swal_success_text": "The process was completed flawlessly.",
+        "swal_error_title": "Process Failed",
+        "swal_limit_title": "Limit Exceeded",
+        "swal_limit_text": "You can upload a maximum of 50 files.",
+        "swal_invalid_file_title": "Only image files are supported.",
+        "swal_missing_batch_title": "No Files",
+        "swal_missing_batch_text": "Please upload at least one image.",
+        "swal_success_batch_title": "Batch Process Complete",
+        "swal_success_batch_text": "Your files have been compressed and downloaded in ZIP format.",
+        "swal_missing_ai_title": "Missing Image",
+        "swal_missing_ai_text": "Please select an image to enhance.",
+        "swal_success_ai_title": "Perfect",
+        "swal_success_ai_text": "AI processing completed successfully.",
+        "swal_missing_cloud_file_title": "File Missing",
+        "swal_missing_cloud_file_text": "Please select the file to upload to the cloud.",
+        "swal_missing_token_title": "Token Missing",
+        "swal_missing_token_text": "You must enter your Dropbox access token.",
+        "swal_success_cloud_title": "Uploaded to Cloud",
+        "swal_success_cloud_text": "Your file was successfully sent to your Dropbox account.",
+        "swal_missing_email_text": "Please enter a valid email address.",
+        "swal_success_key_title": "Your API Key is Ready",
+        "swal_success_key_text": "Please copy your key to a safe place.",
+        "swal_missing_key_title": "Missing Information",
+        "swal_missing_key_text": "Please enter your API key to check.",
+        "swal_missing_file_title": "Missing File",
+        "swal_missing_file_text": "Please upload both the base image and your logo.",
+        "swal_success_wm_text": "Watermarking completed successfully.",
+        "swal_missing_vc_title": "Video Missing",
+        "swal_missing_vc_text": "Please upload a video to compress.",
+        "swal_success_vc_text": "Your video has been successfully compressed and downloaded.",
 
         // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Login",
@@ -332,7 +418,7 @@ const translations = {
         "home_pdf_btn_select": "Select File",
         "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Go Back",
 
-        // --- GÖRSEL STÜDYO (YENİ EKLENEN ÇEVİRİLER) ---
+        // --- GÖRSEL STÜDYO ---
         "img_btn_upload": "Upload Image",
         "img_placeholder": "Select an image to edit",
         "img_tab_crop": "CROP",
@@ -359,7 +445,7 @@ const translations = {
         "img_btn_process": "PROCESS & DOWNLOAD",
 
         // --- BG REMOVER ---
-        "bg_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-500'>Cutout.</span>",
+        "bg_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>Cutout.</span>",
         "bg_desc": "Separate the background of your photos down to a single strand of hair with our AI (U²-Net) engine and convert to transparent PNG in seconds.",
         "bg_drop_title": "Drag & Drop to Start Magic",
         "bg_drop_desc": "or click to select from your computer (JPEG, PNG, WEBP)",
@@ -374,7 +460,7 @@ const translations = {
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> REMOVE BG & DOWNLOAD",
 
         // --- BATCH PROCESSING ---
-        "batch_title": "Bulk <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Converter.</span>",
+        "batch_title": "Bulk <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'>Converter.</span>",
         "batch_desc": "Upload up to 50 files at once. Bulk resize images, change formats, and save time.",
         "batch_drop_title": "Drag & Drop Images Here",
         "batch_drop_desc": "or click to select (Max: 50 Files, JPEG/PNG/WEBP)",
@@ -420,25 +506,25 @@ const translations = {
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> UPLOAD DIRECTLY TO CLOUD",
 
         // --- DEVELOPER API ---
-        "dev_title": "Developer <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>API.</span>",
+        "dev_title": "<span class='text-emerald-400 neon-glow'>Integrate</span> the Power.",
         "dev_desc": "Connect the FileWizard engine to your own applications. Set up your automation processes in seconds.",
         "dev_get_key_title": "Get API Key",
-        "dev_email_label": "Email Address",
+        "dev_email_label": "Company / Developer Email",
         "dev_email_placeholder": "company@domain.com",
-        "dev_btn_generate": "<i class='fa-solid fa-key'></i> GENERATE KEY",
+        "dev_btn_generate": "GENERATE KEY",
         "dev_quota_title": "Quota Status",
         "dev_key_label": "Your API Key",
-        "dev_key_placeholder": "fw_live_...",
-        "dev_btn_check": "<i class='fa-solid fa-magnifying-glass'></i> Check Quota",
-        "dev_doc_title": "Quick Start (cURL)",
+        "dev_key_placeholder": "Enter your API Key...",
+        "dev_btn_check": "Check Quota",
+        "dev_doc_title": "Documentation",
         "dev_used_quota": "Used",
         "dev_rem_quota": "Remaining",
-        "dev_api_desc": "Resolves metadata, title, and format information of media from a given social media link at high speed.",
+        "dev_api_desc": "Resolves metadata, title, and format information of media from a given YouTube, TikTok, or Instagram link at high speed.",
         "dev_curl_example": "cURL Example",
         "dev_example_res": "Example Response (JSON)",
         
         // --- AUTO WATERMARK ---
-        "wm_main_title": "Brand Your <span class='text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500'>Images.</span>",
+        "wm_main_title": "Brand Your <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-500'>Images.</span>",
         "wm_main_desc": "Protect your content. Integrate your logo into your images in seconds with professional quality.",
         "wm_box1_title": "1. Base Image",
         "wm_box1_desc": "Select the photo to watermark",
@@ -454,21 +540,19 @@ const translations = {
         "wm_fmt_webp": "WEBP (Web Optimization)",
         "wm_btn_process": "<i class='fa-solid fa-wand-magic-sparkles'></i> APPLY LOGO & DOWNLOAD",
 
-        // --- VIDEO COMPRESSOR ---
-        "vc_title": "Shrink Size. <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500'>Keep Quality.</span>",
-        "vc_desc": "Reduce video file size by up to 80% without losing quality using our advanced FFmpeg engine. Bypass WhatsApp and email limits.",
-        "vc_drop_title": "Drag Video Here",
-        "vc_drop_desc": "or click to select (MP4, MOV, AVI, WEBP)",
-        "vc_btn_change": "Select Another Video",
-        "vc_settings_title": "Compression Settings",
-        "vc_level_label": "Compression Level",
-        "vc_level_light_title": "Light (Excellent Quality)",
-        "vc_level_light_desc": "Closest to original quality. File size reduces by approx. 20-30%.",
-        "vc_level_medium_title": "Standard (Recommended)",
-        "vc_level_medium_desc": "Reduces file size by around 50% with no visible quality loss.",
-        "vc_level_extreme_title": "Extreme (WhatsApp Ready)",
-        "vc_level_extreme_desc": "Radically reduces file size (up to 80%). Ideal for social media sharing.",
-        "vc_btn_process": "<i class='fa-solid fa-compress'></i> COMPRESS & DOWNLOAD"
+        "footer_copy_wm": "© 2026 FileWizardIO by ForgeLogic LLC. All rights reserved.",
+        "footer_privacy_wm": "Privacy Policy",
+        "footer_terms_wm": "Terms of Use",
+        "wm_modal_title": "Processing",
+        "wm_modal_desc": "Communicating with server...",
+        "ai_modal_title": "Processing",
+        "ai_modal_desc": "AI is analyzing pixels...",
+        "batch_modal_title": "Processing",
+        "batch_modal_desc": "Preparing files...",
+        "cloud_modal_title": "Syncing",
+        "cloud_modal_desc": "Establishing cloud connection...",
+        "vc_modal_title": "Processing",
+        "vc_modal_desc": "Analyzing video..."
     }
 };
 
@@ -496,6 +580,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const key = el.getAttribute("data-i18n-placeholder");
         if (translations[window.CURRENT_LANG] && translations[window.CURRENT_LANG][key]) {
             el.setAttribute("placeholder", translations[window.CURRENT_LANG][key]);
+        }
+    });
+
+    // Tooltip (title) çevirileri
+    const titles = document.querySelectorAll("[data-i18n-title]");
+    titles.forEach(el => {
+        const key = el.getAttribute("data-i18n-title");
+        if (translations[window.CURRENT_LANG] && translations[window.CURRENT_LANG][key]) {
+            el.setAttribute("title", translations[window.CURRENT_LANG][key]);
         }
     });
 });

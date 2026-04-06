@@ -35,7 +35,7 @@
         }
     </script>
     <style>
-        body { background-color: #050505; color: white; min-height: 100vh; display: flex; flex-direction: column; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        body { background-color: #050505; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
         .glass-panel { background: rgba(20, 25, 40, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .upload-area { border: 2px dashed rgba(251, 191, 36, 0.3); transition: all 0.3s ease; }
         .upload-area:hover, .upload-area.dragover { border-color: #f59e0b; background: rgba(251, 191, 36, 0.05); }
@@ -44,96 +44,110 @@
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="relative">
+<body class="flex flex-col min-h-screen">
 
-    <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-amber-600/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none z-0"></div>
 
-    <header class="h-20 border-b border-white/5 flex items-center px-6 md:px-12 justify-between z-10 relative bg-[#0b0f19]/80 backdrop-blur-md">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/20">
+    <header class="h-20 border-b border-white/5 flex items-center px-4 md:px-12 justify-between z-40 sticky top-0 bg-[#0b0f19]/90 backdrop-blur-md">
+        <a href="/" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
                 <i class="fa-solid fa-compress"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold tracking-tight leading-none text-white">FileWizard<span class="text-amber-400">IO</span></h1>
-                <p class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Video Compressor</p>
+                <h1 class="text-base md:text-xl font-bold tracking-tight leading-none text-white group-hover:text-amber-400 transition-colors">FileWizard<span class="text-amber-400">IO</span></h1>
+                <p class="text-[8px] md:text-[10px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Video Compressor</p>
             </div>
-        </div>
+        </a>
         
-        <div class="flex items-center gap-6">
-            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800 border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white">
-                <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
+        <div class="flex items-center gap-3 md:gap-6">
+            <div id="auth-buttons-unlogged" class="hidden md:flex gap-2">
+                <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition"><span data-i18n="header_login">Giriş Yap</span></button>
+                <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-black text-xs font-bold shadow-lg shadow-amber-500/20 transition"><span data-i18n="header_register">Üye Ol</span></button>
+            </div>
+
+            <div id="auth-buttons-logged" class="hidden md:flex items-center gap-2">
+                <span id="pro-badge" class="hidden px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px] font-black rounded uppercase tracking-widest shadow-lg shadow-orange-500/20">PRO</span>
+                <button onclick="showProUpgrade()" id="upgrade-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 border border-amber-500/30 text-amber-400 text-xs font-bold hover:bg-amber-500/10 transition"><span data-i18n="header_upgrade">Yükselt</span></button>
+                <button onclick="processLogout()" class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/50 transition" title="Çıkış Yap">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+
+            <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 md:px-4 md:py-2 rounded-lg bg-slate-800 border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
+                <i class="fa-solid fa-globe md:mr-2"></i> <span id="lang-btn-text" class="hidden md:inline">EN</span>
             </button>
-            <a href="/" class="text-sm font-medium text-slate-400 hover:text-white transition flex items-center gap-2">
-                <i class="fa-solid fa-arrow-left"></i> <span class="hidden md:inline" data-i18n="nav_return">Ana Siteye Dön</span>
+            
+            <a href="/" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-amber-500 hover:border-amber-400 transition shadow-lg group" data-i18n-title="nav_home_tooltip">
+                <i class="fa-solid fa-house group-hover:text-white"></i>
             </a>
         </div>
     </header>
 
-    <main class="flex-1 w-full max-w-6xl mx-auto p-6 md:p-12 z-10 relative flex flex-col lg:flex-row gap-8 items-start">
+    <main class="flex-1 w-full max-w-6xl mx-auto p-4 md:p-8 lg:p-12 z-10 relative flex flex-col lg:flex-row gap-6 md:gap-8 items-start">
         
         <div class="w-full lg:w-3/5 flex flex-col gap-6">
             <div class="mb-4 animate-float">
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight" data-i18n="vc_title">Boyutu Küçült. <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Kaliteyi Koru.</span></h2>
-                <p class="text-slate-400 text-lg" data-i18n="vc_desc">Gelişmiş FFmpeg motorumuzla videolarınızın kalitesini bozmadan dosya boyutunu %80'e kadar küçültün. WhatsApp ve e-posta sınırlarına takılmayın.</p>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight" data-i18n="vc_title">Boyutu Küçült. <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Kaliteyi Koru.</span></h2>
+                <p class="text-slate-400 text-sm md:text-lg" data-i18n="vc_desc">Gelişmiş FFmpeg motorumuzla videolarınızın kalitesini bozmadan dosya boyutunu %80'e kadar küçültün. WhatsApp ve e-posta sınırlarına takılmayın.</p>
             </div>
 
-            <div class="glass-panel p-8 rounded-3xl upload-area flex flex-col items-center justify-center text-center cursor-pointer min-h-[350px] relative overflow-hidden" onclick="document.getElementById('video-file-input').click()">
+            <div class="glass-panel p-6 md:p-8 rounded-3xl upload-area flex flex-col items-center justify-center text-center cursor-pointer min-h-[250px] md:min-h-[350px] relative overflow-hidden" onclick="document.getElementById('video-file-input').click()">
                 <div id="upload-content" class="flex flex-col items-center">
-                    <i class="fa-solid fa-file-video text-5xl text-amber-400 mb-4"></i>
-                    <h3 class="font-bold text-white mb-1 text-xl" data-i18n="vc_drop_title">Videoyu Buraya Sürükleyin</h3>
-                    <p class="text-sm text-slate-400" data-i18n="vc_drop_desc">veya seçmek için tıklayın (MP4, MOV, AVI, WEBP)</p>
+                    <i class="fa-solid fa-file-video text-4xl md:text-5xl text-amber-400 mb-4"></i>
+                    <h3 class="font-bold text-white mb-1 text-lg md:text-xl" data-i18n="vc_drop_title">Videoyu Buraya Sürükleyin</h3>
+                    <p class="text-xs md:text-sm text-slate-400" data-i18n="vc_drop_desc">veya seçmek için tıklayın (MP4, MOV, AVI, WEBP)</p>
                 </div>
                 
                 <input type="file" id="video-file-input" class="hidden" accept="video/*" onchange="previewVideo(this)">
                 
                 <div id="preview-container" class="hidden absolute inset-0 w-full h-full bg-slate-900/95 z-10 p-6 flex flex-col items-center justify-center backdrop-blur-sm">
-                    <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center text-amber-400 mb-4">
-                        <i class="fa-solid fa-circle-check text-3xl"></i>
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-amber-500/20 rounded-full flex items-center justify-center text-amber-400 mb-4">
+                        <i class="fa-solid fa-circle-check text-2xl md:text-3xl"></i>
                     </div>
-                    <h4 id="video-filename" class="text-white font-bold text-lg mb-1 truncate w-full text-center px-4">video.mp4</h4>
-                    <p id="video-filesize" class="text-amber-400 font-mono text-sm mb-6">0 MB</p>
-                    <div id="change-btn" class="bg-slate-800 px-6 py-2 rounded-xl text-sm font-bold text-white border border-white/10 hover:bg-slate-700 transition shadow-lg" data-i18n="vc_btn_change">Başka Video Seç</div>
+                    <h4 id="video-filename" class="text-white font-bold text-base md:text-lg mb-1 truncate w-full text-center px-4">video.mp4</h4>
+                    <p id="video-filesize" class="text-amber-400 font-mono text-xs md:text-sm mb-6">0 MB</p>
+                    <div id="change-btn" class="bg-slate-800 px-6 py-2 rounded-xl text-xs md:text-sm font-bold text-white border border-white/10 hover:bg-slate-700 transition shadow-lg" data-i18n="vc_btn_change">Başka Video Seç</div>
                 </div>
             </div>
         </div>
 
-        <div class="w-full lg:w-2/5 glass-panel p-8 rounded-3xl sticky top-6">
-            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2" data-i18n="vc_settings_title">
+        <div class="w-full lg:w-2/5 glass-panel p-6 md:p-8 rounded-3xl lg:sticky lg:top-24">
+            <h3 class="text-lg md:text-xl font-bold mb-6 border-b border-white/10 pb-4 flex items-center gap-2" data-i18n="vc_settings_title">
                 <i class="fa-solid fa-sliders text-amber-400"></i> Sıkıştırma Ayarları
             </h3>
             
             <div class="space-y-6">
                 
                 <div>
-                    <label class="text-slate-300 font-medium text-sm block mb-3" data-i18n="vc_level_label">Sıkıştırma Seviyesi</label>
+                    <label class="text-slate-300 font-medium text-xs md:text-sm block mb-3" data-i18n="vc_level_label">Sıkıştırma Seviyesi</label>
                     <div class="space-y-3">
-                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="compression_level" value="light" class="mt-1 accent-amber-500">
+                        <label class="flex items-start gap-3 p-3 md:p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                            <input type="radio" name="compression_level" value="light" class="mt-1 accent-amber-500 shrink-0">
                             <div>
-                                <h4 class="text-sm font-bold text-white" data-i18n="vc_level_light_title">Hafif (Mükemmel Kalite)</h4>
-                                <p class="text-[11px] text-slate-400 mt-1" data-i18n="vc_level_light_desc">Orijinale en yakın kalite. Dosya boyutu yaklaşık %20-30 küçülür.</p>
+                                <h4 class="text-xs md:text-sm font-bold text-white" data-i18n="vc_level_light_title">Hafif (Mükemmel Kalite)</h4>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1" data-i18n="vc_level_light_desc">Orijinale en yakın kalite. Dosya boyutu yaklaşık %20-30 küçülür.</p>
                             </div>
                         </label>
 
-                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="compression_level" value="medium" checked class="mt-1 accent-amber-500">
+                        <label class="flex items-start gap-3 p-3 md:p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                            <input type="radio" name="compression_level" value="medium" checked class="mt-1 accent-amber-500 shrink-0">
                             <div>
-                                <h4 class="text-sm font-bold text-white" data-i18n="vc_level_medium_title">Standart (Tavsiye Edilen)</h4>
-                                <p class="text-[11px] text-slate-400 mt-1" data-i18n="vc_level_medium_desc">Gözle görülür kalite kaybı olmadan dosya boyutunu %50 civarında küçültür.</p>
+                                <h4 class="text-xs md:text-sm font-bold text-white" data-i18n="vc_level_medium_title">Standart (Tavsiye Edilen)</h4>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1" data-i18n="vc_level_medium_desc">Gözle görülür kalite kaybı olmadan dosya boyutunu %50 civarında küçültür.</p>
                             </div>
                         </label>
 
-                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="compression_level" value="extreme" class="mt-1 accent-amber-500">
+                        <label class="flex items-start gap-3 p-3 md:p-4 rounded-xl border border-white/10 bg-slate-900/50 cursor-pointer hover:border-amber-500/50 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                            <input type="radio" name="compression_level" value="extreme" class="mt-1 accent-amber-500 shrink-0">
                             <div>
-                                <h4 class="text-sm font-bold text-white" data-i18n="vc_level_extreme_title">Maksimum (WhatsApp Uyumlu)</h4>
-                                <p class="text-[11px] text-slate-400 mt-1" data-i18n="vc_level_extreme_desc">Dosya boyutunu radikal şekilde (%80'e kadar) düşürür. Sosyal medya gönderimleri için idealdir.</p>
+                                <h4 class="text-xs md:text-sm font-bold text-white" data-i18n="vc_level_extreme_title">Maksimum (WhatsApp Uyumlu)</h4>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1" data-i18n="vc_level_extreme_desc">Dosya boyutunu radikal şekilde (%80'e kadar) düşürür. Sosyal medya gönderimleri için idealdir.</p>
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <button onclick="startVideoCompress()" class="w-full py-4 mt-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition flex items-center justify-center gap-2" data-i18n="vc_btn_process">
+                <button onclick="startVideoCompress()" class="w-full py-4 mt-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition flex items-center justify-center gap-2 text-sm md:text-base" data-i18n="vc_btn_process">
                     <i class="fa-solid fa-compress"></i> SIKIŞTIR VE İNDİR
                 </button>
             </div>
@@ -142,7 +156,7 @@
 
     <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div data-i18n="footer_copy">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
+            <div data-i18n="footer_copy" class="text-center md:text-left">© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.</div>
             <div class="flex gap-4">
                 <a href="/legal/privacy.html" class="hover:text-amber-400 transition" data-i18n="footer_privacy">Gizlilik</a>
                 <a href="/legal/terms.html" class="hover:text-amber-400 transition" data-i18n="footer_terms">Koşullar</a>
@@ -150,8 +164,88 @@
         </div>
     </footer>
 
-    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
-        <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
+    <div id="login-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-full shadow-2xl relative">
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-12 h-12 rounded-xl bg-amber-600/20 flex items-center justify-center text-2xl text-amber-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
+            <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_login_title">Hoş Geldiniz</h3>
+            <p class="text-sm text-slate-400 text-center mb-6" data-i18n="auth_login_desc">FileWizardIO hesabınıza giriş yapın.</p>
+            
+            <div class="space-y-4">
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="login-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-amber-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="login-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-amber-500 outline-none transition" placeholder="••••••••" data-i18n-placeholder="auth_pass_placeholder"></div>
+                
+                <button onclick="processLogin()" class="w-full py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-xl shadow-lg shadow-amber-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="login-btn-text" data-i18n="auth_login_btn">Giriş Yap</span></button>
+                
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-white/10">
+                    <span class="px-3 text-[10px] text-slate-500 font-bold uppercase tracking-wider" data-i18n="auth_or_with">Veya Şununla</span>
+                    <hr class="flex-grow border-white/10">
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3 mt-4">
+                    <button onclick="window.location.href='/api/auth/google/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-google text-red-500 text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/x/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-x-twitter text-white text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/facebook/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-facebook text-blue-500 text-lg"></i></button>
+                </div>
+            </div>
+            
+            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_no_account">Hesabınız yok mu?</span> <button onclick="showRegisterModal()" class="text-amber-400 font-bold hover:text-amber-300" data-i18n="auth_register_link">Üye Olun</button></p>
+        </div>
+    </div>
+
+    <div id="register-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-full shadow-2xl relative">
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-12 h-12 rounded-xl bg-amber-600/20 flex items-center justify-center text-2xl text-amber-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
+            <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_reg_title">Kayıt Ol</h3>
+            <p class="text-sm text-slate-400 text-center mb-6" data-i18n="auth_reg_desc">Sınırsız araçlar için aramıza katıl.</p>
+            
+            <div class="space-y-4">
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_email_label">E-Posta</label><input type="email" id="reg-email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-amber-500 outline-none transition" placeholder="ornek@mail.com" data-i18n-placeholder="auth_email_placeholder"></div>
+                <div><label class="text-xs text-slate-400 font-bold ml-1" data-i18n="auth_pass_label">Şifre</label><input type="password" id="reg-password" class="w-full bg-slate-900/50 border border-white/10 rounded-xl p-3 text-white focus:border-amber-500 outline-none transition" placeholder="En az 6 karakter" data-i18n-placeholder="auth_pass_reg_placeholder"></div>
+                
+                <button onclick="processRegister()" class="w-full py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-xl shadow-lg shadow-amber-500/20 transition mt-2 flex items-center justify-center gap-2"><span id="reg-btn-text" data-i18n="auth_reg_btn">Ücretsiz Kayıt Ol</span></button>
+                
+                <div class="flex items-center my-4">
+                    <hr class="flex-grow border-white/10">
+                    <span class="px-3 text-[10px] text-slate-500 font-bold uppercase tracking-wider" data-i18n="auth_quick_reg">Hızlı Kayıt</span>
+                    <hr class="flex-grow border-white/10">
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3 mt-4">
+                    <button onclick="window.location.href='/api/auth/google/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-google text-red-500 text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/x/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-x-twitter text-white text-lg"></i></button>
+                    <button onclick="window.location.href='/api/auth/facebook/login'" class="py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl transition flex justify-center items-center shadow-lg hover:-translate-y-1"><i class="fa-brands fa-facebook text-blue-500 text-lg"></i></button>
+                </div>
+            </div>
+            
+            <p class="text-xs text-center text-slate-500 mt-6"><span data-i18n="auth_has_account">Zaten üye misiniz?</span> <button onclick="showLoginModal()" class="text-amber-400 font-bold hover:text-amber-300" data-i18n="auth_login_link">Giriş Yapın</button></p>
+        </div>
+    </div>
+
+    <div id="upgrade-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-amber-500/30 p-8 rounded-3xl w-[450px] max-w-full shadow-2xl shadow-amber-500/10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+            <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-3xl text-black mb-6 mx-auto shadow-lg shadow-orange-500/30 relative z-10"><i class="fa-solid fa-crown"></i></div>
+            <h3 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-400 text-center mb-2 relative z-10" data-i18n="upg_title">PRO'ya Yükselt</h3>
+            <p class="text-sm text-slate-300 text-center mb-6 relative z-10" data-i18n="upg_desc">Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.</p>
+            <ul class="text-sm text-slate-400 space-y-3 mb-8 px-4 relative z-10">
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f1">Limitsiz Video Küçültme (Asla çökmez)</span></li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f2">AI Arka Plan Silici</span></li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f3">Yapay Zeka Stüdyosu</span></li>
+                <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <span data-i18n="upg_f4">Öncelikli Sunucu İşlemcisi</span></li>
+            </ul>
+            
+            <button onclick="launchPaddleCheckout()" class="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-black text-lg rounded-xl shadow-xl shadow-orange-500/20 transition transform hover:scale-105 relative z-10">
+                <span data-i18n="upg_btn">Hemen PRO Ol ($9.99/Ay)</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 max-w-full text-center shadow-2xl">
             <div class="loader mb-6"></div>
             <h3 class="text-xl font-bold text-white mb-1" id="p-title" data-i18n="vc_modal_title">İşleniyor</h3>
             <p class="text-xs text-slate-400 mb-4" id="p-desc" data-i18n="vc_modal_desc">Video analiz ediliyor...</p>
@@ -163,33 +257,90 @@
     <script>
         const API_URL = "/api/compress";
 
+        // Auth Logic (Sadece bu sayfada bulunduğu için korundu)
+        function getToken() { return localStorage.getItem('fw_token'); }
+        function setToken(token) { localStorage.setItem('fw_token', token); }
+        function removeToken() { localStorage.removeItem('fw_token'); }
+
+        function checkAuthState() {
+            const token = getToken();
+            if (token) {
+                if(document.getElementById('auth-buttons-unlogged')) document.getElementById('auth-buttons-unlogged').classList.add('hidden');
+                if(document.getElementById('auth-buttons-logged')) {
+                    document.getElementById('auth-buttons-logged').classList.remove('hidden');
+                    document.getElementById('auth-buttons-logged').classList.add('flex');
+                }
+            } else {
+                if(document.getElementById('auth-buttons-unlogged')) document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
+                if(document.getElementById('auth-buttons-logged')) {
+                    document.getElementById('auth-buttons-logged').classList.add('hidden');
+                    document.getElementById('auth-buttons-logged').classList.remove('flex');
+                }
+            }
+        }
+
+        function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
+        function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
+        function showProUpgrade() { closeAuthModals(); document.getElementById('upgrade-modal').classList.remove('hidden'); }
+        function closeAuthModals() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('register-modal').classList.add('hidden');
+            document.getElementById('upgrade-modal').classList.add('hidden');
+        }
+        
+        async function processLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            if(!email || !password) return Swal.fire({icon:'warning', title:'Hata', text:'Lütfen tüm alanları doldurun.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('login-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`/api/auth/login`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email, password}) });
+                const data = await res.json();
+                if(res.ok) { setToken(data.access_token); checkAuthState(); closeAuthModals(); Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); } 
+                else throw new Error(data.detail || 'Giriş başarısız.');
+            } catch(e) { Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'}); } 
+            finally { btnText.innerText = window.t('auth_login_btn'); }
+        }
+
+        async function processRegister() {
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            if(!email || password.length < 6) return Swal.fire({icon:'warning', title:'Hata', text:'Geçerli bir e-posta ve en az 6 haneli şifre girin.', background:'#0b0f19', color:'#fff'});
+            
+            const btnText = document.getElementById('reg-btn-text');
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            
+            try {
+                const res = await fetch(`/api/auth/register`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email, password}) });
+                const data = await res.json();
+                if(res.ok) { setToken(data.access_token); checkAuthState(); closeAuthModals(); Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); } 
+                else throw new Error(data.detail || 'Kayıt başarısız.');
+            } catch(e) { Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'}); } 
+            finally { btnText.innerText = window.t('auth_reg_btn'); }
+        }
+
+        function processLogout() { removeToken(); checkAuthState(); Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); }
+        window.addEventListener('DOMContentLoaded', checkAuthState);
+
+        // Core Video Compression Logic
         function previewVideo(input) {
             const file = input.files[0];
             if (file) {
                 document.getElementById('upload-content').classList.add('hidden');
-                
                 document.getElementById('video-filename').innerText = file.name;
                 document.getElementById('video-filesize').innerText = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
-                
                 document.getElementById('preview-container').classList.remove('hidden');
             }
         }
 
         const uploadArea = document.querySelector('.upload-area');
-        
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            uploadArea.addEventListener(eventName, preventDefaults, false);
-        });
-
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { uploadArea.addEventListener(eventName, preventDefaults, false); });
         function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'), false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'), false);
-        });
+        ['dragenter', 'dragover'].forEach(eventName => { uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'), false); });
+        ['dragleave', 'drop'].forEach(eventName => { uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'), false); });
 
         uploadArea.addEventListener('drop', (e) => {
             const dt = e.dataTransfer;
@@ -203,14 +354,7 @@
             const file = fileInput.files[0];
 
             if (!file) {
-                return Swal.fire({
-                    icon: 'warning', 
-                    title: window.t('swal_missing_vc_title') || 'Video Eksik', 
-                    text: window.t('swal_missing_vc_text') || 'Lütfen sıkıştırılacak videoyu yükleyin.', 
-                    background: '#0b0f19', 
-                    color: '#fff',
-                    confirmButtonColor: '#f59e0b'
-                });
+                return Swal.fire({ icon: 'warning', title: window.t('swal_missing_vc_title') || 'Video Eksik', text: window.t('swal_missing_vc_text') || 'Lütfen sıkıştırılacak videoyu yükleyin.', background: '#0b0f19', color: '#fff', confirmButtonColor: '#f59e0b' });
             }
 
             const compressionLevel = document.querySelector('input[name="compression_level"]:checked').value;
@@ -224,11 +368,7 @@
             startProgress(tid);
 
             try {
-                const res = await fetch(`${API_URL}/process`, {
-                    method: 'POST',
-                    body: fd
-                });
-
+                const res = await fetch(`${API_URL}/process`, { method: 'POST', body: fd, headers: { 'Authorization': `Bearer ${getToken()}` } });
                 if (res.ok) {
                     const blob = await res.blob();
                     const a = document.createElement('a'); 
@@ -238,29 +378,16 @@
                     a.click(); 
                     document.body.removeChild(a);
                     
-                    Swal.fire({
-                        icon: 'success', 
-                        title: window.t('swal_success_title') || 'Mükemmel!', 
-                        text: window.t('swal_success_vc_text') || 'Videonuz başarıyla sıkıştırıldı ve indirildi.', 
-                        background: '#0b0f19', 
-                        color: '#fff',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
+                    Swal.fire({ icon: 'success', title: window.t('swal_success_title') || 'Mükemmel!', text: window.t('swal_success_vc_text') || 'Videonuz başarıyla sıkıştırıldı ve indirildi.', background: '#0b0f19', color: '#fff', timer: 3000, showConfirmButton: false });
+                } else if(res.status === 401 || res.status === 403) {
+                    throw new Error("Bu işlemi yapmak için oturum açmalı veya PRO sürüme geçmelisiniz.");
                 } else {
                     const data = await res.json();
                     throw new Error(data.error || "Sunucu hatası");
                 }
             } catch (e) {
                 closeModal();
-                Swal.fire({
-                    icon: 'error', 
-                    title: window.t('swal_error_title') || 'İşlem Başarısız', 
-                    text: e.message, 
-                    background: '#0b0f19', 
-                    color: '#fff',
-                    confirmButtonColor: '#ef4444'
-                });
+                Swal.fire({ icon: 'error', title: window.t('swal_error_title') || 'İşlem Başarısız', text: e.message, background: '#0b0f19', color: '#fff', confirmButtonColor: '#ef4444' });
             }
         }
 
@@ -269,7 +396,7 @@
             document.getElementById('p-bar').style.width = '0%';
             document.getElementById('p-text').innerText = '0%';
             
-            const source = new EventSource(`/api/progress/${tid}`); // Ortak progress endpoint'ini kullanıyoruz
+            const source = new EventSource(`/api/progress/${tid}`); 
             source.onmessage = (e) => {
                 const d = JSON.parse(e.data);
                 document.getElementById('p-bar').style.width = d.percent + '%';
@@ -278,12 +405,9 @@
                 
                 if (d.percent >= 100 || d.message.startsWith('Hata')) {
                     source.close();
-                    if (d.percent >= 100 && !d.message.startsWith('Hata')) {
-                        setTimeout(closeModal, 800);
-                    }
+                    if (d.percent >= 100 && !d.message.startsWith('Hata')) setTimeout(closeModal, 800);
                 }
             };
-            
             source.onerror = () => { source.close(); closeModal(); };
         }
 
