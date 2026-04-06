@@ -15,23 +15,60 @@ const routeMap = {
     "/araclar/video-kucultme": "/en/tools/video-compressor",
     "/en/tools/video-compressor": "/araclar/video-kucultme",
     
-    // YASAL SAYFA ROTALARI
-    "/kosullar": "/en/terms",
-    "/en/terms": "/kosullar",
-    "/gizlilik-politikasi": "/en/privacy-policy",
-    "/en/privacy-policy": "/gizlilik-politikasi",
-    "/iade-politikasi": "/en/refund-policy",
-    "/en/refund-policy": "/iade-politikasi",
-    "/cerez-politikasi": "/en/cookie-policy",
-    "/en/cookie-policy": "/cerez-politikasi",
+    // YASAL SAYFA ROTALARI (Statik HTML Yapısı)
+    "/legal/terms.html": "/legal/terms.html",
+    "/legal/privacy.html": "/legal/privacy.html",
+    "/legal/refund.html": "/legal/refund.html",
+    "/legal/cookies.html": "/legal/cookies.html",
+    
     "/": "/en/",
     "/en/": "/"
 };
 
 window.CURRENT_LANG = window.location.pathname.startsWith("/en/") ? "en" : "tr";
 
+// Yasal sayfalarda URL bazlı dil tespiti HTML içinden yapıldığı için 
+// i18n içindeki CURRENT_LANG değişkenini override etme ihtimalini engelliyoruz.
+if (window.location.pathname.includes('/legal/')) {
+    if (document.documentElement.lang === "en") window.CURRENT_LANG = "en";
+    else window.CURRENT_LANG = "tr";
+}
+
 function toggleLanguage() {
     const currentPath = window.location.pathname;
+    
+    // Eğer yasal bir sayfadaysak HTML içi dil toggle mantığını çalıştırırız
+    if(currentPath.includes('/legal/')) {
+        const trContent = document.getElementById('content-tr');
+        const enContent = document.getElementById('content-en');
+        const langBtnText = document.getElementById("lang-btn-text");
+
+        if (window.CURRENT_LANG === "tr") {
+            trContent.classList.remove('active');
+            enContent.classList.add('active');
+            document.documentElement.lang = "en";
+            window.CURRENT_LANG = "en";
+            if(langBtnText) langBtnText.innerText = "TR";
+        } else {
+            enContent.classList.remove('active');
+            trContent.classList.add('active');
+            document.documentElement.lang = "tr";
+            window.CURRENT_LANG = "tr";
+            if(langBtnText) langBtnText.innerText = "EN";
+        }
+        
+        // Sadece yasal sayfalar için i18n yeniden yükle
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (translations[window.CURRENT_LANG] && translations[window.CURRENT_LANG][key]) {
+                el.innerHTML = translations[window.CURRENT_LANG][key];
+            }
+        });
+        return;
+    }
+
+    // Normal araç sayfaları için URL yönlendirmesi
     if (routeMap[currentPath]) {
         window.location.href = routeMap[currentPath];
     } else {
@@ -41,7 +78,6 @@ function toggleLanguage() {
 
 const translations = {
     "tr": {
-        // --- ORTAK ---
         "nav_return": "Ana Siteye Dön",
         "nav_home_tooltip": "Ana Sayfa",
         "footer_copy": "© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.",
@@ -53,7 +89,14 @@ const translations = {
         "prog_title": "İşleniyor",
         "prog_desc": "Sunucu ile iletişim kuruluyor...",
         
-        // --- SWAL (ALERTS) ---
+        "session_warning_title": "Oturum Kapanıyor",
+        "session_warning_desc": "Hareketsizlik nedeniyle oturumunuz <b>60</b> saniye içinde kapatılacak.",
+        "session_ask_continue": "İşlemlere devam etmek istiyor musunuz?",
+        "session_btn_continue": "Devam Et",
+        "session_btn_logout": "Çıkış Yap",
+        "session_expired_title": "Oturum Sonlandı",
+        "session_expired_desc": "Güvenliğiniz için oturumunuz otomatik olarak kapatıldı.",
+        
         "swal_missing_title": "Eksik Görsel",
         "swal_missing_text": "Lütfen işlenecek görseli seçin.",
         "swal_success_title": "Başarılı",
@@ -88,7 +131,6 @@ const translations = {
         "swal_missing_vc_text": "Lütfen sıkıştırılacak videoyu yükleyin.",
         "swal_success_vc_text": "Videonuz başarıyla sıkıştırıldı ve indirildi.",
 
-        // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Giriş Yap",
         "header_register": "Üye Ol",
         "header_upgrade": "Yükselt",
@@ -110,7 +152,6 @@ const translations = {
         "auth_has_account": "Zaten üye misiniz?",
         "auth_login_link": "Giriş Yapın",
         
-        // --- PRO YÜKSELTME MODALI ---
         "upg_title": "PRO'ya Yükselt",
         "upg_desc": "Yapay zeka araçları ve sınırsız sıkıştırma için Premium'a geç.",
         "upg_f1": "Limitsiz Video Küçültme (Asla çökmez)",
@@ -119,7 +160,6 @@ const translations = {
         "upg_f4": "Öncelikli Sunucu İşlemcisi",
         "upg_btn": "Hemen PRO Ol ($9.99/Ay)",
 
-        // --- ANA SAYFA VİTRİNİ ---
         "home_nav_media": "Medya Yedekleme",
         "home_nav_image": "Görsel Stüdyo",
         "home_nav_pdf": "PDF Araçları",
@@ -153,7 +193,6 @@ const translations = {
         "home_pdf_btn_select": "Dosya Seç",
         "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Geri Dön",
 
-        // --- GÖRSEL STÜDYO ---
         "img_btn_upload": "Görsel Yükle",
         "img_placeholder": "Düzenlemek için bir görsel seçin",
         "img_tab_crop": "KIRP",
@@ -179,7 +218,6 @@ const translations = {
         "img_fmt_webp": "WEBP (Web İçin)",
         "img_btn_process": "İŞLE & İNDİR",
 
-        // --- ARKA PLAN SİLİCİ ---
         "bg_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>Dekupe.</span>",
         "bg_desc": "Yapay zeka (U²-Net) motorumuzla fotoğraflarınızın arka planını saç teline kadar ayırın ve saniyeler içinde şeffaf PNG'ye dönüştürün.",
         "bg_drop_title": "Sihri Başlatmak İçin Sürükleyin",
@@ -194,7 +232,6 @@ const translations = {
         "bg_info_3_desc": "Çıktılar her zaman profesyonel tasarım programlarıyla uyumlu şeffaf PNG formatındadır.",
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> ARKA PLANI SİL VE İNDİR",
         
-        // --- TOPLU İŞLEM ---
         "batch_title": "Toplu <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'>Dönüştürücü.</span>",
         "batch_desc": "Tek seferde 50 dosyaya kadar yükleyin. Görselleri topluca yeniden boyutlandırın, formatını değiştirin ve zamandan tasarruf edin.",
         "batch_drop_title": "Görselleri Buraya Sürükleyin",
@@ -213,7 +250,6 @@ const translations = {
         "batch_resize_info": "Boş bırakırsanız orijinal boyut korunur. Yükseklik otomatik ayarlanır.",
         "batch_btn_process": "<i class='fa-solid fa-bolt'></i> TÜMÜNÜ İŞLE VE İNDİR (.ZIP)",
 
-        // --- AI STUDIO ---
         "ai_title": "Kusursuz <span class='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500'>Detaylar.</span>",
         "ai_desc": "Yapay zeka motorumuzla düşük çözünürlüklü fotoğrafları canlandırın, pürüzleri giderin ve pikselleri yeniden inşa edin.",
         "ai_drop_title": "Sihri Başlatmak İçin Dokun",
@@ -228,7 +264,6 @@ const translations = {
         "ai_model_3_desc": "Düşük ışıkta çekilmiş karlı (noise) fotoğraflardaki pürüzleri filtreler ve yüzeyleri pürüzsüzleştirir.",
         "ai_btn_process": "<i class='fa-solid fa-bolt'></i> YAPAY ZEKA İLE İYİLEŞTİR VE İNDİR",
 
-        // --- CLOUD SYNC ---
         "cloud_title": "Sınırları <span class='text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500'>Aşın.</span>",
         "cloud_desc": "Cihazınızda yer açın. İşlenmiş veya büyük boyutlu dosyalarınızı doğrudan Dropbox bulut hesabınıza fırlatın.",
         "cloud_drop_title": "Buluta Gönderilecek Dosya",
@@ -240,7 +275,6 @@ const translations = {
         "cloud_token_info": "Dropbox Geliştirici panelinden aldığınız tokeni girin. Bu bilgi sunucularımızda <span class='text-sky-400 font-bold'>asla kaydedilmez.</span>",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> DOĞRUDAN BULUTA FIRLAT",
 
-        // --- DEVELOPER API ---
         "dev_title": "Gücü <span class='text-emerald-400 neon-glow'>Entegre Edin.</span>",
         "dev_desc": "FileWizardIO medya motorunu REST API üzerinden kendi projelerinizde kullanın. Hemen ücretsiz bir anahtar oluşturun.",
         "dev_get_key_title": "API Anahtarı Al",
@@ -258,7 +292,6 @@ const translations = {
         "dev_curl_example": "cURL Örneği",
         "dev_example_res": "Örnek Yanıt (JSON)",
         
-        // --- AUTO WATERMARK ---
         "wm_main_title": "Görsellerinizi <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-500'>Markalayın.</span>",
         "wm_main_desc": "İçeriklerinizi koruyun. Logonuzu saniyeler içinde, profesyonel kalitede görsellerinize entegre edin.",
         "wm_box1_title": "1. Ana Görsel",
@@ -275,22 +308,6 @@ const translations = {
         "wm_fmt_webp": "WEBP (Web Optimizasyonu)",
         "wm_btn_process": "<i class='fa-solid fa-wand-magic-sparkles'></i> LOGOYU UYGULA VE İNDİR",
 
-        // --- VIDEO COMPRESSOR ---
-        "vc_title": "Boyutu Küçült. <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500'>Kaliteyi Koru.</span>",
-        "vc_desc": "Gelişmiş FFmpeg motorumuzla videolarınızın kalitesini bozmadan dosya boyutunu %80'e kadar küçültün. WhatsApp ve e-posta sınırlarına takılmayın.",
-        "vc_drop_title": "Videoyu Buraya Sürükleyin",
-        "vc_drop_desc": "veya seçmek için tıklayın (MP4, MOV, AVI, WEBP)",
-        "vc_btn_change": "Başka Video Seç",
-        "vc_settings_title": "Sıkıştırma Ayarları",
-        "vc_level_label": "Sıkıştırma Seviyesi",
-        "vc_level_light_title": "Hafif (Mükemmel Kalite)",
-        "vc_level_light_desc": "Orijinale en yakın kalite. Dosya boyutu yaklaşık %20-30 küçülür.",
-        "vc_level_medium_title": "Standart (Tavsiye Edilen)",
-        "vc_level_medium_desc": "Gözle görülür kalite kaybı olmadan dosya boyutunu %50 civarında küçültür.",
-        "vc_level_extreme_title": "Maksimum (WhatsApp Uyumlu)",
-        "vc_level_extreme_desc": "Dosya boyutunu radikal şekilde (%80'e kadar) düşürür. Sosyal medya gönderimleri için idealdir.",
-        "vc_btn_process": "<i class='fa-solid fa-compress'></i> SIKIŞTIR VE İNDİR",
-        
         "footer_copy_wm": "© 2026 FileWizardIO by ForgeLogic LLC. Tüm hakları saklıdır.",
         "footer_privacy_wm": "Gizlilik Politikası",
         "footer_terms_wm": "Kullanım Koşulları",
@@ -306,7 +323,6 @@ const translations = {
         "vc_modal_desc": "Video analiz ediliyor..."
     },
     "en": {
-        // --- COMMON ---
         "nav_return": "Back to Home",
         "nav_home_tooltip": "Home",
         "footer_copy": "© 2026 FileWizardIO Enterprise API by ForgeLogic LLC.",
@@ -317,8 +333,15 @@ const translations = {
         "footer_contact": "Contact",
         "prog_title": "Processing",
         "prog_desc": "Communicating with server...",
+        
+        "session_warning_title": "Session Expiring",
+        "session_warning_desc": "Due to inactivity, your session will expire in <b>60</b> seconds.",
+        "session_ask_continue": "Do you want to continue?",
+        "session_btn_continue": "Continue",
+        "session_btn_logout": "Log Out",
+        "session_expired_title": "Session Expired",
+        "session_expired_desc": "For your security, your session has been closed automatically.",
 
-        // --- SWAL (ALERTS) ---
         "swal_missing_title": "Missing Image",
         "swal_missing_text": "Please select an image to process.",
         "swal_success_title": "Success",
@@ -353,7 +376,6 @@ const translations = {
         "swal_missing_vc_text": "Please upload a video to compress.",
         "swal_success_vc_text": "Your video has been successfully compressed and downloaded.",
 
-        // --- AUTH & KULLANICI İŞLEMLERİ ---
         "header_login": "Login",
         "header_register": "Sign Up",
         "header_upgrade": "Upgrade",
@@ -375,7 +397,6 @@ const translations = {
         "auth_has_account": "Already have an account?",
         "auth_login_link": "Log In",
         
-        // --- PRO YÜKSELTME MODALI ---
         "upg_title": "Upgrade to PRO",
         "upg_desc": "Go Premium for AI tools and unlimited compression.",
         "upg_f1": "Unlimited Video Compression (Never crashes)",
@@ -384,7 +405,6 @@ const translations = {
         "upg_f4": "Priority Server Processing",
         "upg_btn": "Get PRO Now ($9.99/Mo)",
         
-        // --- HOME SHOWCASE ---
         "home_nav_media": "Media Backup",
         "home_nav_image": "Image Studio",
         "home_nav_pdf": "PDF Tools",
@@ -418,7 +438,6 @@ const translations = {
         "home_pdf_btn_select": "Select File",
         "pdf_btn_back": "<i class='fa-solid fa-arrow-left'></i> Go Back",
 
-        // --- GÖRSEL STÜDYO ---
         "img_btn_upload": "Upload Image",
         "img_placeholder": "Select an image to edit",
         "img_tab_crop": "CROP",
@@ -444,7 +463,6 @@ const translations = {
         "img_fmt_webp": "WEBP (For Web)",
         "img_btn_process": "PROCESS & DOWNLOAD",
 
-        // --- BG REMOVER ---
         "bg_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500'>Cutout.</span>",
         "bg_desc": "Separate the background of your photos down to a single strand of hair with our AI (U²-Net) engine and convert to transparent PNG in seconds.",
         "bg_drop_title": "Drag & Drop to Start Magic",
@@ -459,7 +477,6 @@ const translations = {
         "bg_info_3_desc": "Outputs are always in transparent PNG format compatible with professional design software.",
         "bg_btn_process": "<i class='fa-solid fa-eraser'></i> REMOVE BG & DOWNLOAD",
 
-        // --- BATCH PROCESSING ---
         "batch_title": "Bulk <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400'>Converter.</span>",
         "batch_desc": "Upload up to 50 files at once. Bulk resize images, change formats, and save time.",
         "batch_drop_title": "Drag & Drop Images Here",
@@ -478,7 +495,6 @@ const translations = {
         "batch_resize_info": "Leave blank to keep original size. Height adjusts automatically.",
         "batch_btn_process": "<i class='fa-solid fa-bolt'></i> PROCESS ALL & DOWNLOAD (.ZIP)",
 
-        // --- AI STUDIO ---
         "ai_title": "Flawless <span class='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500'>Details.</span>",
         "ai_desc": "Revive low-resolution photos, remove noise, and reconstruct pixels with our AI engine.",
         "ai_drop_title": "Tap to Start Magic",
@@ -493,7 +509,6 @@ const translations = {
         "ai_model_3_desc": "Filters out noise in low-light photos and smoothes surfaces.",
         "ai_btn_process": "<i class='fa-solid fa-bolt'></i> ENHANCE WITH AI & DOWNLOAD",
 
-        // --- CLOUD SYNC ---
         "cloud_title": "Break the <span class='text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500'>Limits.</span>",
         "cloud_desc": "Free up space on your device. Send your processed or large files directly to your Dropbox cloud account.",
         "cloud_drop_title": "File to Send to Cloud",
@@ -505,7 +520,6 @@ const translations = {
         "cloud_token_info": "Enter the token from your Dropbox Developer panel. This info is <span class='text-sky-400 font-bold'>never saved</span> on our servers.",
         "cloud_btn_process": "<i class='fa-solid fa-cloud-arrow-up'></i> UPLOAD DIRECTLY TO CLOUD",
 
-        // --- DEVELOPER API ---
         "dev_title": "<span class='text-emerald-400 neon-glow'>Integrate</span> the Power.",
         "dev_desc": "Connect the FileWizard engine to your own applications. Set up your automation processes in seconds.",
         "dev_get_key_title": "Get API Key",
@@ -523,7 +537,6 @@ const translations = {
         "dev_curl_example": "cURL Example",
         "dev_example_res": "Example Response (JSON)",
         
-        // --- AUTO WATERMARK ---
         "wm_main_title": "Brand Your <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-500'>Images.</span>",
         "wm_main_desc": "Protect your content. Integrate your logo into your images in seconds with professional quality.",
         "wm_box1_title": "1. Base Image",
@@ -574,7 +587,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    // Placeholder çevirileri
     const placeholders = document.querySelectorAll("[data-i18n-placeholder]");
     placeholders.forEach(el => {
         const key = el.getAttribute("data-i18n-placeholder");
@@ -583,7 +595,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Tooltip (title) çevirileri
     const titles = document.querySelectorAll("[data-i18n-title]");
     titles.forEach(el => {
         const key = el.getAttribute("data-i18n-title");

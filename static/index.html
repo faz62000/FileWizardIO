@@ -32,7 +32,7 @@
 
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
-    <script src="/i18n.js?v=8.3.3"></script>
+    <script src="/i18n.js?v=8.3.5"></script>
 
     <script>
         tailwind.config = {
@@ -41,7 +41,11 @@
                     fontFamily: { sans: ['Outfit', 'sans-serif'] },
                     colors: { 
                         dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
-                        accent: { 500: '#3b82f6', 600: '#2563eb' }
+                        blue: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        emerald: { 400: '#34d399', 500: '#10b981' },
+                        sky: { 400: '#38bdf8', 500: '#0ea5e9' },
+                        amber: { 400: '#fbbf24', 500: '#f59e0b' }
                     },
                     animation: { 'float': 'float 6s ease-in-out infinite', 'pulse-glow': 'pulseGlow 3s infinite' },
                     keyframes: {
@@ -62,7 +66,7 @@
         font-family: 'Outfit', sans-serif;
     }
 
-    .custom-scroll::-webkit-scrollbar { width: 5px; } 
+    .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; } 
     .custom-scroll::-webkit-scrollbar-thumb { 
         background: #334155; 
         border-radius: 10px; 
@@ -156,8 +160,8 @@
 </head>
 <body class="flex h-screen w-screen bg-[#050505] text-white overflow-hidden">
 
-    <div id="login-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
-        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
+    <div id="login-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-full shadow-2xl relative">
             <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center text-2xl text-blue-400 mb-6 mx-auto"><i class="fa-solid fa-user-lock"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_login_title">Hoş Geldiniz</h3>
@@ -186,8 +190,8 @@
         </div>
     </div>
 
-    <div id="register-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
-        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-[90%] shadow-2xl relative">
+    <div id="register-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-white/10 p-8 rounded-3xl w-96 max-w-full shadow-2xl relative">
             <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center text-2xl text-blue-400 mb-6 mx-auto"><i class="fa-solid fa-user-plus"></i></div>
             <h3 class="text-2xl font-bold text-white text-center mb-2" data-i18n="auth_reg_title">Kayıt Ol</h3>
@@ -216,8 +220,8 @@
         </div>
     </div>
 
-    <div id="upgrade-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur">
-        <div class="glass-panel border border-amber-500/30 p-8 rounded-3xl w-[450px] max-w-[90%] shadow-2xl shadow-amber-500/10 relative overflow-hidden">
+    <div id="upgrade-modal" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
+        <div class="glass-panel border border-amber-500/30 p-8 rounded-3xl w-[450px] max-w-full shadow-2xl shadow-amber-500/10 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-orange-500"></div>
             <button onclick="closeAuthModals()" class="absolute top-4 right-4 text-slate-400 hover:text-white z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-3xl text-black mb-6 mx-auto shadow-lg shadow-orange-500/30 relative z-10"><i class="fa-solid fa-crown"></i></div>
@@ -237,66 +241,72 @@
     </div>
     
     <aside class="w-20 lg:w-72 bg-[#0b0f19] border-r border-white/5 flex flex-col z-50 hidden md:flex shrink-0">
-        <div class="h-24 flex items-center justify-center lg:justify-start lg:px-8">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">✨</div>
+        <a href="/" class="h-24 flex items-center justify-center lg:justify-start lg:px-8 group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform">✨</div>
             <div class="ml-4 hidden lg:block">
-                <h1 class="text-xl font-bold tracking-tight">FileWizard<span class="text-blue-500">IO</span></h1>
+                <h1 class="text-xl font-bold tracking-tight group-hover:text-blue-400 transition-colors">FileWizard<span class="text-blue-500">IO</span></h1>
                 <p class="text-[10px] text-slate-500 tracking-widest uppercase">Pro Studio v8.0</p>
             </div>
-        </div>
+        </a>
         
         <nav class="flex-1 px-4 space-y-2 py-6 overflow-y-auto custom-scroll">
             <button onclick="switchTab('media')" id="nav-media" class="sidebar-link active">
                 <i class="fa-solid fa-cloud-arrow-down text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_media">Medya Yedekleme</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_media">Medya Yedekleme</span>
             </button>
             <button onclick="switchTab('image')" id="nav-image" class="sidebar-link">
                 <i class="fa-solid fa-wand-magic-sparkles text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_image">Görsel Stüdyo</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_image">Görsel Stüdyo</span>
             </button>
             <button onclick="switchTab('pdf')" id="nav-pdf" class="sidebar-link">
                 <i class="fa-solid fa-file-pdf text-xl w-6 text-center"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_pdf">PDF Araçları</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_pdf">PDF Araçları</span>
             </button>
 
             <div class="pt-6 pb-2 hidden lg:block">
                 <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider pl-4" data-i18n="home_nav_premium">Premium Araçlar</p>
             </div>
             
-            <button onclick="navTo('bg')" class="sidebar-link">
+            <button onclick="navToPremium('bg')" class="sidebar-link">
                 <i class="fa-solid fa-eraser text-xl w-6 text-center text-emerald-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_bg">Arka Plan Silici</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_bg">Arka Plan Silici</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
-            <button onclick="navTo('batch')" class="sidebar-link">
+            <button onclick="navToPremium('batch')" class="sidebar-link">
                 <i class="fa-solid fa-layer-group text-xl w-6 text-center text-blue-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_batch">Toplu İşlem</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_batch">Toplu İşlem</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
-            <button onclick="navTo('ai')" class="sidebar-link">
+            <button onclick="navToPremium('ai')" class="sidebar-link">
                 <i class="fa-solid fa-brain text-xl w-6 text-center text-cyan-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_ai">AI Stüdyo</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_ai">AI Stüdyo</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
-            <button onclick="navTo('cloud')" class="sidebar-link">
+            <button onclick="navToPremium('cloud')" class="sidebar-link">
                 <i class="fa-solid fa-cloud-arrow-up text-xl w-6 text-center text-sky-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_cloud">Bulut Senk.</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_cloud">Bulut Senk.</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
-            <button onclick="navTo('wm')" class="sidebar-link">
-                <i class="fa-solid fa-stamp text-xl w-6 text-center text-blue-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_wm">Filigran</span>
+            <button onclick="navToPremium('wm')" class="sidebar-link">
+                <i class="fa-solid fa-stamp text-xl w-6 text-center text-sky-500"></i>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_wm">Filigran</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
             
-            <button onclick="navTo('vc')" class="sidebar-link">
+            <button onclick="navToPremium('vc')" class="sidebar-link">
                 <i class="fa-solid fa-compress text-xl w-6 text-center text-amber-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_vc">Video Küçültme</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_vc">Video Küçültme</span>
+                <i class="fa-solid fa-lock text-[10px] text-amber-400 hidden lg:block"></i>
             </button>
 
             <button onclick="switchTab('pricing')" id="nav-pricing" class="sidebar-link mt-4 border-t border-white/5 pt-4">
                 <i class="fa-solid fa-tag text-xl w-6 text-center text-emerald-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_pricing">Fiyatlandırma</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_pricing">Fiyatlandırma</span>
             </button>
 
             <button onclick="navTo('api')" class="sidebar-link border-t border-white/5 pt-4">
                 <i class="fa-solid fa-code text-xl w-6 text-center text-blue-400"></i>
-                <span class="hidden lg:block font-medium" data-i18n="home_nav_api">Geliştirici API</span>
+                <span class="hidden lg:block font-medium flex-1" data-i18n="home_nav_api">Geliştirici API</span>
             </button>
         </nav>
 
@@ -308,22 +318,55 @@
         </div>
     </aside>
 
-    <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/90 backdrop-blur border-t border-white/10 z-50 flex justify-around p-4 pb-6">
-        <button onclick="switchTab('media')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-cloud-arrow-down text-xl"></i></button>
-        <button onclick="switchTab('image')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></button>
-        <button onclick="switchTab('pdf')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-file-pdf text-xl"></i></button>
-        <button onclick="switchTab('pricing')" class="text-slate-400 hover:text-blue-400 active:text-blue-400"><i class="fa-solid fa-tag text-xl"></i></button>
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f19]/95 backdrop-blur-xl border-t border-white/10 z-50 overflow-x-auto custom-scroll">
+        <div class="flex items-center gap-6 px-6 py-4 w-max">
+            <button onclick="switchTab('media')" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-blue-400 active:text-blue-400 min-w-[60px]">
+                <i class="fa-solid fa-cloud-arrow-down text-xl"></i><span class="text-[10px] font-bold tracking-wide" data-i18n="home_nav_media">Medya</span>
+            </button>
+            <button onclick="switchTab('image')" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-blue-400 active:text-blue-400 min-w-[60px]">
+                <i class="fa-solid fa-wand-magic-sparkles text-xl"></i><span class="text-[10px] font-bold tracking-wide" data-i18n="home_nav_image">Stüdyo</span>
+            </button>
+            <button onclick="switchTab('pdf')" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-blue-400 active:text-blue-400 min-w-[60px]">
+                <i class="fa-solid fa-file-pdf text-xl"></i><span class="text-[10px] font-bold tracking-wide" data-i18n="home_nav_pdf">PDF</span>
+            </button>
+            <button onclick="switchTab('pricing')" class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-emerald-400 active:text-emerald-400 min-w-[60px]">
+                <i class="fa-solid fa-tag text-xl"></i><span class="text-[10px] font-bold tracking-wide" data-i18n="home_nav_pricing">Fiyat</span>
+            </button>
+            
+            <div class="w-px h-8 bg-white/10 mx-1"></div>
+            
+            <button onclick="navToPremium('bg')" class="flex flex-col items-center gap-1.5 text-emerald-400 hover:text-emerald-300 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-eraser text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">Dekupe</span>
+            </button>
+            <button onclick="navToPremium('batch')" class="flex flex-col items-center gap-1.5 text-blue-400 hover:text-blue-300 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-layer-group text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">Toplu</span>
+            </button>
+            <button onclick="navToPremium('ai')" class="flex flex-col items-center gap-1.5 text-cyan-400 hover:text-cyan-300 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-brain text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">AI</span>
+            </button>
+            <button onclick="navToPremium('cloud')" class="flex flex-col items-center gap-1.5 text-sky-400 hover:text-sky-300 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-cloud-arrow-up text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">Bulut</span>
+            </button>
+            <button onclick="navToPremium('wm')" class="flex flex-col items-center gap-1.5 text-sky-500 hover:text-sky-400 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-stamp text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">Marka</span>
+            </button>
+            <button onclick="navToPremium('vc')" class="flex flex-col items-center gap-1.5 text-amber-400 hover:text-amber-300 min-w-[60px]">
+                <div class="relative"><i class="fa-solid fa-compress text-xl"></i><i class="fa-solid fa-lock absolute -bottom-1 -right-2 text-[9px] text-amber-400 drop-shadow-md"></i></div>
+                <span class="text-[10px] font-bold tracking-wide">Küçült</span>
+            </button>
+        </div>
     </div>
 
-    <main class="flex-1 flex flex-col min-w-0 h-full relative bg-[#050505]">
+    <main class="flex-1 relative bg-[#050505] overflow-hidden flex flex-col pb-24 md:pb-0">
         
-        <header class="w-full flex justify-between md:justify-end items-center p-4 bg-[#050505]/80 backdrop-blur border-b border-white/5 z-40 shrink-0">
-            <div class="md:hidden flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">✨</div>
-                <span class="font-bold text-lg">FileWizardIO</span>
-            </div>
-            
+        <header class="w-full flex justify-end items-center p-4 bg-[#050505]/80 backdrop-blur border-b border-white/5 z-40 shrink-0">
             <div class="flex items-center gap-3">
+                
                 <div id="auth-buttons-unlogged" class="flex gap-2">
                     <button onclick="showLoginModal()" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition"><span data-i18n="header_login">Giriş Yap</span></button>
                     <button onclick="showRegisterModal()" class="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-lg shadow-blue-500/20 transition"><span data-i18n="header_register">Üye Ol</span></button>
@@ -337,9 +380,13 @@
                     </button>
                 </div>
 
-                <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800/80 backdrop-blur border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
+                <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-800 border border-white/10 hover:bg-slate-700 transition text-xs font-bold text-slate-300 hover:text-white shadow-lg">
                     <i class="fa-solid fa-globe mr-2"></i> <span id="lang-btn-text">EN</span>
                 </button>
+                
+                <a href="/" class="w-9 h-9 rounded-lg bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-500 hover:border-blue-400 transition shadow-lg group" data-i18n-title="nav_home_tooltip">
+                    <i class="fa-solid fa-house group-hover:text-white"></i>
+                </a>
             </div>
         </header>
 
@@ -516,24 +563,24 @@
             </section>
 
             <section id="pdf-tool" class="hidden absolute inset-0 flex flex-col p-8 items-center justify-center relative overflow-hidden pb-24 md:pb-0">
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-[#050505] to-[#050505] pointer-events-none"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-[#050505] to-[#050505] pointer-events-none"></div>
 
                 <div id="pdf-dashboard" class="w-full max-w-5xl z-10 grid grid-cols-1 md:grid-cols-3 gap-6 animate-[fadeInUp_0.5s_ease-out]">
                     
-                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('edit')">
-                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-pen-to-square text-3xl text-blue-400"></i></div>
+                    <div class="glass-panel p-8 rounded-3xl hover:border-cyan-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('edit')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-pen-to-square text-3xl text-cyan-400"></i></div>
                         <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_edit_title">Canlı Düzenle</h3>
                         <p class="text-sm text-slate-400" data-i18n="home_pdf_edit_desc">Sayfaları döndür, sil veya yerini değiştir. Görsel editör.</p>
                     </div>
 
-                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('merge')">
-                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-layer-group text-3xl text-cyan-400"></i></div>
+                    <div class="glass-panel p-8 rounded-3xl hover:border-cyan-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('merge')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-layer-group text-3xl text-blue-400"></i></div>
                         <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_merge_title">PDF Birleştir</h3>
                         <p class="text-sm text-slate-400" data-i18n="home_pdf_merge_desc">Birden fazla PDF dosyasını tek bir dosyada topla.</p>
                     </div>
 
-                    <div class="glass-panel p-8 rounded-3xl hover:border-blue-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('compress')">
-                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-file-zipper text-3xl text-green-400"></i></div>
+                    <div class="glass-panel p-8 rounded-3xl hover:border-cyan-500/50 transition cursor-pointer group text-center" onclick="openPdfMode('compress')">
+                        <div class="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition shadow-xl"><i class="fa-solid fa-file-zipper text-3xl text-emerald-400"></i></div>
                         <h3 class="text-2xl font-bold mb-2" data-i18n="home_pdf_compress_title">PDF Sıkıştır</h3>
                         <p class="text-sm text-slate-400" data-i18n="home_pdf_compress_desc">Kaliteyi koruyarak dosya boyutunu %80'e kadar küçült.</p>
                     </div>
@@ -542,14 +589,14 @@
                 <div id="pdf-workspace" class="hidden w-full h-full flex flex-col z-10">
                     <div class="h-16 flex items-center justify-between border-b border-white/5 mb-4 shrink-0">
                         <button onclick="closePdfWorkspace()" class="text-slate-400 hover:text-white flex items-center gap-2 font-bold" data-i18n="pdf_btn_back"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
-                        <h3 id="pdf-mode-title" class="text-lg font-bold text-blue-400">Mod</h3>
+                        <h3 id="pdf-mode-title" class="text-lg font-bold text-cyan-400">Mod</h3>
                         <div id="pdf-actions"></div>
                     </div>
                     
                     <div id="pdf-content-area" class="flex-1 overflow-y-auto custom-scroll flex flex-col items-center justify-center border-2 border-dashed border-slate-800 rounded-2xl bg-slate-900/20">
                         <i class="fa-solid fa-cloud-arrow-up text-5xl text-slate-600 mb-4"></i>
                         <p class="text-slate-400 mb-4" data-i18n="home_pdf_drop">Dosyaları buraya bırakın</p>
-                        <button onclick="document.getElementById('pdf-input-dynamic').click()" class="px-6 py-2 bg-blue-600 rounded-lg font-bold hover:bg-blue-500" data-i18n="home_pdf_btn_select">Dosya Seç</button>
+                        <button onclick="document.getElementById('pdf-input-dynamic').click()" class="px-6 py-2 bg-cyan-600 rounded-lg font-bold hover:bg-cyan-500 text-black" data-i18n="home_pdf_btn_select">Dosya Seç</button>
                         <input type="file" id="pdf-input-dynamic" class="hidden" accept="application/pdf">
                     </div>
                     
@@ -583,7 +630,7 @@
         </footer>
     </main>
 
-    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur">
+    <div id="progress-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur px-4">
         <div class="bg-[#0b0f19] border border-white/10 p-8 rounded-3xl w-80 text-center shadow-2xl">
             <div class="loader mb-6"></div>
             <h3 class="text-xl font-bold text-white mb-1" id="p-title" data-i18n="prog_title">İşleniyor</h3>
@@ -597,38 +644,24 @@
         const API_URL = "/api";
         let cropper, pdfMode = null, pdfTaskId = null, filters = { brightness: 100, contrast: 100, saturation: 100 }, currentPreset = 'none';
 
-        // --- YENİ DİNAMİK YÖNLENDİRİCİ ---
+        // --- YENİ DİNAMİK YÖNLENDİRİCİ (PAYWALL EKLENDİ) ---
         function navTo(key) {
             const routes = {
-                en: {
-                    bg: '/en/tools/background-remover',
-                    batch: '/en/tools/batch-processing',
-                    ai: '/en/tools/ai-studio',
-                    cloud: '/en/tools/cloud-sync',
-                    wm: '/en/tools/auto-watermark',
-                    vc: '/en/tools/video-compressor',
-                    api: '/en/developer-api',
-                    privacy: '/en/privacy-policy',
-                    terms: '/en/terms',
-                    cookies: '/en/cookie-policy',
-                    refund: '/en/refund-policy'
-                },
-                tr: {
-                    bg: '/araclar/arka-plan-silici',
-                    batch: '/araclar/toplu-islem',
-                    ai: '/araclar/ai-studyo',
-                    cloud: '/araclar/bulut-senkronizasyonu',
-                    wm: '/araclar/otomatik-filigran',
-                    vc: '/araclar/video-kucultme',
-                    api: '/gelistirici-api',
-                    privacy: '/gizlilik-politikasi',
-                    terms: '/kosullar',
-                    cookies: '/cerez-politikasi',
-                    refund: '/iade-politikasi'
-                }
+                en: { bg: '/en/tools/background-remover', batch: '/en/tools/batch-processing', ai: '/en/tools/ai-studio', cloud: '/en/tools/cloud-sync', wm: '/en/tools/auto-watermark', vc: '/en/tools/video-compressor', api: '/en/developer-api', privacy: '/en/privacy-policy', terms: '/en/terms', cookies: '/en/cookie-policy', refund: '/en/refund-policy' },
+                tr: { bg: '/araclar/arka-plan-silici', batch: '/araclar/toplu-islem', ai: '/araclar/ai-studyo', cloud: '/araclar/bulut-senkronizasyonu', wm: '/araclar/otomatik-filigran', vc: '/araclar/video-kucultme', api: '/gelistirici-api', privacy: '/gizlilik-politikasi', terms: '/kosullar', cookies: '/cerez-politikasi', refund: '/iade-politikasi' }
             };
             const lang = window.CURRENT_LANG || 'tr';
             window.location.href = routes[lang][key];
+        }
+
+        function navToPremium(key) {
+            const token = getToken();
+            if (!token) {
+                // Paddle İncelemesi İçin: Ödeme Duvarı (Paywall) Gösterimi
+                showProUpgrade();
+            } else {
+                navTo(key);
+            }
         }
         // ---------------------------------
 
@@ -640,8 +673,6 @@
                     Swal.fire({icon:'success', title:'Tebrikler!', text:'PRO hesabınız aktif edildi.', background:'#0b0f19', color:'#fff'});
                     closeAuthModals();
                     checkAuthState(); 
-                } else if (data.name === "checkout.closed") {
-                    console.log("Kullanıcı ödeme ekranını kapattı.");
                 }
             }
         });
@@ -671,28 +702,84 @@
                         <p><strong class="text-white"><i class="fa-solid fa-envelope text-blue-400 mr-2"></i></strong> <a href="mailto:info@forgelogiclab.com" class="hover:text-blue-400 transition">info@forgelogiclab.com</a></p>
                     </div>
                 `, 
-                background: '#0b0f19', 
-                color: '#fff',
-                confirmButtonColor: '#3b82f6'
+                background: '#0b0f19', color: '#fff', confirmButtonColor: '#3b82f6'
             }); 
         }
 
+        // --- OTURUM YÖNETİMİ (SESSION MANAGEMENT) ---
         function getToken() { return localStorage.getItem('fw_token'); }
         function setToken(token) { localStorage.setItem('fw_token', token); }
         function removeToken() { localStorage.removeItem('fw_token'); }
 
+        let inactivityTime = 0;
+        let idleInterval;
+        let tokenRefreshInterval;
+        const WARNING_TIME = 14 * 60; // 14. dakikada uyarı
+        const REFRESH_RATE = 5 * 60 * 1000; // 5 dakikada bir
+
+        function resetIdleTime() { inactivityTime = 0; }
+
+        ['mousemove', 'mousedown', 'keypress', 'DOMMouseScroll', 'mousewheel', 'touchmove', 'MSPointerMove'].forEach(event => {
+            document.addEventListener(event, resetIdleTime, false);
+        });
+
+        function startSessionManagement() {
+            if(!getToken()) return;
+            clearInterval(idleInterval);
+            clearInterval(tokenRefreshInterval);
+            inactivityTime = 0;
+
+            idleInterval = setInterval(() => {
+                if(!getToken()) { clearInterval(idleInterval); return; }
+                inactivityTime++;
+
+                if (inactivityTime === WARNING_TIME) {
+                    Swal.fire({
+                        title: window.t('session_warning_title') || 'Oturum Kapanıyor',
+                        html: (window.t('session_warning_desc') || 'Hareketsizlik nedeniyle oturumunuz <b>60</b> saniye içinde kapatılacak.') + '<br><br><span class="text-xs text-slate-400">' + (window.t('session_ask_continue') || 'Devam etmek istiyor musunuz?') + '</span>',
+                        icon: 'warning', background: '#0b0f19', color: '#fff', showCancelButton: true, confirmButtonColor: '#3b82f6', cancelButtonColor: '#ef4444',
+                        confirmButtonText: window.t('session_btn_continue') || 'Devam Et', cancelButtonText: window.t('session_btn_logout') || 'Çıkış Yap',
+                        timer: 60000, timerProgressBar: true, allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.isConfirmed) { resetIdleTime(); silentlyRefreshToken(); } 
+                        else if (result.dismiss === Swal.DismissReason.timer || result.dismiss === Swal.DismissReason.cancel) { processLogout(true); }
+                    });
+                }
+            }, 1000);
+
+            tokenRefreshInterval = setInterval(() => {
+                if(getToken() && inactivityTime < WARNING_TIME) silentlyRefreshToken();
+            }, REFRESH_RATE);
+        }
+
+        async function silentlyRefreshToken() {
+            const token = getToken();
+            if(!token) return;
+            try {
+                const res = await fetch('/api/auth/refresh', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+                if(res.ok) { const data = await res.json(); if(data.access_token) setToken(data.access_token); }
+            } catch(e) { console.log("Token refresh error"); }
+        }
+
+        function processLogout(isTimeout = false) {
+            removeToken(); checkAuthState(); clearInterval(idleInterval); clearInterval(tokenRefreshInterval);
+            if(isTimeout === true) { Swal.fire({icon:'info', title: window.t('session_expired_title') || 'Oturum Sonlandı', text: window.t('session_expired_desc') || 'Güvenliğiniz için oturumunuz kapatıldı.', background:'#0b0f19', color:'#fff', confirmButtonColor: '#3b82f6'}); } 
+            else { Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); }
+        }
+
         function checkAuthState() {
             const token = getToken();
             if (token) {
-                document.getElementById('auth-buttons-unlogged').classList.add('hidden');
-                document.getElementById('auth-buttons-logged').classList.remove('hidden');
-                document.getElementById('auth-buttons-logged').classList.add('flex');
+                if(document.getElementById('auth-buttons-unlogged')) document.getElementById('auth-buttons-unlogged').classList.add('hidden');
+                if(document.getElementById('auth-buttons-logged')) { document.getElementById('auth-buttons-logged').classList.remove('hidden'); document.getElementById('auth-buttons-logged').classList.add('flex'); }
+                startSessionManagement();
             } else {
-                document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
-                document.getElementById('auth-buttons-logged').classList.add('hidden');
-                document.getElementById('auth-buttons-logged').classList.remove('flex');
+                if(document.getElementById('auth-buttons-unlogged')) document.getElementById('auth-buttons-unlogged').classList.remove('hidden');
+                if(document.getElementById('auth-buttons-logged')) { document.getElementById('auth-buttons-logged').classList.add('hidden'); document.getElementById('auth-buttons-logged').classList.remove('flex'); }
+                clearInterval(idleInterval); clearInterval(tokenRefreshInterval);
             }
         }
+        // --------------------------------------------
 
         function showLoginModal() { closeAuthModals(); document.getElementById('login-modal').classList.remove('hidden'); }
         function showRegisterModal() { closeAuthModals(); document.getElementById('register-modal').classList.remove('hidden'); }
@@ -712,23 +799,12 @@
             btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
             
             try {
-                const res = await fetch(`${API_URL}/auth/login`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({email, password})
-                });
+                const res = await fetch(`${API_URL}/auth/login`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email, password}) });
                 const data = await res.json();
-                if(res.ok) {
-                    setToken(data.access_token);
-                    checkAuthState();
-                    closeAuthModals();
-                    Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
-                } else throw new Error(data.detail || 'Giriş başarısız. Lütfen e-posta veya şifrenizi kontrol edin.');
-            } catch(e) {
-                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
-            } finally {
-                btnText.innerText = window.t('auth_login_btn');
-            }
+                if(res.ok) { setToken(data.access_token); checkAuthState(); closeAuthModals(); Swal.fire({icon:'success', title:'Giriş Başarılı', text:'Tekrar hoş geldiniz!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); } 
+                else throw new Error(data.detail || 'Giriş başarısız.');
+            } catch(e) { Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'}); } 
+            finally { btnText.innerText = window.t('auth_login_btn'); }
         }
 
         async function processRegister() {
@@ -740,29 +816,12 @@
             btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
             
             try {
-                const res = await fetch(`${API_URL}/auth/register`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({email, password})
-                });
+                const res = await fetch(`${API_URL}/auth/register`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email, password}) });
                 const data = await res.json();
-                if(res.ok) {
-                    setToken(data.access_token);
-                    checkAuthState();
-                    closeAuthModals();
-                    Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
-                } else throw new Error(data.detail || 'Kayıt başarısız. Bu e-posta kullanılıyor olabilir.');
-            } catch(e) {
-                Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'});
-            } finally {
-                btnText.innerText = window.t('auth_reg_btn');
-            }
-        }
-
-        function processLogout() {
-            removeToken();
-            checkAuthState();
-            Swal.fire({icon:'info', title:'Çıkış Yapıldı', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false});
+                if(res.ok) { setToken(data.access_token); checkAuthState(); closeAuthModals(); Swal.fire({icon:'success', title:'Kayıt Başarılı', text:'Aramıza hoş geldin!', background:'#0b0f19', color:'#fff', timer:1500, showConfirmButton:false}); } 
+                else throw new Error(data.detail || 'Kayıt başarısız.');
+            } catch(e) { Swal.fire({icon:'error', title:'Hata', text:e.message, background:'#0b0f19', color:'#fff'}); } 
+            finally { btnText.innerText = window.t('auth_reg_btn'); }
         }
 
         window.addEventListener('DOMContentLoaded', checkAuthState);

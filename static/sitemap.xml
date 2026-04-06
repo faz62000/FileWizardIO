@@ -23,14 +23,9 @@
     <url><loc>https://filewizardio.com/en/tools/video-compressor</loc><lastmod>2026-03-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
     <url><loc>https://filewizardio.com/en/developer-api</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
-    <url><loc>https://filewizardio.com/kosullar</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/gizlilik-politikasi</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/iade-politikasi</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/cerez-politikasi</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-
-    <url><loc>https://filewizardio.com/en/terms</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/en/privacy-policy</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/en/refund-policy</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-    <url><loc>https://filewizardio.com/en/cookie-policy</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+    <url><loc>https://filewizardio.com/legal/terms.html</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+    <url><loc>https://filewizardio.com/legal/privacy.html</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+    <url><loc>https://filewizardio.com/legal/refund.html</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+    <url><loc>https://filewizardio.com/legal/cookies.html</loc><lastmod>2026-03-23</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
 </urlset>

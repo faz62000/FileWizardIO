@@ -6,10 +6,13 @@ import os
 
 # Güvenlik Ayarları
 # Production ortamında (DigitalOcean'da) bu şifre Environment Variables'dan çekilecek. 
-# Şimdilik yerel testler için varsayılan bir şifre belirliyoruz.
 SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "forgelogic-super-gizli-anahtar-778899")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # Kullanıcı giriş yaptığında token 1 hafta geçerli olsun
+
+# MİLYON DOLARLIK GÜVENLİK DOKUNUŞU: 
+# Token ömrü 1 hafta yerine 15 dakikaya düşürüldü. 
+# Kullanıcı aktifse ön yüzdeki JavaScript bu süreyi sessizce 5 dakikada bir uzatacak.
+ACCESS_TOKEN_EXPIRE_MINUTES = 15  
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

@@ -5,10 +5,7 @@ User-agent: *
 Allow: /
 Allow: /en/
 Allow: /araclar/
-Allow: /kosullar
-Allow: /gizlilik-politikasi
-Allow: /iade-politikasi
-Allow: /cerez-politikasi
+Allow: /legal/
 
 # Statik Varlıkların Taranmasını Garantiye Al (UI/UX SEO Puanı İçin)
 Allow: /static/

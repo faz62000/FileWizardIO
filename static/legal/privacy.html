@@ -1,176 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy / Gizlilik Politikası | FileWizardIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Gizlilik Politikası / Privacy Policy | FileWizardIO</title>
+    <meta name="theme-color" content="#0b0f19">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { 
+                        dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
+                        blue: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            color: var(--primary-color);
-        }
-        p, ul {
-            margin-bottom: 16px;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .meta-info {
-            font-size: 0.9em;
-            color: #64748b;
-            margin-bottom: 30px;
-            background-color: #f1f5f9;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid var(--primary-color);
-        }
-        .meta-info p {
-            margin-bottom: 5px;
-        }
-        .lang-content {
-            display: none;
-        }
-        .lang-content.active {
-            display: block;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
+        body { background-color: #050505; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(20, 25, 40, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-<div class="container">
-    <div id="content-en" class="lang-content">
-        <h1>Privacy Policy</h1>
-        <div class="meta-info">
-            <p><strong>Company:</strong> ForgeLogic LLC</p>
-            <p><strong>Address:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
-            <p><strong>Phone:</strong> +1 (302) 280-1080</p>
-            <p><strong>Email:</strong> info@forgelogiclab.com</p>
-            <p><strong>Product:</strong> FileWizardIO</p>
+    <div class="fixed top-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-600/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none z-0"></div>
+
+    <header class="h-20 border-b border-white/5 flex items-center px-4 md:px-12 justify-between z-40 sticky top-0 bg-[#0b0f19]/90 backdrop-blur-md">
+        <a href="/" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">✨</div>
+            <div>
+                <h1 class="text-base md:text-xl font-bold tracking-tight leading-none text-white group-hover:text-blue-400 transition-colors">FileWizard<span class="text-blue-500">IO</span></h1>
+                <p class="text-[8px] md:text-[10px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Legal & Policies</p>
+            </div>
+        </a>
+        
+        <div class="flex items-center gap-3 md:gap-4">
+            <a href="/" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-500 hover:border-blue-400 transition shadow-lg group" title="Home">
+                <i class="fa-solid fa-house group-hover:text-white"></i>
+            </a>
         </div>
+    </header>
 
-        <h2>1. Information We Collect</h2>
-        <p>We collect information to provide better services to our users in compliance with GDPR and CCPA standards. The types of personal information we may collect include:</p>
-        <ul>
-            <li><strong>Account Information:</strong> Email address, name, and password when you create an account.</li>
-            <li><strong>Payment Information:</strong> Processed securely via our Merchant of Record, Paddle. We do not store your credit card details on our servers.</li>
-            <li><strong>Usage Data:</strong> Information on how you interact with FileWizardIO, including IP addresses, browser types, and API request logs to ensure system security and stability.</li>
-        </ul>
+    <main class="flex-1 w-full max-w-4xl mx-auto p-4 md:p-8 lg:p-12 z-10 relative">
+        <div class="glass-panel p-6 md:p-10 rounded-3xl">
+            
+            <div id="content-en" class="lang-content">
+                <h1 class="text-3xl md:text-4xl font-black text-white mb-6">Privacy Policy</h1>
+                
+                <div class="bg-slate-900/50 p-5 rounded-xl border-l-4 border-blue-500 mb-8 space-y-2 text-sm text-slate-300">
+                    <p><strong class="text-white">Company:</strong> ForgeLogic LLC</p>
+                    <p><strong class="text-white">Address:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
+                    <p><strong class="text-white">Phone:</strong> +1 (302) 280-1080</p>
+                    <p><strong class="text-white">Email:</strong> info@forgelogiclab.com</p>
+                </div>
 
-        <h2>2. How We Use Your Information</h2>
-        <p>We use the information we collect to:</p>
-        <ul>
-            <li>Provide, maintain, and improve our Media Backup and Processing Service.</li>
-            <li>Process transactions and send related information such as confirmations, invoices, and updates.</li>
-            <li>Respond to customer support requests and provide technical assistance.</li>
-            <li>Monitor and analyze usage and trends to enhance user experience and prevent fraud.</li>
-        </ul>
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">1. Information We Collect</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">We collect information to provide better services to our users in compliance with GDPR and CCPA standards. The types of personal information we may collect include:</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-300 text-sm md:text-base mb-6 pl-4">
+                    <li><strong class="text-white">Account Information:</strong> Email address, name, and password when you create an account.</li>
+                    <li><strong class="text-white">Payment Information:</strong> Processed securely via our Merchant of Record, Paddle. We do not store your credit card details on our servers.</li>
+                    <li><strong class="text-white">Usage Data:</strong> Information on how you interact with FileWizardIO, including IP addresses, browser types, and API request logs to ensure system security and stability.</li>
+                </ul>
 
-        <h2>3. Data Security and File Retention</h2>
-        <p>Your security is our highest priority. Media files and documents uploaded to FileWizardIO for processing are temporarily stored on our servers strictly for the duration necessary to complete the requested task. We implement strict, automated deletion protocols to permanently remove your files shortly after processing is complete. We do not train AI models on your personal data.</p>
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">2. How We Use Your Information</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">We use the information we collect to:</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-300 text-sm md:text-base mb-6 pl-4">
+                    <li>Provide, maintain, and improve our Media Backup and Processing Service.</li>
+                    <li>Process transactions and send related information such as confirmations, invoices, and updates.</li>
+                    <li>Respond to customer support requests and provide technical assistance.</li>
+                    <li>Monitor and analyze usage and trends to enhance user experience and prevent fraud.</li>
+                </ul>
 
-        <h2>4. Sharing of Information</h2>
-        <p>We do not sell, rent, or trade your personal data. We may share your information with third-party vendors (such as Paddle for payment processing or trusted cloud hosting providers) only to the extent necessary to operate our service, complying strictly with global privacy standards.</p>
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">3. Data Security and File Retention</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Your security is our highest priority. Media files and documents uploaded to FileWizardIO for processing are temporarily stored on our servers strictly for the duration necessary to complete the requested task. We implement strict, automated deletion protocols to permanently remove your files shortly after processing is complete. We do not train AI models on your personal data.</p>
 
-        <h2>5. Your Rights & Contact</h2>
-        <p>Depending on your location, you may have the right to access, update, export, or delete the information we hold about you. If you wish to exercise these rights, or if you have any questions about this Privacy Policy, please contact our Data Protection Officer at <strong>info@forgelogiclab.com</strong> or call us at <strong>+1 (302) 280-1080</strong>.</p>
-        
-        <a href="/en/" class="back-link">&larr; Back to Home</a>
-    </div>
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">4. Sharing of Information</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">We do not sell, rent, or trade your personal data. We may share your information with third-party vendors (such as Paddle for payment processing or trusted cloud hosting providers) only to the extent necessary to operate our service, complying strictly with global privacy standards.</p>
 
-    <div id="content-tr" class="lang-content">
-        <h1>Gizlilik Politikası</h1>
-        <div class="meta-info">
-            <p><strong>Şirket:</strong> ForgeLogic LLC</p>
-            <p><strong>Adres:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
-            <p><strong>Telefon:</strong> +1 (302) 280-1080</p>
-            <p><strong>E-Posta:</strong> info@forgelogiclab.com</p>
-            <p><strong>Ürün:</strong> FileWizardIO</p>
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">5. Your Rights & Contact</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Depending on your location, you may have the right to access, update, export, or delete the information we hold about you. If you wish to exercise these rights, or if you have any questions about this Privacy Policy, please contact our Data Protection Officer at <strong class="text-white">info@forgelogiclab.com</strong> or call us at <strong class="text-white">+1 (302) 280-1080</strong>.</p>
+            </div>
+
+            <div id="content-tr" class="lang-content">
+                <h1 class="text-3xl md:text-4xl font-black text-white mb-6">Gizlilik Politikası</h1>
+                
+                <div class="bg-slate-900/50 p-5 rounded-xl border-l-4 border-blue-500 mb-8 space-y-2 text-sm text-slate-300">
+                    <p><strong class="text-white">Şirket:</strong> ForgeLogic LLC</p>
+                    <p><strong class="text-white">Adres:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
+                    <p><strong class="text-white">Telefon:</strong> +1 (302) 280-1080</p>
+                    <p><strong class="text-white">E-Posta:</strong> info@forgelogiclab.com</p>
+                </div>
+
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">1. Topladığımız Bilgiler</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">Kullanıcılarımıza daha iyi hizmet sunmak için GDPR ve CCPA standartlarına uygun olarak bilgi topluyoruz. Toplayabileceğimiz kişisel bilgi türleri şunları içerir:</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-300 text-sm md:text-base mb-6 pl-4">
+                    <li><strong class="text-white">Hesap Bilgileri:</strong> Bir hesap oluşturduğunuzda e-posta adresi, isim ve şifre.</li>
+                    <li><strong class="text-white">Ödeme Bilgileri:</strong> Kayıtlı Satıcımız (MoR) olan Paddle aracılığıyla güvenli bir şekilde işlenir. Kredi kartı bilgilerinizi sunucularımızda asla saklamıyoruz.</li>
+                    <li><strong class="text-white">Kullanım Verileri:</strong> Sistem güvenliğini sağlamak için IP adresleri, tarayıcı türleri ve API istek günlükleri dahil olmak üzere FileWizardIO ile nasıl etkileşimde bulunduğunuza dair bilgiler.</li>
+                </ul>
+
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">2. Bilgilerinizi Nasıl Kullanıyoruz</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">Topladığımız bilgileri aşağıdaki amaçlarla kullanırız:</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-300 text-sm md:text-base mb-6 pl-4">
+                    <li>Medya Yedekleme ve İşleme Hizmetimizi sağlamak, sürdürmek ve iyileştirmek.</li>
+                    <li>İşlemleri gerçekleştirmek ve onaylar ile faturalar gibi ilgili bilgileri göndermek.</li>
+                    <li>Müşteri destek taleplerine yanıt vermek ve teknik yardım sağlamak.</li>
+                    <li>Kullanıcı deneyimini geliştirmek ve dolandırıcılığı önlemek için kullanımı analiz etmek.</li>
+                </ul>
+
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">3. Veri Güvenliği ve Dosya Saklama</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Güvenliğiniz en yüksek önceliğimizdir. İşlenmek üzere FileWizardIO'ya yüklenen medya ve belgeler, yalnızca talep edilen görevi tamamlamak için gerekli olan süre boyunca sunucularımızda geçici olarak saklanır. İşlemden kısa bir süre sonra dosyalarınızı kalıcı olarak kaldırmak için otomatik silme protokolleri uyguluyoruz. Kişisel verileriniz üzerinde yapay zeka modelleri eğitmiyoruz.</p>
+
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">4. Bilgilerin Paylaşılması</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Kişisel verilerinizi satmıyor, kiralamıyor veya ticaretini yapmıyoruz. Bilgilerinizi, yalnızca hizmetimizi yürütmek için gerekli olduğu ölçüde ve küresel gizlilik standartlarına sıkı sıkıya bağlı kalarak üçüncü taraf satıcılarla (ödeme işlemleri için Paddle veya bulut barındırma sağlayıcıları gibi) paylaşabiliriz.</p>
+
+                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">5. Haklarınız ve İletişim</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Bulunduğunuz yere bağlı olarak, hakkınızda sahip olduğumuz bilgilere erişme, bunları güncelleme, dışa aktarma veya silme hakkına sahip olabilirsiniz. Bu haklarınızı kullanmak isterseniz veya bu Gizlilik Politikası ile ilgili sorularınız varsa, lütfen Veri Koruma Görevlimiz ile <strong class="text-white">info@forgelogiclab.com</strong> adresinden e-posta yoluyla veya <strong class="text-white">+1 (302) 280-1080</strong> numaralı telefondan iletişime geçin.</p>
+            </div>
         </div>
+    </main>
 
-        <h2>1. Topladığımız Bilgiler</h2>
-        <p>Kullanıcılarımıza daha iyi hizmet sunmak için GDPR ve CCPA standartlarına uygun olarak bilgi topluyoruz. Toplayabileceğimiz kişisel bilgi türleri şunları içerir:</p>
-        <ul>
-            <li><strong>Hesap Bilgileri:</strong> Bir hesap oluşturduğunuzda e-posta adresi, isim ve şifre.</li>
-            <li><strong>Ödeme Bilgileri:</strong> Kayıtlı Satıcımız (MoR) olan Paddle aracılığıyla güvenli bir şekilde işlenir. Kredi kartı bilgilerinizi sunucularımızda asla saklamıyoruz.</li>
-            <li><strong>Kullanım Verileri:</strong> Sistem güvenliğini sağlamak için IP adresleri, tarayıcı türleri ve API istek günlükleri dahil olmak üzere FileWizardIO ile nasıl etkileşimde bulunduğunuza dair bilgiler.</li>
-        </ul>
+    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
+        <div class="max-w-4xl mx-auto px-6 text-center text-xs text-slate-500">
+            © 2026 FileWizardIO by ForgeLogic LLC. Tüm hakları saklıdır.
+        </div>
+    </footer>
 
-        <h2>2. Bilgilerinizi Nasıl Kullanıyoruz</h2>
-        <p>Topladığımız bilgileri aşağıdaki amaçlarla kullanırız:</p>
-        <ul>
-            <li>Medya Yedekleme ve İşleme Hizmetimizi sağlamak, sürdürmek ve iyileştirmek.</li>
-            <li>İşlemleri gerçekleştirmek ve onaylar ile faturalar gibi ilgili bilgileri göndermek.</li>
-            <li>Müşteri destek taleplerine yanıt vermek ve teknik yardım sağlamak.</li>
-            <li>Kullanıcı deneyimini geliştirmek ve dolandırıcılığı önlemek için kullanımı analiz etmek.</li>
-        </ul>
-
-        <h2>3. Veri Güvenliği ve Dosya Saklama</h2>
-        <p>Güvenliğiniz en yüksek önceliğimizdir. İşlenmek üzere FileWizardIO'ya yüklenen medya ve belgeler, yalnızca talep edilen görevi tamamlamak için gerekli olan süre boyunca sunucularımızda geçici olarak saklanır. İşlemden kısa bir süre sonra dosyalarınızı kalıcı olarak kaldırmak için otomatik silme protokolleri uyguluyoruz. Kişisel verileriniz üzerinde yapay zeka modelleri eğitmiyoruz.</p>
-
-        <h2>4. Bilgilerin Paylaşılması</h2>
-        <p>Kişisel verilerinizi satmıyor, kiralamıyor veya ticaretini yapmıyoruz. Bilgilerinizi, yalnızca hizmetimizi yürütmek için gerekli olduğu ölçüde ve küresel gizlilik standartlarına sıkı sıkıya bağlı kalarak üçüncü taraf satıcılarla (ödeme işlemleri için Paddle veya bulut barındırma sağlayıcıları gibi) paylaşabiliriz.</p>
-
-        <h2>5. Haklarınız ve İletişim</h2>
-        <p>Bulunduğunuz yere bağlı olarak, hakkınızda sahip olduğumuz bilgilere erişme, bunları güncelleme, dışa aktarma veya silme hakkına sahip olabilirsiniz. Bu haklarınızı kullanmak isterseniz veya bu Gizlilik Politikası ile ilgili sorularınız varsa, lütfen Veri Koruma Görevlimiz ile <strong>info@forgelogiclab.com</strong> adresinden e-posta yoluyla veya <strong>+1 (302) 280-1080</strong> numaralı telefondan iletişime geçin.</p>
-        
-        <a href="/" class="back-link">&larr; Ana Sayfaya Dön</a>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Tarayıcının mevcut URL yolunu alıyoruz
-        const currentPath = window.location.pathname;
-        
-        // Eğer URL '/en/' içeriyorsa İngilizce, değilse Türkçe aç
-        if (currentPath.includes('/en/')) {
-            document.getElementById('content-en').classList.add('active');
-            document.getElementById('content-tr').classList.remove('active');
-            document.documentElement.lang = "en";
-        } else {
-            document.getElementById('content-tr').classList.add('active');
-            document.getElementById('content-en').classList.remove('active');
-            document.documentElement.lang = "tr";
-        }
-    });
-</script>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/en/')) {
+                document.getElementById('content-en').classList.add('active');
+                document.documentElement.lang = "en";
+            } else {
+                document.getElementById('content-tr').classList.add('active');
+                document.documentElement.lang = "tr";
+            }
+        });
+    </script>
 </body>
 </html>
