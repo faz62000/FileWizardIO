@@ -10,3 +10,10 @@ filewizard.db
 __pycache__/
 *.py[cod]
 *$py.class
+# Gizli dosyalar
+.env
+api_keys.json
+*.db
+__pycache__/
+*.pyc
+.DS_Store
