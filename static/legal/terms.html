@@ -1,131 +1,91 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Hizmet Koşulları / Terms of Service | FileWizardIO</title>
-    <meta name="theme-color" content="#0b0f19">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
-                    colors: { 
-                        dark: { 900: '#050505', 800: '#0b0f19', 700: '#1a1d2d' },
-                        blue: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #050505; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
-        .glass-panel { background: rgba(20, 25, 40, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .lang-content { display: none; }
-        .lang-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — FileWizardIO / SwapForge | ForgeLogic LLC</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e; line-height: 1.7; background: #fff; }
+  h1 { font-size: 2rem; color: #0b0f19; border-bottom: 3px solid #3454fd; padding-bottom: 12px; }
+  h2 { font-size: 1.2rem; color: #3454fd; margin-top: 2rem; }
+  a { color: #3454fd; }
+  .meta { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+  .highlight { background: #f0f4ff; border-left: 4px solid #3454fd; padding: 12px 16px; border-radius: 4px; margin: 1rem 0; }
+  .warning { background: #fff3cd; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px; margin: 1rem 0; }
+</style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
 
-    <div class="fixed top-[-10%] left-[-10%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-600/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none z-0"></div>
+<h1>Terms of Service</h1>
+<p class="meta">Effective Date: June 1, 2026 &nbsp;|&nbsp; Last Updated: June 1, 2026<br>
+Operator: <strong>ForgeLogic LLC</strong> — 8 The Green, Suite B, Dover, DE 19901, USA<br>
+Contact: <a href="mailto:info@forgelogiclab.com">info@forgelogiclab.com</a></p>
 
-    <header class="h-20 border-b border-white/5 flex items-center px-4 md:px-12 justify-between z-40 sticky top-0 bg-[#0b0f19]/90 backdrop-blur-md">
-        <a href="/" class="flex items-center gap-3 group">
-            <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">✨</div>
-            <div>
-                <h1 class="text-base md:text-xl font-bold tracking-tight leading-none text-white group-hover:text-blue-400 transition-colors">FileWizard<span class="text-blue-500">IO</span></h1>
-                <p class="text-[8px] md:text-[10px] text-slate-400 tracking-widest uppercase mt-0.5 font-bold">Legal & Policies</p>
-            </div>
-        </a>
-        
-        <div class="flex items-center gap-3 md:gap-4">
-            <a href="/" class="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-800 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-500 hover:border-blue-400 transition shadow-lg group" title="Home">
-                <i class="fa-solid fa-house group-hover:text-white"></i>
-            </a>
-        </div>
-    </header>
+<div class="highlight">
+These Terms of Service govern your use of all services operated by ForgeLogic LLC, including <strong>FileWizardIO</strong> (filewizardio.com) and <strong>SwapForge</strong> (mobile application). By using our services, you agree to these terms.
+</div>
 
-    <main class="flex-1 w-full max-w-4xl mx-auto p-4 md:p-8 lg:p-12 z-10 relative">
-        <div class="glass-panel p-6 md:p-10 rounded-3xl">
-            
-            <div id="content-en" class="lang-content">
-                <h1 class="text-3xl md:text-4xl font-black text-white mb-6">Terms of Service</h1>
-                
-                <div class="bg-slate-900/50 p-5 rounded-xl border-l-4 border-blue-500 mb-8 space-y-2 text-sm text-slate-300">
-                    <p><strong class="text-white">Company:</strong> ForgeLogic LLC</p>
-                    <p><strong class="text-white">Address:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
-                    <p><strong class="text-white">Phone:</strong> +1 (302) 280-1080</p>
-                    <p><strong class="text-white">Email:</strong> info@forgelogiclab.com</p>
-                </div>
+<h2>1. Eligibility</h2>
+<p>You must be at least 13 years old to use our services. By using our services, you represent that you meet this age requirement. If you are under 18, you must have parental consent.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">1. Acceptance of Terms</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">By using FileWizardIO, you agree to these Terms of Service. If you do not agree with any part of these terms, please do not use our services.</p>
+<h2>2. Account Registration</h2>
+<p>You must provide accurate information when creating an account. You are responsible for maintaining the confidentiality of your password. You must notify us immediately of any unauthorized use of your account at <a href="mailto:info@forgelogiclab.com">info@forgelogiclab.com</a>.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">2. Acceptable Use Policy (AUP) & Copyright</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">FileWizardIO provides tools for personal media backup, document management, and image editing. You are solely responsible for the content you process. You MUST NOT use this service to download, process, or distribute copyrighted material without explicit permission from the copyright owner. Any use of our tools for piracy, copyright infringement, or illegal activities is strictly prohibited and will result in immediate account termination. FileWizardIO and ForgeLogic LLC hold no liability for user-generated content or copyright violations.</p>
+<h2>3. Acceptable Use</h2>
+<p>You agree to use our services only for lawful purposes. You must NOT:</p>
+<ul>
+  <li>Upload content featuring minors in any sexual or inappropriate context.</li>
+  <li>Use another person's likeness without their explicit consent (SwapForge).</li>
+  <li>Create or distribute non-consensual intimate imagery (deepfakes).</li>
+  <li>Violate any applicable local, state, national, or international law.</li>
+  <li>Attempt to reverse-engineer, decompile, or exploit our services.</li>
+  <li>Use automated bots or scrapers without written permission.</li>
+  <li>Upload content that infringes copyright, trademark, or other intellectual property rights.</li>
+</ul>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">3. Service Availability</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">We strive to ensure high performance, but we provide this service "as is" and do not guarantee 100% continuous uptime. We reserve the right to modify, suspend, or terminate the service or any part of it at any time, with or without notice.</p>
+<div class="warning">
+<strong>SwapForge Specific:</strong> This application is for entertainment purposes only. You must only use images of people who have given you explicit consent. Creating face-swap content of public figures for deceptive or harmful purposes is strictly prohibited.
+</div>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">4. Liability Limitation</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">FileWizardIO and ForgeLogic LLC shall not be liable for any direct, indirect, incidental, or consequential damages, including data loss or business interruption, resulting from the use or inability to use our tools.</p>
+<h2>4. Credits and Payments (SwapForge)</h2>
+<ul>
+  <li>Credits are purchased through in-app payment and are non-refundable once used.</li>
+  <li>Credits do not expire and are non-transferable.</li>
+  <li>Credits are deducted upon successful job submission to our AI processing servers.</li>
+  <li>If a processing error occurs on our end, credits will be refunded within 24 hours.</li>
+</ul>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">5. Accounts, Billing and Subscriptions (Pro Users)</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns. By purchasing a subscription, you agree to Paddle's Terms and Conditions. You are responsible for safeguarding your account details and password.</p>
-            </div>
+<h2>5. Subscriptions (FileWizardIO PRO)</h2>
+<ul>
+  <li>PRO subscriptions are billed monthly at $9.99/month via Stripe.</li>
+  <li>Subscriptions auto-renew unless cancelled before the renewal date.</li>
+  <li>You may cancel at any time; access continues until the end of the billing period.</li>
+  <li>Refunds are available within 7 days of initial purchase if no PRO features have been used.</li>
+</ul>
 
-            <div id="content-tr" class="lang-content">
-                <h1 class="text-3xl md:text-4xl font-black text-white mb-6">Hizmet Koşulları</h1>
-                
-                <div class="bg-slate-900/50 p-5 rounded-xl border-l-4 border-blue-500 mb-8 space-y-2 text-sm text-slate-300">
-                    <p><strong class="text-white">Şirket:</strong> ForgeLogic LLC</p>
-                    <p><strong class="text-white">Adres:</strong> 8 The Green, STE B, Dover, DE, 19901, United States</p>
-                    <p><strong class="text-white">Telefon:</strong> +1 (302) 280-1080</p>
-                    <p><strong class="text-white">E-Posta:</strong> info@forgelogiclab.com</p>
-                </div>
+<h2>6. Intellectual Property</h2>
+<p>All content, software, and technology on our platforms is owned by ForgeLogic LLC or our licensors. You retain ownership of content you upload. By uploading content, you grant ForgeLogic LLC a temporary, limited license to process that content solely for providing the requested service.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">1. Koşulların Kabulü</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">FileWizardIO'yu kullanarak bu Hizmet Koşullarını kabul etmiş olursunuz. Bu koşulların herhangi bir bölümünü kabul etmiyorsanız, lütfen hizmetlerimizi kullanmayın.</p>
+<h2>7. Disclaimer of Warranties</h2>
+<p>Our services are provided "as is" without warranties of any kind. We do not guarantee uninterrupted or error-free service. AI processing results may vary in quality.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">2. Kabul Edilebilir Kullanım Politikası (AUP) ve Telif Hakları</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">FileWizardIO, kişisel medya yedekleme, belge yönetimi ve görsel düzenleme araçları sunar. İşlediğiniz içeriklerin tüm sorumluluğu size aittir. Bu hizmeti, telif hakkı sahibinin açık izni olmadan telif hakkıyla korunan materyalleri indirmek, işlemek veya dağıtmak için KULLANAMAZSINIZ. Araçlarımızın korsanlık, telif hakkı ihlali veya yasadışı faaliyetler için kullanımı kesinlikle yasaktır ve hesabın derhal feshedilmesiyle sonuçlanacaktır. FileWizardIO ve ForgeLogic LLC, kullanıcı tarafından oluşturulan içerik veya telif hakkı ihlallerinden sorumlu tutulamaz.</p>
+<h2>8. Limitation of Liability</h2>
+<p>To the maximum extent permitted by law, ForgeLogic LLC shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount you paid us in the 12 months preceding the claim.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">3. Hizmet Kullanılabilirliği</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Yüksek performans sağlamaya çalışıyoruz, ancak bu hizmeti "olduğu gibi" sunuyoruz ve %100 kesintisiz çalışma (uptime) garantisi vermiyoruz. Hizmeti veya herhangi bir bölümünü dilediğimiz zaman, bildirimde bulunarak veya bulunmaksızın değiştirme, askıya alma veya sonlandırma hakkımızı saklı tutuyoruz.</p>
+<h2>9. Termination</h2>
+<p>We may suspend or terminate your account immediately if you violate these terms. You may delete your account at any time by contacting us. Upon termination, your right to use our services ends immediately.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">4. Sorumluluk Sınırlandırması</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">FileWizardIO ve ForgeLogic LLC, araçlarımızın kullanılmasından veya kullanılamamasından kaynaklanan veri kaybı veya iş kesintisi dahil olmak üzere hiçbir doğrudan, dolaylı, arızi veya sonuç olarak ortaya çıkan zarardan sorumlu tutulamaz.</p>
+<h2>10. Governing Law</h2>
+<p>These terms are governed by the laws of the State of Delaware, USA. Any disputes shall be resolved in the courts of Delaware.</p>
 
-                <h2 class="text-xl font-bold text-blue-400 mt-8 mb-4">5. Hesaplar, Faturalandırma ve Abonelikler (Pro Kullanıcılar)</h2>
-                <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Sipariş sürecimiz çevrimiçi satıcımız Paddle.com tarafından yürütülmektedir. Paddle.com, tüm siparişlerimiz için Kayıtlı Satıcıdır (Merchant of Record). Paddle tüm müşteri hizmetleri taleplerini ve iadeleri yönetir. Bir abonelik satın alarak Paddle'ın Hüküm ve Koşullarını kabul etmiş olursunuz. Hesap bilgilerinizin ve şifrenizin güvenliğini sağlamaktan siz sorumlusunuz.</p>
-            </div>
-        </div>
-    </main>
+<h2>11. Changes to Terms</h2>
+<p>We may update these terms. We will notify you of material changes via email. Continued use after changes constitutes acceptance of the new terms.</p>
 
-    <footer class="w-full py-6 border-t border-white/5 mt-auto z-10 relative bg-[#0b0f19]/50">
-        <div class="max-w-4xl mx-auto px-6 text-center text-xs text-slate-500">
-            © 2026 FileWizardIO by ForgeLogic LLC. Tüm hakları saklıdır.
-        </div>
-    </footer>
+<h2>12. Contact</h2>
+<p>ForgeLogic LLC<br>
+8 The Green, Suite B, Dover, DE 19901, USA<br>
+Email: <a href="mailto:info@forgelogiclab.com">info@forgelogiclab.com</a><br>
+Phone: +1 (302) 280-1080</p>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const currentPath = window.location.pathname;
-            if (currentPath.includes('/en/')) {
-                document.getElementById('content-en').classList.add('active');
-                document.documentElement.lang = "en";
-            } else {
-                document.getElementById('content-tr').classList.add('active');
-                document.documentElement.lang = "tr";
-            }
-        });
-    </script>
 </body>
 </html>
